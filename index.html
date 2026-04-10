@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wiom Booking → Install: 9-Step Flow Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0f1a;--s:#131b2e;--s2:#1c2742;--bd:#2a3a5c;--t:#eaf0f9;--t2:#8899b8;--g:#34d399;--r:#f87171;--y:#fbbf24;--b:#60a5fa;--p:#c084fc;--c:#22d3ee;--o:#fb923c;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t);line-height:1.6;-webkit-font-smoothing:antialiased;}
+
+/* Header */
+.hdr{background:linear-gradient(135deg,#0c1629 0%,#162244 50%,#1a1a40 100%);padding:28px 36px 24px;border-bottom:1px solid rgba(34,211,238,.15);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);}
+.hdr h1{font-size:24px;font-weight:800;background:linear-gradient(135deg,#22d3ee,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.3px;}
+.hdr .sub{color:var(--t2);font-size:12px;margin-top:5px;font-weight:400;}
+.pills{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;}
+.pill{background:rgba(255,255,255,.04);padding:8px 16px;border-radius:10px;font-size:12px;border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(8px);font-weight:500;}
+.pill b{color:var(--c);font-weight:700;}
+
+/* Container */
+.ctn{max-width:1100px;margin:0 auto;padding:28px 36px;}
+.arrow{text-align:center;padding:6px 0;color:var(--bd);font-size:20px;opacity:.5;}
+
+/* Step Cards */
+.step{background:linear-gradient(145deg,var(--s),rgba(19,27,46,.6));border-radius:16px;border:1px solid var(--bd);margin:0 auto 10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.25);transition:transform .15s,box-shadow .15s;}
+.step:hover{transform:translateY(-1px);box-shadow:0 8px 32px rgba(0,0,0,.35);}
+.step.crit{border-left:5px solid var(--r);}.step.high{border-left:5px solid var(--y);}.step.low{border-left:5px solid var(--g);}
+.step-h{display:flex;justify-content:space-between;align-items:center;padding:20px 24px 12px;flex-wrap:wrap;gap:10px;}
+.step-h .num{font-size:36px;font-weight:900;color:var(--c);opacity:0.12;margin-right:14px;letter-spacing:-2px;}
+.step-h .txt{flex:1;}
+.step-h .label{font-size:10px;font-weight:700;color:var(--c);text-transform:uppercase;letter-spacing:1.5px;opacity:.8;}
+.step-h .ttl{font-size:17px;font-weight:700;margin-top:3px;letter-spacing:-.2px;}
+.step-h .from-to{font-size:12px;color:var(--t2);margin-top:3px;font-weight:400;}
+.bdg{padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.3px;}
+.bdg.c{background:rgba(248,113,113,.1);color:var(--r);border:1px solid rgba(248,113,113,.2);}
+.bdg.h{background:rgba(251,191,36,.1);color:var(--y);border:1px solid rgba(251,191,36,.2);}
+.bdg.l{background:rgba(52,211,153,.1);color:var(--g);border:1px solid rgba(52,211,153,.2);}
+.step-b{padding:0 24px 20px;}
+
+/* Figma Screens */
+.figma{margin:14px 0;border-radius:14px;overflow:hidden;border:1px solid var(--bd);background:var(--s2);}
+.figma .fl{font-size:10px;font-weight:600;color:var(--c);text-transform:uppercase;letter-spacing:1px;padding:8px 16px;background:rgba(0,0,0,.3);display:flex;align-items:center;gap:8px;}
+.figma .fl::before{content:'';width:8px;height:8px;background:linear-gradient(135deg,var(--c),var(--p));border-radius:50%;box-shadow:0 0 6px rgba(34,211,238,.4);}
+.figma .fs{overflow-x:auto;cursor:grab;-webkit-overflow-scrolling:touch;background:var(--s2);display:flex;justify-content:flex-start;padding:8px;}
+.figma .fs::-webkit-scrollbar{height:6px;}.figma .fs::-webkit-scrollbar-track{background:transparent;}.figma .fs::-webkit-scrollbar-thumb{background:var(--bd);border-radius:6px;}
+.figma .fs img{display:block;max-height:500px;width:auto;border-radius:6px;}
+.figma .fh{font-size:9px;color:var(--t2);padding:4px 16px;background:rgba(0,0,0,.3);text-align:right;font-weight:500;}
+
+/* Metrics */
+.mets{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;margin:12px 0;}
+.mt{background:rgba(0,0,0,.3);border-radius:10px;padding:10px 12px;text-align:center;border:1px solid rgba(255,255,255,.04);}
+.mt .v{font-size:18px;font-weight:800;letter-spacing:-.3px;}.mt .l{font-size:10px;color:var(--t2);margin-top:3px;font-weight:500;}
+.mt .v.g{color:var(--g);}.mt .v.r{color:var(--r);}.mt .v.y{color:var(--y);}
+
+/* Progress Bar */
+.db{margin:8px 0;}.db-bg{background:rgba(0,0,0,.4);border-radius:6px;height:8px;overflow:hidden;}
+.db-f{height:100%;border-radius:6px;}.db-f.g{background:linear-gradient(90deg,#34d399,#10b981);}.db-f.y{background:linear-gradient(90deg,#fbbf24,#f59e0b);}.db-f.r{background:linear-gradient(90deg,#f87171,#ef4444);}
+.db-l{font-size:11px;color:var(--t2);margin-top:4px;font-weight:400;}
+
+/* Tags */
+.tags{display:flex;gap:6px;margin:10px 0;flex-wrap:wrap;}
+.tg{padding:4px 10px;border-radius:6px;font-size:10px;font-weight:600;letter-spacing:.3px;}
+.tg.ev{background:rgba(34,211,238,.08);color:var(--c);border:1px solid rgba(34,211,238,.15);}
+.tg.es{background:rgba(248,113,113,.08);color:var(--r);border:1px solid rgba(248,113,113,.15);}
+.tg.sl{background:rgba(251,191,36,.08);color:var(--y);border:1px solid rgba(251,191,36,.15);}
+
+/* Notification Cards */
+.notif-grid{display:flex;flex-direction:column;gap:8px;margin:16px 0;}
+.notif-card{background:rgba(0,0,0,.2);border-radius:12px;padding:14px 18px;display:flex;align-items:flex-start;gap:14px;border:1px solid rgba(255,255,255,.06);transition:all .2s;}
+.notif-card:hover{background:rgba(0,0,0,.3);}
+.notif-card .nc-pri{min-width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;flex-shrink:0;}
+.notif-card.chat{border-left:4px solid var(--c);}.notif-card.chat .nc-pri{background:rgba(34,211,238,.12);color:var(--c);}
+.notif-card.push{border-left:4px solid var(--p);}.notif-card.push .nc-pri{background:rgba(192,132,252,.12);color:var(--p);}
+.notif-card.wa{border-left:4px solid #34d399;}.notif-card.wa .nc-pri{background:rgba(52,211,153,.12);color:#34d399;}
+.notif-card.ivr{border-left:4px solid var(--o);}.notif-card.ivr .nc-pri{background:rgba(251,146,60,.12);color:var(--o);}
+.notif-card.delay{border-left:4px solid var(--r);}.notif-card.delay .nc-pri{background:rgba(248,113,113,.12);color:var(--r);}
+.notif-card .nc-body{flex:1;min-width:0;}
+.notif-card .nc-h{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.notif-card .nc-icon{font-size:20px;line-height:1;}
+.notif-card .nc-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;}
+.notif-card.chat .nc-label{color:var(--c);}.notif-card.push .nc-label{color:var(--p);}.notif-card.wa .nc-label{color:#34d399;}.notif-card.ivr .nc-label{color:var(--o);}.notif-card.delay .nc-label{color:var(--r);}
+.notif-card .nc-msg{font-size:12.5px;line-height:1.6;color:var(--t);font-weight:400;}
+.notif-card .na{color:var(--t2);font-size:11px;font-style:italic;font-weight:400;}
+.notif-card.inactive{opacity:0.3;border-color:transparent;border-left-color:rgba(255,255,255,.06);}
+
+/* Info/Gap/Escalation Boxes */
+.ibox{background:rgba(0,0,0,.25);border-radius:12px;padding:14px 18px;margin:10px 0;border-left:4px solid var(--p);border:1px solid rgba(255,255,255,.05);border-left:4px solid var(--p);}
+.ibox.esc{border-left-color:var(--r);}.ibox.sla{border-left-color:var(--y);}
+.ibox .ib-t{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--p);margin-bottom:6px;}
+.ibox.esc .ib-t{color:var(--r);}.ibox.sla .ib-t{color:var(--y);}
+.ibox p,.ibox li{font-size:13px;line-height:1.6;font-weight:400;}.ibox ul{padding-left:18px;}.ibox li{margin:3px 0;}
+
+/* Edge Cases */
+.edge{background:rgba(251,191,36,.04);border:1px solid rgba(251,191,36,.15);border-radius:12px;padding:14px 18px;margin:10px 0;}
+.edge .et{font-size:11px;font-weight:700;color:var(--y);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.edge p,.edge li{font-size:13px;font-weight:400;}.edge ul{padding-left:18px;}.edge li{margin:3px 0;}
+
+/* Summary Table */
+table.sum{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;margin:20px 0;border-radius:12px;overflow:hidden;border:1px solid var(--bd);}
+table.sum th{background:rgba(0,0,0,.4);padding:12px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--c);border-bottom:2px solid var(--bd);}
+table.sum td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.04);font-weight:500;}
+table.sum tr:hover td{background:rgba(255,255,255,.02);}
+table.sum tr.cr{background:rgba(248,113,113,.05);}table.sum tr.hi{background:rgba(251,191,36,.05);}
+.tc{text-align:center;}
+
+/* Footer */
+.footer{text-align:center;padding:36px;color:var(--t2);font-size:12px;border-top:1px solid var(--bd);margin-top:40px;font-weight:400;}
+
+@media(max-width:768px){.mets{grid-template-columns:repeat(2,1fr);}.figma .fs img{max-height:350px;}.step-h .num{font-size:24px;}.ctn{padding:16px 18px;}}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <h1>Wiom Booking &rarr; Install: 9-Step Flow Guide</h1>
+  <div class="sub">Figma screens &bull; Funnel data &bull; Notifications &bull; Edge cases &bull; Escalations &nbsp;|&nbsp; Data: Feb 20 &ndash; Mar 25, 2026</div>
+  <div class="pills">
+    <div class="pill">Booked: <b>2,984</b></div>
+    <div class="pill">Installed: <b style="color:#34d399;">1,156 (38.7%)</b></div>
+    <div class="pill">Cancelled: <b style="color:#f87171;">1,672 (56%)</b></div>
+    <div class="pill">Lost: <b style="color:#fbbf24;">1,828 (61.3%)</b></div>
+  </div>
+</div>
+
+<div class="ctn">
+
+<!-- ══ STEP 1 ══ -->
+<div class="step low">
+  <div class="step-h"><div class="num">01</div><div class="txt"><div class="label">Step 1</div><div class="ttl">Booking Fee Paid → SSID Set</div><div class="from-to">Customer pays Rs.100 → Sets WiFi name</div></div><div class="bdg l">22 Dropped (0.7%)</div></div>
+  <div class="step-b">
+    <div class="figma"><div class="fl">Screens: BFP Confirmation → SSID Selection → SSID Confirmed</div><div class="fs"><img src="s1_all.png" alt="Step 1"></div></div>
+    <div class="mets">
+      <div class="mt"><div class="v g">2,984</div><div class="l">Booking Paid</div></div>
+      <div class="mt"><div class="v g">2,962</div><div class="l">SSID Set</div></div>
+      <div class="mt"><div class="v">22</div><div class="l">Dropped</div></div>
+      <div class="mt"><div class="v g">99.3%</div><div class="l">of Total Booked</div></div>
+    </div>
+    <div class="tags"><span class="tg ev">booking_fee_captured → ssid_set</span></div>
+    <div class="notif-grid">
+      <div class="notif-card chat"><div class="nc-pri">1</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">💬</span><span class="nc-label">In-Chat Message</span></div><div class="nc-msg">"नमस्ते {{customerName}} जी,<br><br>आपकी बुकिंग की प्रक्रिया जारी है।"<br><br>"बुकिंग पूरी करने के लिए अपने घर के नेट का नाम रखें।<br><br>यह नाम आपके नेट की पहचान के लिए ज़रूरी है।"</div></div></div>
+      <div class="notif-card push inactive"><div class="nc-pri">2</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">🔔</span><span class="nc-label">Push Notification</span></div><div class="na">NA — not set for this step</div></div></div>
+      <div class="notif-card wa inactive"><div class="nc-pri">3</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📱</span><span class="nc-label">WhatsApp</span></div><div class="na">NA — not set for this step</div></div></div>
+      <div class="notif-card ivr inactive"><div class="nc-pri">4</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📞</span><span class="nc-label">IVR</span></div><div class="na">NA — not set for this step</div></div></div>
+      <div class="notif-card delay inactive"><div class="nc-pri">5</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">⏰</span><span class="nc-label">Delay Message</span></div><div class="na">NA — no delay expected at this step</div></div></div>
+    </div>
+  </div>
+</div>
+<div class="arrow">▼</div>
+
+<!-- ══ STEP 2 ══ -->
+<div class="step high">
+  <div class="step-h"><div class="num">02</div><div class="txt"><div class="label">Step 2</div><div class="ttl">SSID Set → Address Updated</div><div class="from-to">Customer enters house number, floor, gali + selects nearby landmark</div></div><div class="bdg h">125 Dropped (4.2%)</div></div>
+  <div class="step-b">
+    <div class="figma"><div class="fl">Screens: Chat Welcome → Address Form → Landmark List → Confirm → Saved</div><div class="fs"><img src="s2_all.png" alt="Step 2"></div><div class="fh">← Scroll →</div></div>
+    <div class="mets">
+      <div class="mt"><div class="v g">2,962</div><div class="l">SSID Set</div></div>
+      <div class="mt"><div class="v y">2,837</div><div class="l">Address Updated</div></div>
+      <div class="mt"><div class="v r">125</div><div class="l">Dropped</div></div>
+      <div class="mt"><div class="v y">95.1%</div><div class="l">of Total Booked</div></div>
+    </div>
+    <div class="tags"><span class="tg ev">ssid_set → address_updated</span></div>
+    <div class="ibox esc"><div class="ib-t">Gap</div><p>No push notification, WhatsApp, or IVR nudge exists for this step. If a customer leaves the app without updating their address, there is no re-engagement mechanism to bring them back. 125 users dropped here with zero follow-up.</p></div>
+    <div class="notif-grid">
+      <div class="notif-card chat"><div class="nc-pri">1</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">💬</span><span class="nc-label">In-Chat Message</span></div><div class="nc-msg">"नमस्ते {{customerName}} जी,<br><br>आपके घर में नेट बॉक्स लगाने के लिए पूरा पता आवश्यक है।"</div></div></div>
+      <div class="notif-card push inactive"><div class="nc-pri">2</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">🔔</span><span class="nc-label">Push Notification</span></div><div class="na">NA — not set for this step</div></div></div>
+      <div class="notif-card wa inactive"><div class="nc-pri">3</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📱</span><span class="nc-label">WhatsApp</span></div><div class="na">NA — not set for this step</div></div></div>
+      <div class="notif-card ivr inactive"><div class="nc-pri">4</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📞</span><span class="nc-label">IVR</span></div><div class="na">NA — not set for this step</div></div></div>
+      <div class="notif-card delay inactive"><div class="nc-pri">5</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">⏰</span><span class="nc-label">Delay Message</span></div><div class="na">NA — no delay message at this step</div></div></div>
+    </div>
+  </div>
+</div>
+<div class="arrow">▼</div>
+
+<!-- ══ STEP 3 (merged: Address → Booking Verified) ══ -->
+<div class="step crit">
+  <div class="step-h"><div class="num">03</div><div class="txt"><div class="label">Step 3</div><div class="ttl">Address Updated → Booking Verified</div><div class="from-to">"क्या अभी आप वहीं हैं?" → Location capture → Verification → Serviceability check → "बुकिंग कन्फर्म"</div></div><div class="bdg c">409 Dropped (13.7%)</div></div>
+  <div class="step-b">
+    <div class="figma"><div class="fl">Screens: "हाँ / नहीं" → Location Response → Serviceability Check → Booking Confirmed</div><div class="fs"><img src="s3_all.png" alt="Step 3"></div><div class="fh">← Scroll →</div></div>
+    <div class="mets">
+      <div class="mt"><div class="v y">2,837</div><div class="l">Address Updated</div></div>
+      <div class="mt"><div class="v r">2,620</div><div class="l">Booking Verified</div></div>
+      <div class="mt"><div class="v r">217</div><div class="l">Verification Drop</div></div>
+      <div class="mt"><div class="v r">444</div><div class="l">Hit Unserviceable</div></div>
+      <div class="mt"><div class="v">252</div><div class="l">Recovered</div></div>
+      <div class="mt"><div class="v r">192</div><div class="l">Stuck Unserviceable</div></div>
+      <div class="mt"><div class="v y">~2,428</div><div class="l">Serviceable (81.4%)</div></div>
+    </div>
+    <div class="tags"><span class="tg ev">address_updated → booking_verified → serviceable</span><span class="tg es">611 stuck at ADDRESS_VERIFIED</span><span class="tg ev">unservisable</span></div>
+    <div class="edge"><div class="et">Edge Case: "घर पर नहीं हूँ"</div><p>If customer selects "नहीं" → app shows "घर पहुँच कर बटन दबाएँ" → customer must return and tap "मैं घर पर हूँ" → location capture. No reminder or nudge if user forgets to come back.</p></div>
+    <div class="edge"><div class="et">Pain Point: Told Unserviceable AFTER Paying</div><p>130 customers told unserviceable after paying Rs.100. Serviceability check happens AFTER payment.</p></div>
+    <div class="notif-grid">
+      <div class="notif-card chat"><div class="nc-pri">1</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">💬</span><span class="nc-label">In-Chat Message</span></div><div class="nc-msg">Verify: "आपको जहां नेट लगवाना है, क्या अभी आप वहीं हैं?" + हाँ/नहीं buttons<br><br>Serviceable: "बहुत बढ़िया, आपकी बुकिंग कन्फर्म हो गई है" + "नंबर सेव करें: +91 88803 22222"<br><br>Unserviceable: "अभी आपके एरिया में सर्विस उपलब्ध नहीं है"</div></div></div>
+      <div class="notif-card push inactive"><div class="nc-pri">2</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">🔔</span><span class="nc-label">Push Notification</span></div><div class="na">NA — not set for this step</div></div></div>
+      <div class="notif-card wa inactive"><div class="nc-pri">3</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📱</span><span class="nc-label">WhatsApp</span></div><div class="na">NA — not set for this step</div></div></div>
+      <div class="notif-card ivr inactive"><div class="nc-pri">4</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📞</span><span class="nc-label">IVR</span></div><div class="na">NA — not set for this step</div></div></div>
+      <div class="notif-card delay inactive"><div class="nc-pri">5</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">⏰</span><span class="nc-label">Delay Message</span></div><div class="na">NA — no delay message at this step</div></div></div>
+    </div>
+  </div>
+</div>
+<div class="arrow">▼</div>
+
+<!-- ══ STEP 4 ══ -->
+<div class="step low">
+  <div class="step-h"><div class="num">04</div><div class="txt"><div class="label">Step 4</div><div class="ttl">Booking Verified → Notification Sent to Partners</div><div class="from-to">GINIE engine matches partners → FPN + Push sent to partners</div></div><div class="bdg l">~0 Dropped (system step)</div></div>
+  <div class="step-b">
+    <div class="mets">
+      <div class="mt"><div class="v g">2,600</div><div class="l">GINIE Triggered</div></div>
+      <div class="mt"><div class="v g">2,600</div><div class="l">Notif Sent</div></div>
+      <div class="mt"><div class="v">5.2</div><div class="l">Avg Notifs/Lead</div></div>
+    </div>
+    <div class="tags"><span class="tg ev">GINIE_OUTPUT → NOTIF_SENT</span></div>
+    <div class="notif-grid">
+      <div class="notif-card chat"><div class="nc-pri">1</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">💬</span><span class="nc-label">In-Chat Message</span></div><div class="nc-msg">"आपका नेट लगाने के लिए इंजीनियर ढूंढा जा रहा है। अब आप आराम करें।"</div></div></div>
+      <div class="notif-card push inactive"><div class="nc-pri">2</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">🔔</span><span class="nc-label">Push Notification</span></div><div class="na">NA — no push notification sent to customer at this step</div></div></div>
+      <div class="notif-card wa inactive"><div class="nc-pri">3</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📱</span><span class="nc-label">WhatsApp</span></div><div class="na">NA — not set for this step</div></div></div>
+      <div class="notif-card ivr inactive"><div class="nc-pri">4</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📞</span><span class="nc-label">IVR</span></div><div class="na">NA — not set for this step</div></div></div>
+      <div class="notif-card delay"><div class="nc-pri">5</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">⏰</span><span class="nc-label">Delay Message (2 days)</span></div><div class="nc-msg">Triggered 2 days after <b>booking_confirmed_delay</b> or <b>booking_confirmed</b> if no partner interest marked yet:<br><br>"नमस्ते, हमें खेद है कि इसमें उम्मीद से अधिक समय लग रहा है। हम जल्द इंस्टालेशन के लिए इंजीनियर धुंध रहे हैं।"</div></div></div>
+    </div>
+  </div>
+</div>
+<div class="arrow">▼</div>
+
+<!-- ══ STEP 5 ══ -->
+<div class="step crit">
+  <div class="step-h"><div class="num">05</div><div class="txt"><div class="label">Step 5</div><div class="ttl">NOTIF Sent → Partner Interest Marked</div><div class="from-to">Partner sees lead → Marks INTERESTED or DECLINED</div></div><div class="bdg c">363 Dropped (12.2%)</div></div>
+  <div class="step-b">
+    <div class="mets">
+      <div class="mt"><div class="v">2,600</div><div class="l">Notif Sent</div></div>
+      <div class="mt"><div class="v y">2,237</div><div class="l">Interest Marked</div></div>
+      <div class="mt"><div class="v r">363</div><div class="l">Zero Interest</div></div>
+      <div class="mt"><div class="v r">75.0%</div><div class="l">of Total Booked</div></div>
+    </div>
+    <div class="tags"><span class="tg ev">NOTIF_SENT → INTERESTED</span><span class="tg es">Supply failure</span></div>
+    <div class="ibox esc"><div class="ib-t">Gap</div><p>Customer is left on a vague "इंजीनियर ढूंढा जा रहा है" screen with no timeline or progress update. If no partner picks up, the customer has no visibility — they only find out days later via a generic delay message. 363 customers had zero partner interest and were never proactively informed.</p></div>
+    <div class="notif-grid">
+      <div class="notif-card chat inactive"><div class="nc-pri">1</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">💬</span><span class="nc-label">In-Chat Message</span></div><div class="na">NA — no new message sent to customer at this step</div></div></div>
+      <div class="notif-card push inactive"><div class="nc-pri">2</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">🔔</span><span class="nc-label">Push Notification</span></div><div class="na">NA — not set. Should send honest status at 24h.</div></div></div>
+      <div class="notif-card wa inactive"><div class="nc-pri">3</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📱</span><span class="nc-label">WhatsApp</span></div><div class="na">NA — not set for this step</div></div></div>
+      <div class="notif-card ivr inactive"><div class="nc-pri">4</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📞</span><span class="nc-label">IVR</span></div><div class="na">NA — not set for this step</div></div></div>
+      <div class="notif-card delay"><div class="nc-pri">5</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">⏰</span><span class="nc-label">Delay Message</span></div><div class="nc-msg">Current: vague "कुछ technical कारण से देरी हो रही है" + Cancel CTA (5 of 7 states). No specific timeline.</div></div></div>
+    </div>
+    <div class="ibox esc"><div class="ib-t">Escalation</div><ul><li><b>No interest 2h:</b> 2nd GINIE run</li><li><b>6h:</b> Alert supply ops</li><li><b>24h:</b> Honest customer notification</li></ul></div>
+  </div>
+</div>
+<div class="arrow">▼</div>
+
+<!-- ══ STEP 6 ══ -->
+<div class="step low">
+  <div class="step-h"><div class="num">06</div><div class="txt"><div class="label">Step 6</div><div class="ttl">Interest Marked → Partner Selects Slot</div><div class="from-to">Partner picks installation date/time</div></div><div class="bdg l">47 Dropped (1.6%)</div></div>
+  <div class="step-b">
+    <div class="mets">
+      <div class="mt"><div class="v g">2,237</div><div class="l">Interested</div></div>
+      <div class="mt"><div class="v g">2,190</div><div class="l">Slot Selected</div></div>
+      <div class="mt"><div class="v">47</div><div class="l">Dropped</div></div>
+      <div class="mt"><div class="v g">73.4%</div><div class="l">of Total Booked</div></div>
+    </div>
+    <div class="tags"><span class="tg ev">INTERESTED → SLOT_SELECTED</span></div>
+    <div class="notif-grid">
+      <div class="notif-card chat inactive"><div class="nc-pri">1</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">💬</span><span class="nc-label">In-Chat Message</span></div><div class="na">NA — customer still on waiting screen</div></div></div>
+      <div class="notif-card push inactive"><div class="nc-pri">2</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">🔔</span><span class="nc-label">Push Notification</span></div><div class="na">NA — not set for this step</div></div></div>
+      <div class="notif-card wa inactive"><div class="nc-pri">3</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📱</span><span class="nc-label">WhatsApp</span></div><div class="na">NA — not set for this step</div></div></div>
+      <div class="notif-card ivr inactive"><div class="nc-pri">4</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📞</span><span class="nc-label">IVR</span></div><div class="na">NA — not set for this step</div></div></div>
+      <div class="notif-card delay inactive"><div class="nc-pri">5</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">⏰</span><span class="nc-label">Delay Message</span></div><div class="na">NA — no delay message at this step</div></div></div>
+    </div>
+  </div>
+</div>
+<div class="arrow">▼</div>
+
+<!-- ══ STEP 7 ══ -->
+<div class="step low">
+  <div class="step-h"><div class="num">07</div><div class="txt"><div class="label">Step 7</div><div class="ttl">Partner Slot Selected → Customer Slot Confirmed</div><div class="from-to">"26 सितम्बर को नेट लगवाना चाहेंगे?" → "यह दिन सही है"</div></div><div class="bdg l">19 Dropped (0.6%)</div></div>
+  <div class="step-b">
+    <div class="figma"><div class="fl">Screens: Date Proposal → Confirmation → Engineer Search</div><div class="fs"><img src="s6_slot_confirm.png" alt="Step 7"></div><div class="fh">← Scroll →</div></div>
+    <div class="mets">
+      <div class="mt"><div class="v g">2,190</div><div class="l">Slot Selected</div></div>
+      <div class="mt"><div class="v g">2,171</div><div class="l">Confirmed</div></div>
+      <div class="mt"><div class="v">19</div><div class="l">Dropped</div></div>
+      <div class="mt"><div class="v g">72.8%</div><div class="l">of Total Booked</div></div>
+    </div>
+    <div class="tags"><span class="tg ev">SLOT_SELECTED → CUSTOMER_SLOT_CONFIRMED</span></div>
+    <div class="notif-grid">
+      <div class="notif-card chat"><div class="nc-pri">1</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">💬</span><span class="nc-label">In-Chat Message</span></div><div class="nc-msg">"नेट लगवाने का दिन पक्का करें ⏰ 26 सितम्बर को नेट लगवाना चाहेंगे?"<br>After: "आपका नेट लगवाने का दिन कन्फर्म हो गया है। नेट ⏰ 25 दिसंबर को लगेगा।"</div></div></div>
+      <div class="notif-card push"><div class="nc-pri">2</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">🔔</span><span class="nc-label">Push Notification</span></div><div class="nc-msg">"इंस्टालेशन तारीख पक्की करें — आपका कनेक्शन ⏰[[date]] को लग सकता है। क्या आप उस दिन ही लगवाना चाहेंगे?"<br><b>CTA:</b> कन्फर्म करें<br><br><i>Sent: immediately + repeat at +4h 10min</i></div></div></div>
+      <div class="notif-card wa"><div class="nc-pri">3</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📱</span><span class="nc-label">WhatsApp (+15 min)</span></div><div class="nc-msg">"🙏🏻🙏🏻 नमस्कार<br><br>आपके इंस्टॉलेशन के लिए दिए गए दिन को पक्का करेे 🧑‍🔧<br><br>इंस्टॉलेशन का दिन:<br>⏰ [[date]]<br><br>आपका Wiom ❤️"<br><br><b>CTA 1:</b> ऐप में कन्फर्म करें<br><b>CTA 2:</b> दूसरी तारीख चुनें</div></div></div>
+      <div class="notif-card ivr"><div class="nc-pri">4</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📞</span><span class="nc-label">IVR (+10 min, +30m, +1h, +4h, +6h)</span></div><div class="nc-msg">"Namaste, Wiom me aapka swagat hai. Apka Wiom wifi installation [[aaj]] ke liye scheduled hai."<br><br><b>Press 1:</b> Confirm → "Dhanyawaad. Aapki installation ki date confirm ho gayi hai."<br><b>Press 2:</b> Reschedule → "Wiom app par jaa kar apni pasandida date select kijiye."<br><br><i>5 IVR attempts: +10m, +30m, +1h, +4h, +6h</i></div></div></div>
+      <div class="notif-card delay"><div class="nc-pri">5</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">⏰</span><span class="nc-label">Escalation Timeline</span></div><div class="nc-msg" style="font-size:11px;"><b>+0 min:</b> PN sent<br><b>+10 min:</b> IVR call #1<br><b>+15 min:</b> WhatsApp<br><b>+30 min:</b> IVR #2<br><b>+1 hr:</b> IVR #3<br><b>+4 hr:</b> IVR #4<br><b>+4h 10m:</b> PN resend<br><b>+6 hr:</b> IVR #5 (final)</div></div></div>
+    </div>
+  </div>
+</div>
+<div class="arrow">▼</div>
+
+<!-- ══ STEP 8 ══ -->
+<div class="step high">
+  <div class="step-h"><div class="num">08</div><div class="txt"><div class="label">Step 8</div><div class="ttl">Slot Confirmed → Rohit (Technician) Assigned</div><div class="from-to">Partner assigns technician for the confirmed slot</div></div><div class="bdg h">137 Dropped (4.6%)</div></div>
+  <div class="step-b">
+    <div class="figma"><div class="fl">Screens: Calendar Edge Case → Date Confirm → Engineer Assigned → Visit Screens</div><div class="fs"><img src="s7_bottom.png" alt="Step 8"></div><div class="fh">← Scroll →</div></div>
+    <div class="mets">
+      <div class="mt"><div class="v">2,171</div><div class="l">Slot Confirmed</div></div>
+      <div class="mt"><div class="v y">2,034</div><div class="l">Rohit Assigned</div></div>
+      <div class="mt"><div class="v r">137</div><div class="l">Never Assigned</div></div>
+      <div class="mt"><div class="v y">68.2%</div><div class="l">of Total Booked</div></div>
+    </div>
+    <div class="tags"><span class="tg ev">CUSTOMER_SLOT_CONFIRMED → ASSIGNED</span></div>
+    <div class="notif-grid">
+      <div class="notif-card chat"><div class="nc-pri">1</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">💬</span><span class="nc-label">In-Chat Message</span></div><div class="nc-msg">"नेट लगाने के लिए इंजीनियर मिल गया है"<br>"25 दिसंबर को <b>रोहित कुमार</b> आपके घर पर नेट लगाने के लिए आ जाएँगे"</div></div></div>
+      <div class="notif-card push"><div class="nc-pri">2</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">🔔</span><span class="nc-label">Push Notification</span></div><div class="nc-msg">"इंजीनियर मिल गया! रोहित कुमार [DATE] को आएँगे"</div></div></div>
+      <div class="notif-card wa inactive"><div class="nc-pri">3</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📱</span><span class="nc-label">WhatsApp</span></div><div class="na">NA — not set for this step</div></div></div>
+      <div class="notif-card ivr inactive"><div class="nc-pri">4</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📞</span><span class="nc-label">IVR</span></div><div class="na">NA — not set for this step</div></div></div>
+      <div class="notif-card delay inactive"><div class="nc-pri">5</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">⏰</span><span class="nc-label">Delay Message</span></div><div class="na">NA — no delay message at this step</div></div></div>
+    </div>
+    <div class="ibox esc"><div class="ib-t">Escalation</div><ul><li><b>No ASSIGNED 2h:</b> Alert partner manager</li><li><b>6h:</b> Auto-reassign</li></ul></div>
+  </div>
+</div>
+<div class="arrow">▼</div>
+
+<!-- ══ STEP 9 ══ -->
+<div class="step crit">
+  <div class="step-h"><div class="num">09</div><div class="txt"><div class="label">Step 9 — BIGGEST LEAK</div><div class="ttl">Rohit Assigned → WiFi Installation Complete</div><div class="from-to">Rohit reaches home → Selfie → Aadhaar → SD Rs.300 → Router → Speed Test → OTP Verified</div></div><div class="bdg c">878 Dropped (29.4%)</div></div>
+  <div class="step-b">
+    <div class="mets">
+      <div class="mt"><div class="v">2,034</div><div class="l">Rohit Assigned</div></div>
+      <div class="mt"><div class="v r">1,126</div><div class="l">Reached Home</div></div>
+      <div class="mt"><div class="v r">908</div><div class="l">NEVER SHOWED</div></div>
+      <div class="mt"><div class="v g">1,156</div><div class="l">OTP Verified</div></div>
+      <div class="mt"><div class="v g">38.7%</div><div class="l">of Total Booked</div></div>
+    </div>
+    <div class="db"><div class="db-bg"><div class="db-f r" style="width:56.9%"></div></div><div class="db-l">908 users (30.4% of total booked) — tech assigned but NEVER reached home. Once tech reaches → 100% completion.</div></div>
+    <div class="tags"><span class="tg ev">ASSIGNED → REACHED_HOME → OTP_VERIFIED</span><span class="tg es">908 lost — #1 problem</span></div>
+    <div class="edge"><div class="et">Cancelled at Rohit Stage: 697 users</div><ul><li>Only <b>82 (12%)</b> had REACHED_HOME</li><li>Customer cancel: <b>48 hrs</b> | System: <b>336 hrs (14 days!)</b></li><li><b>124</b> said "Delay in installation"</li></ul></div>
+    <div class="notif-grid">
+      <div class="notif-card chat"><div class="nc-pri">1</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">💬</span><span class="nc-label">In-Chat Message</span></div><div class="nc-msg">Day of visit: "आज रोहित कुमार आपके घर आएँगे!"<br>After install: "बधाई हो! आपका नेट चालू हो गया है 🎉"</div></div></div>
+      <div class="notif-card push"><div class="nc-pri">2</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">🔔</span><span class="nc-label">Push Notification</span></div><div class="nc-msg" style="color:var(--r);"><b>GAP: NO no-show notification exists.</b><br>Needed: 8 AM reminder, slot+2h delay update, slot+4h reassign notice</div></div></div>
+      <div class="notif-card wa inactive"><div class="nc-pri">3</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📱</span><span class="nc-label">WhatsApp</span></div><div class="na">NA — not set. Should send day-of reminder.</div></div></div>
+      <div class="notif-card ivr inactive"><div class="nc-pri">4</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📞</span><span class="nc-label">IVR</span></div><div class="na">NA — not set. Should auto-call Rohit at slot+1h.</div></div></div>
+      <div class="notif-card delay"><div class="nc-pri">5</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">⏰</span><span class="nc-label">Delay Message</span></div><div class="nc-msg" style="color:var(--r);"><b>GAP:</b> Vague "कुछ technical कारण" message. No timeline. Cancel CTA shown too early.</div></div></div>
+    </div>
+    <div class="ibox esc"><div class="ib-t">Escalation Ladder</div><ul><li><b>+1h:</b> Auto-call Rohit</li><li><b>+2h:</b> Alert partner + notify customer</li><li><b>+4h:</b> Auto-reassign</li><li><b>+8h:</b> Zone ops, different partner</li><li><b>+24h:</b> Blacklist Rohit. Max cancel 3 days.</li></ul></div>
+  </div>
+</div>
+<div class="arrow">▼</div>
+
+<!-- SUCCESS -->
+<div style="text-align:center;padding:28px;">
+  <div style="display:inline-block;background:linear-gradient(135deg,#059669,#10b981,#34d399);padding:24px 52px;border-radius:20px;box-shadow:0 8px 32px rgba(16,185,129,.3);">
+    <div style="font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;opacity:.85;">Installation Complete</div>
+    <div style="font-size:36px;font-weight:900;margin-top:6px;letter-spacing:-1px;">1,156 / 2,984 = 38.7%</div>
+    <div style="font-size:12px;opacity:0.7;margin-top:4px;font-weight:500;">OTP_VERIFIED &mdash; Customer has Wiom WiFi</div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div style="margin-top:40px;text-align:center;"><span style="background:rgba(0,0,0,.3);padding:10px 28px;border-radius:24px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--c);border:1px solid rgba(34,211,238,.2);">Summary &mdash; All 9 Steps</span></div>
+<table class="sum" style="margin-top:16px;">
+  <thead><tr><th>Step</th><th>From → To</th><th class="tc">Enter</th><th class="tc">Exit</th><th class="tc">Drop</th><th class="tc">Drop %</th><th class="tc">Owner</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>BFP → SSID Set</td><td class="tc">2,984</td><td class="tc">2,962</td><td class="tc">22</td><td class="tc">0.7%</td><td class="tc">App</td></tr>
+    <tr class="hi"><td>2</td><td>SSID → Address Updated</td><td class="tc">2,962</td><td class="tc">2,837</td><td class="tc">125</td><td class="tc" style="color:var(--y);">4.2%</td><td class="tc">App/Backend</td></tr>
+    <tr class="cr"><td>3</td><td>Address → Booking Verified</td><td class="tc">2,837</td><td class="tc">~2,428</td><td class="tc" style="font-weight:700;color:var(--r);">409</td><td class="tc" style="color:var(--r);">13.7%</td><td class="tc">Backend</td></tr>
+    <tr><td>4</td><td>Booking Verified → Notif Sent</td><td class="tc">~2,428</td><td class="tc">2,600</td><td class="tc">—</td><td class="tc">~0%</td><td class="tc">System</td></tr>
+    <tr class="cr"><td>5</td><td>NOTIF Sent → Partner Interest Marked</td><td class="tc">2,600</td><td class="tc">2,237</td><td class="tc" style="font-weight:700;color:var(--r);">363</td><td class="tc" style="color:var(--r);">12.2%</td><td class="tc">Supply</td></tr>
+    <tr><td>6</td><td>Interest → Slot Selected</td><td class="tc">2,237</td><td class="tc">2,190</td><td class="tc">47</td><td class="tc">1.6%</td><td class="tc">Supply</td></tr>
+    <tr><td>7</td><td>Slot → Customer Confirmed</td><td class="tc">2,190</td><td class="tc">2,171</td><td class="tc">19</td><td class="tc">0.6%</td><td class="tc">Customer</td></tr>
+    <tr class="hi"><td>8</td><td>Confirmed → Rohit Assigned</td><td class="tc">2,171</td><td class="tc">2,034</td><td class="tc" style="font-weight:700;">137</td><td class="tc" style="color:var(--y);">4.6%</td><td class="tc">Supply</td></tr>
+    <tr class="cr"><td><b>9</b></td><td><b>Rohit Assigned → Installed</b></td><td class="tc"><b>2,034</b></td><td class="tc"><b>1,156</b></td><td class="tc" style="font-weight:700;color:var(--r);font-size:14px;">878</td><td class="tc" style="color:var(--r);font-weight:700;">29.4%</td><td class="tc"><b>Supply/Ops</b></td></tr>
+    <tr style="background:var(--s2);font-weight:700"><td colspan="2">TOTAL</td><td class="tc">2,984</td><td class="tc">1,156</td><td class="tc" style="color:var(--r);">1,828</td><td class="tc" style="color:var(--r);">61.3%</td><td></td></tr>
+  </tbody>
+</table>
+
+</div>
+
+<div class="footer">
+  <p>Wiom Booking → Install: 10-Step Flow Guide | Updated: April 10, 2026</p>
+  <p>Data: Feb 20 – Mar 25, 2026 | Sources: booking_logs + task_logs + CleverTap + Figma + Pain Point Synthesis</p>
+</div>
+
+</body>
+</html>
