@@ -68,7 +68,13 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 /* Notification Cards */
 .notif-grid{display:flex;flex-direction:column;gap:8px;margin:16px 0;}
 .notif-card{background:rgba(0,0,0,.2);border-radius:12px;padding:14px 18px;display:flex;align-items:flex-start;gap:14px;border:1px solid rgba(255,255,255,.06);transition:all .2s;}
-.notif-card:hover{background:rgba(0,0,0,.3);}
+.notif-card:hover{background:rgba(0,0,0,.45);transform:translateX(6px) scale(1.01);box-shadow:0 4px 20px rgba(0,0,0,.4);border-color:rgba(255,255,255,.12);}
+.notif-card.chat:hover{border-left-color:var(--c);box-shadow:0 4px 20px rgba(34,211,238,.15);background:rgba(34,211,238,.06);}
+.notif-card.push:hover{border-left-color:var(--p);box-shadow:0 4px 20px rgba(192,132,252,.15);background:rgba(192,132,252,.06);}
+.notif-card.wa:hover{border-left-color:#34d399;box-shadow:0 4px 20px rgba(52,211,153,.15);background:rgba(52,211,153,.06);}
+.notif-card.ivr:hover{border-left-color:var(--o);box-shadow:0 4px 20px rgba(251,146,60,.15);background:rgba(251,146,60,.06);}
+.notif-card.delay:hover{border-left-color:var(--r);box-shadow:0 4px 20px rgba(248,113,113,.15);background:rgba(248,113,113,.06);}
+.notif-card.inactive:hover{transform:none;box-shadow:none;background:rgba(0,0,0,.2);border-color:transparent;border-left-color:rgba(255,255,255,.06);}
 .notif-card .nc-pri{min-width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;flex-shrink:0;}
 .notif-card.chat{border-left:4px solid var(--c);}.notif-card.chat .nc-pri{background:rgba(34,211,238,.12);color:var(--c);}
 .notif-card.push{border-left:4px solid var(--p);}.notif-card.push .nc-pri{background:rgba(192,132,252,.12);color:var(--p);}
