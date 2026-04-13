@@ -238,26 +238,26 @@ table.sum .delta-cell.bad{color:var(--r);}
 
 <div class="hdr">
   <h1>Wiom Booking &rarr; Install: Pre vs Post UI Change</h1>
-  <div class="sub">Comparing old booking flow (PRE) vs new UI changes (POST) &bull; Counted by unique customer (distinct mobile) &bull; All % = share of each period's total customers</div>
+  <div class="sub">Comparing old booking flow (PRE) vs new UI changes (POST) &bull; Unique customers (excluding early cancellations / refunds before SSID set) &bull; All % = share of total customers</div>
   <div class="period-compare">
     <div class="period-box pre">
       <div class="period-title">🔵 PRE &mdash; Old UI <span class="period-dates">&bull; Feb 20 &ndash; Mar 25, 2026 (34 days)</span></div>
       <div class="period-stats">
-        <div class="period-stat">Customers: <b>2,984</b></div>
-        <div class="period-stat green">Installed: <b>1,158 (38.8%)</b></div>
-        <div class="period-stat red">Lost: <b>1,826 (61.2%)</b></div>
+        <div class="period-stat">Customers: <b>2,959</b></div>
+        <div class="period-stat green">Installed: <b>1,157 (39.1%)</b></div>
+        <div class="period-stat red">Lost: <b>1,802 (60.9%)</b></div>
       </div>
     </div>
     <div class="period-box post">
       <div class="period-title">🟣 POST &mdash; New UI <span class="period-dates">&bull; Mar 28 &ndash; Apr 12, 2026 (16 days)</span></div>
       <div class="period-stats">
-        <div class="period-stat">Customers: <b>1,719</b></div>
-        <div class="period-stat green">Installed: <b>573 (33.3%)</b></div>
-        <div class="period-stat red">Lost: <b>1,146 (66.7%)</b></div>
+        <div class="period-stat">Customers: <b>1,676</b></div>
+        <div class="period-stat green">Installed: <b>573 (34.2%)</b></div>
+        <div class="period-stat red">Lost: <b>1,103 (65.8%)</b></div>
       </div>
     </div>
   </div>
-  <div class="caveat">⚠ Caveat: POST period is still maturing. Recent bookings haven't had time to complete Step 9 (installation), so the overall Install % is biased downward. Early steps (1–8) comparisons are reliable; Step 9 comparison should be interpreted with caution.</div>
+  <div class="caveat">⚠ Caveat: POST period is still maturing. Recent bookings haven't had time to complete Step 9 (installation), so the overall Install % is biased downward. &nbsp;|&nbsp; Early abandoners (booked → cancelled/refunded before SSID set) excluded: 25 in PRE, 43 in POST.</div>
 </div>
 
 <div class="ctn">
@@ -268,15 +268,15 @@ table.sum .delta-cell.bad{color:var(--r);}
   <div class="impact-grid">
     <div class="impact-item good">
       <div class="il">Step 2: SSID → Address</div>
-      <div class="iv">2.3% → 0.9% ↓</div>
+      <div class="iv">2.5% → 1.3% ↓</div>
     </div>
     <div class="impact-item good">
       <div class="il">Step 3: Address → Verified</div>
-      <div class="iv">9.0% → 7.4% ↓</div>
+      <div class="iv">8.9% → 7.3% ↓</div>
     </div>
     <div class="impact-item bad">
       <div class="il">Step 1: BFP → SSID</div>
-      <div class="iv">0.7% → 3.4% ↑</div>
+      <div class="iv">0.0% → 1.0% ↑</div>
     </div>
     <div class="impact-item bad">
       <div class="il">Step 7: Slot → Confirmed</div>
@@ -284,11 +284,11 @@ table.sum .delta-cell.bad{color:var(--r);}
     </div>
     <div class="impact-item bad">
       <div class="il">Step 8: Confirmed → Assigned</div>
-      <div class="iv">4.6% → 7.4% ↑</div>
+      <div class="iv">4.6% → 7.6% ↑</div>
     </div>
     <div class="impact-item neutral">
       <div class="il">Install % (maturing)</div>
-      <div class="iv">38.8% → 33.3%</div>
+      <div class="iv">39.1% → 34.2%</div>
     </div>
   </div>
 </div>
@@ -298,7 +298,7 @@ table.sum .delta-cell.bad{color:var(--r);}
   <div class="step-h">
     <div class="num">01</div>
     <div class="txt"><div class="label">Step 1</div><div class="ttl">Booking Fee Paid → SSID Set</div><div class="from-to">Customer pays Rs.100 → Sets WiFi name</div></div>
-    <div class="badges"><span class="bdg pre">PRE: 22 (0.7%)</span><span class="bdg post">POST: 58 (3.4%)</span><span class="delta bad">▲ +2.7% worse</span></div>
+    <div class="badges"><span class="bdg pre">PRE: 0 (0.0%)</span><span class="bdg post">POST: 17 (1.0%)</span><span class="delta bad">▲ +1.0% worse</span></div>
   </div>
   <div class="step-b">
     <div class="compare">
@@ -306,23 +306,23 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
         <div class="figma"><div class="fl">Old flow: BFP Confirmation → SSID Selection → Confirmed</div><div class="fs"><img src="s1_all.png" alt="Step 1 PRE"></div><div class="fh">← Scroll horizontally · 1 composite image →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v g">2,984</div><div class="pct">100%</div><div class="l">Booking Paid</div></div>
-          <div class="mt"><div class="v g">2,962</div><div class="pct">99.3%</div><div class="l">SSID Set</div></div>
-          <div class="mt"><div class="v">22</div><div class="pct">0.7%</div><div class="l">Dropped</div></div>
+          <div class="mt"><div class="v g">2,959</div><div class="pct">100%</div><div class="l">Booking Paid</div></div>
+          <div class="mt"><div class="v g">2,959</div><div class="pct">100%</div><div class="l">SSID Set</div></div>
+          <div class="mt"><div class="v g">0</div><div class="pct">0.0%</div><div class="l">Dropped</div></div>
         </div>
       </div>
       <div class="compare-col post">
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
         <div class="figma"><div class="fl">New flow: Payment Success → Chat → SSID Options → Confirmed → Address Prompt</div><div class="fs"><img src="s1_post_1_payment.png" alt="1. Payment Success"><img src="s1_post_2_chat_welcome.png" alt="2. Chat Welcome"><img src="s1_post_3_ssid_options.png" alt="3. SSID Options"><img src="s1_post_4_ssid_saved.png" alt="4. SSID Saved"><img src="s1_post_5_address_prompt.png" alt="5. Address Prompt"></div><div class="fh">← Scroll horizontally · 5 screens →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v g">1,719</div><div class="pct">100%</div><div class="l">Booking Paid</div></div>
-          <div class="mt"><div class="v y">1,661</div><div class="pct">96.6%</div><div class="l">SSID Set</div></div>
-          <div class="mt"><div class="v r">58</div><div class="pct">3.4%</div><div class="l">Dropped</div></div>
+          <div class="mt"><div class="v g">1,676</div><div class="pct">100%</div><div class="l">Booking Paid</div></div>
+          <div class="mt"><div class="v g">1,659</div><div class="pct">99.0%</div><div class="l">SSID Set</div></div>
+          <div class="mt"><div class="v">17</div><div class="pct">1.0%</div><div class="l">Dropped</div></div>
         </div>
       </div>
     </div>
     <div class="tags"><span class="tg ev">booking_fee_captured → ssid_set</span></div>
-    <div class="ibox sla"><div class="ib-t">Observation</div><p>The new UI added <b>more screens</b> (dedicated payment success + chat welcome + SSID options picker) before SSID Set. More touch-points = more drop-off opportunity. The 2.7% absolute regression translates to ~5× more users dropping at this step.</p></div>
+    <div class="ibox sla"><div class="ib-t">Observation</div><p>After excluding early abandoners (cancelled/refunded before SSID), PRE shows <b>0% drop</b> at this step — every paying customer set their SSID. POST has 17 customers (1.0%) who paid but didn't set SSID without explicit cancellation — could be app errors or just walked away.</p></div>
     <div class="notif-header">Notifications (shared — same in both flows)</div>
     <div class="notif-grid">
       <div class="notif-card chat"><div class="nc-pri">1</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">💬</span><span class="nc-label">In-Chat Message</span></div><div class="nc-msg">"नमस्ते {{customerName}} जी,<br><br>आपकी बुकिंग की प्रक्रिया जारी है।"<br><br>"बुकिंग पूरी करने के लिए अपने घर के नेट का नाम रखें।<br><br>यह नाम आपके नेट की पहचान के लिए ज़रूरी है।"</div></div></div>
@@ -340,7 +340,7 @@ table.sum .delta-cell.bad{color:var(--r);}
   <div class="step-h">
     <div class="num">02</div>
     <div class="txt"><div class="label">Step 2</div><div class="ttl">SSID Set → Address Updated</div><div class="from-to">Customer enters house number, floor, gali + selects nearby landmark</div></div>
-    <div class="badges"><span class="bdg pre">PRE: 70 (2.3%)</span><span class="bdg post">POST: 16 (0.9%)</span><span class="delta good">▼ -1.4% better</span></div>
+    <div class="badges"><span class="bdg pre">PRE: 75 (2.5%)</span><span class="bdg post">POST: 21 (1.3%)</span><span class="delta good">▼ -1.2% better</span></div>
   </div>
   <div class="step-b">
     <div class="compare">
@@ -348,23 +348,23 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
         <div class="figma"><div class="fl">Old flow: Chat Welcome → Address Form → Landmark List → Confirm → Saved</div><div class="fs"><img src="s2_all.png" alt="Step 2 PRE"></div><div class="fh">← Scroll horizontally · 1 composite image →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v g">2,962</div><div class="pct">99.3%</div><div class="l">SSID Set</div></div>
-          <div class="mt"><div class="v g">2,892</div><div class="pct">96.9%</div><div class="l">Address Updated</div></div>
-          <div class="mt"><div class="v">70</div><div class="pct">2.3%</div><div class="l">Dropped</div></div>
+          <div class="mt"><div class="v g">2,959</div><div class="pct">100%</div><div class="l">SSID Set</div></div>
+          <div class="mt"><div class="v g">2,884</div><div class="pct">97.5%</div><div class="l">Address Updated</div></div>
+          <div class="mt"><div class="v">75</div><div class="pct">2.5%</div><div class="l">Dropped</div></div>
         </div>
       </div>
       <div class="compare-col post">
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
         <div class="figma"><div class="fl">New flow: Chat Welcome → Address Form → Landmark List → Saved</div><div class="fs"><img src="s2_post_1_welcome.png" alt="1. Chat Welcome"><img src="s2_post_2_address_form.png" alt="2. Address Form"><img src="s2_post_3_landmark.png" alt="3. Landmark"><img src="s2_post_4_saved.png" alt="4. Saved"></div><div class="fh">← Scroll horizontally · 4 screens →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v g">1,661</div><div class="pct">96.6%</div><div class="l">SSID Set</div></div>
-          <div class="mt"><div class="v g">1,645</div><div class="pct">95.7%</div><div class="l">Address Updated</div></div>
-          <div class="mt"><div class="v g">16</div><div class="pct">0.9%</div><div class="l">Dropped</div></div>
+          <div class="mt"><div class="v g">1,659</div><div class="pct">99.0%</div><div class="l">SSID Set</div></div>
+          <div class="mt"><div class="v g">1,638</div><div class="pct">97.7%</div><div class="l">Address Updated</div></div>
+          <div class="mt"><div class="v g">21</div><div class="pct">1.3%</div><div class="l">Dropped</div></div>
         </div>
       </div>
     </div>
     <div class="tags"><span class="tg ev">ssid_set → address_updated</span></div>
-    <div class="ibox"><div class="ib-t" style="color:var(--g);">✓ Biggest Win</div><p>Step 2 drop rate <b>cut by 60%</b> — from 2.3% (PRE) to 0.9% (POST). The cleaner address form + clearer landmark UI dramatically reduced friction.</p></div>
+    <div class="ibox"><div class="ib-t" style="color:var(--g);">✓ Biggest Win</div><p>Step 2 drop rate <b>cut nearly in half</b> — from 2.5% (PRE) to 1.3% (POST). The cleaner address form + clearer landmark UI reduced friction significantly.</p></div>
     <div class="ibox esc"><div class="ib-t">Gap (still present)</div><p>No push notification, WhatsApp, or IVR nudge exists for this step. If a customer leaves the app without updating their address, there is no re-engagement mechanism.</p></div>
     <div class="notif-header">Notifications (shared — same in both flows)</div>
     <div class="notif-grid">
@@ -383,7 +383,7 @@ table.sum .delta-cell.bad{color:var(--r);}
   <div class="step-h">
     <div class="num">03</div>
     <div class="txt"><div class="label">Step 3</div><div class="ttl">Address Updated → Booking Verified</div><div class="from-to">"क्या अभी आप वहीं हैं?" → Location capture → Verification → Serviceability check → "बुकिंग कन्फर्म"</div></div>
-    <div class="badges"><span class="bdg pre">PRE: 270 (9.0%)</span><span class="bdg post">POST: 128 (7.4%)</span><span class="delta good">▼ -1.6% better</span></div>
+    <div class="badges"><span class="bdg pre">PRE: 263 (8.9%)</span><span class="bdg post">POST: 123 (7.3%)</span><span class="delta good">▼ -1.6% better</span></div>
   </div>
   <div class="step-b">
     <div class="compare">
@@ -391,16 +391,16 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
         <div class="figma"><div class="fl">Screens: "हाँ / नहीं" → Location → Serviceability → Confirmed</div><div class="fs"><img src="s4a_home_question.png" alt="Home Question"><img src="s4b_serviceable.png" alt="Serviceable"><img src="s4c_confirmed.png" alt="Confirmed"></div><div class="fh">← Scroll horizontally →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v g">2,892</div><div class="pct">96.9%</div><div class="l">Address Updated</div></div>
-          <div class="mt"><div class="v r">2,622</div><div class="pct">87.9%</div><div class="l">Booking Verified</div></div>
+          <div class="mt"><div class="v g">2,884</div><div class="pct">97.5%</div><div class="l">Address Updated</div></div>
+          <div class="mt"><div class="v r">2,621</div><div class="pct">88.6%</div><div class="l">Booking Verified</div></div>
         </div>
       </div>
       <div class="compare-col post">
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
         <div class="figma"><div class="fl">Same screens · UI unchanged at this step</div><div class="fs"><img src="s4a_home_question.png" alt="Home Question"><img src="s4b_serviceable.png" alt="Serviceable"><img src="s4c_confirmed.png" alt="Confirmed"></div><div class="fh">← Scroll horizontally →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v g">1,645</div><div class="pct">95.7%</div><div class="l">Address Updated</div></div>
-          <div class="mt"><div class="v y">1,517</div><div class="pct">88.2%</div><div class="l">Booking Verified</div></div>
+          <div class="mt"><div class="v g">1,638</div><div class="pct">97.7%</div><div class="l">Address Updated</div></div>
+          <div class="mt"><div class="v y">1,515</div><div class="pct">90.4%</div><div class="l">Booking Verified</div></div>
         </div>
       </div>
     </div>
@@ -432,8 +432,8 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
         <div class="same-flow">System step — <b>no customer-facing screens</b></div>
         <div class="mets">
-          <div class="mt"><div class="v g">2,622</div><div class="pct">87.9%</div><div class="l">GINIE Triggered</div></div>
-          <div class="mt"><div class="v g">2,602</div><div class="pct">87.2%</div><div class="l">Notif Sent</div></div>
+          <div class="mt"><div class="v g">2,621</div><div class="pct">88.6%</div><div class="l">GINIE Triggered</div></div>
+          <div class="mt"><div class="v g">2,601</div><div class="pct">87.9%</div><div class="l">Notif Sent</div></div>
           <div class="mt"><div class="v">5.2</div><div class="l">Avg Notifs/Lead</div></div>
         </div>
       </div>
@@ -441,8 +441,8 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
         <div class="same-flow">System step — <b>no customer-facing screens</b></div>
         <div class="mets">
-          <div class="mt"><div class="v g">1,517</div><div class="pct">88.2%</div><div class="l">GINIE Triggered</div></div>
-          <div class="mt"><div class="v g">1,500</div><div class="pct">87.3%</div><div class="l">Notif Sent</div></div>
+          <div class="mt"><div class="v g">1,515</div><div class="pct">90.4%</div><div class="l">GINIE Triggered</div></div>
+          <div class="mt"><div class="v g">1,498</div><div class="pct">89.4%</div><div class="l">Notif Sent</div></div>
         </div>
       </div>
     </div>
@@ -464,7 +464,7 @@ table.sum .delta-cell.bad{color:var(--r);}
   <div class="step-h">
     <div class="num">05</div>
     <div class="txt"><div class="label">Step 5</div><div class="ttl">NOTIF Sent → Partner Interest Marked</div><div class="from-to">Partner sees lead → Marks INTERESTED or DECLINED</div></div>
-    <div class="badges"><span class="bdg pre">PRE: 362 (12.1%)</span><span class="bdg post">POST: 232 (13.5%)</span><span class="delta bad">▲ +1.4% worse</span></div>
+    <div class="badges"><span class="bdg pre">PRE: 362 (12.2%)</span><span class="bdg post">POST: 232 (13.8%)</span><span class="delta bad">▲ +1.6% worse</span></div>
   </div>
   <div class="step-b">
     <div class="compare">
@@ -472,18 +472,18 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
         <div class="same-flow">Partner-side step — <b>no customer-facing UI change</b></div>
         <div class="mets">
-          <div class="mt"><div class="v">2,602</div><div class="pct">87.2%</div><div class="l">Notif Sent</div></div>
-          <div class="mt"><div class="v y">2,240</div><div class="pct">75.1%</div><div class="l">Interest Marked</div></div>
-          <div class="mt"><div class="v r">362</div><div class="pct">12.1%</div><div class="l">Zero Interest</div></div>
+          <div class="mt"><div class="v">2,601</div><div class="pct">87.9%</div><div class="l">Notif Sent</div></div>
+          <div class="mt"><div class="v y">2,239</div><div class="pct">75.7%</div><div class="l">Interest Marked</div></div>
+          <div class="mt"><div class="v r">362</div><div class="pct">12.2%</div><div class="l">Zero Interest</div></div>
         </div>
       </div>
       <div class="compare-col post">
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
         <div class="same-flow">Partner-side step — <b>no customer-facing UI change</b></div>
         <div class="mets">
-          <div class="mt"><div class="v">1,500</div><div class="pct">87.3%</div><div class="l">Notif Sent</div></div>
-          <div class="mt"><div class="v y">1,268</div><div class="pct">73.8%</div><div class="l">Interest Marked</div></div>
-          <div class="mt"><div class="v r">232</div><div class="pct">13.5%</div><div class="l">Zero Interest</div></div>
+          <div class="mt"><div class="v">1,498</div><div class="pct">89.4%</div><div class="l">Notif Sent</div></div>
+          <div class="mt"><div class="v y">1,266</div><div class="pct">75.5%</div><div class="l">Interest Marked</div></div>
+          <div class="mt"><div class="v r">232</div><div class="pct">13.8%</div><div class="l">Zero Interest</div></div>
         </div>
       </div>
     </div>
@@ -514,8 +514,8 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
         <div class="same-flow">Partner-side step — <b>no customer-facing UI change</b></div>
         <div class="mets">
-          <div class="mt"><div class="v g">2,240</div><div class="pct">75.1%</div><div class="l">Interested</div></div>
-          <div class="mt"><div class="v g">2,193</div><div class="pct">73.5%</div><div class="l">Slot Selected</div></div>
+          <div class="mt"><div class="v g">2,239</div><div class="pct">75.7%</div><div class="l">Interested</div></div>
+          <div class="mt"><div class="v g">2,192</div><div class="pct">74.1%</div><div class="l">Slot Selected</div></div>
           <div class="mt"><div class="v">47</div><div class="pct">1.6%</div><div class="l">Dropped</div></div>
         </div>
       </div>
@@ -523,8 +523,8 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
         <div class="same-flow">Partner-side step — <b>no customer-facing UI change</b></div>
         <div class="mets">
-          <div class="mt"><div class="v g">1,268</div><div class="pct">73.8%</div><div class="l">Interested</div></div>
-          <div class="mt"><div class="v g">1,237</div><div class="pct">72.0%</div><div class="l">Slot Selected</div></div>
+          <div class="mt"><div class="v g">1,266</div><div class="pct">75.5%</div><div class="l">Interested</div></div>
+          <div class="mt"><div class="v g">1,235</div><div class="pct">73.7%</div><div class="l">Slot Selected</div></div>
           <div class="mt"><div class="v">31</div><div class="pct">1.8%</div><div class="l">Dropped</div></div>
         </div>
       </div>
@@ -555,8 +555,8 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
         <div class="figma"><div class="fl">Screens: Date Proposal → Confirmation → Engineer Search</div><div class="fs"><img src="s6_slot_confirm.png" alt="Step 7"></div><div class="fh">← Scroll horizontally →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v g">2,193</div><div class="pct">73.5%</div><div class="l">Slot Selected</div></div>
-          <div class="mt"><div class="v g">2,174</div><div class="pct">72.9%</div><div class="l">Confirmed</div></div>
+          <div class="mt"><div class="v g">2,192</div><div class="pct">74.1%</div><div class="l">Slot Selected</div></div>
+          <div class="mt"><div class="v g">2,173</div><div class="pct">73.4%</div><div class="l">Confirmed</div></div>
           <div class="mt"><div class="v">19</div><div class="pct">0.6%</div><div class="l">Dropped</div></div>
         </div>
       </div>
@@ -564,9 +564,9 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
         <div class="figma"><div class="fl">Same screens · UI unchanged at this step</div><div class="fs"><img src="s6_slot_confirm.png" alt="Step 7 POST"></div><div class="fh">← Scroll horizontally →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v g">1,237</div><div class="pct">72.0%</div><div class="l">Slot Selected</div></div>
-          <div class="mt"><div class="v g">1,198</div><div class="pct">69.7%</div><div class="l">Confirmed</div></div>
-          <div class="mt"><div class="v r">39</div><div class="pct">2.3%</div><div class="l">Dropped</div></div>
+          <div class="mt"><div class="v g">1,235</div><div class="pct">73.7%</div><div class="l">Slot Selected</div></div>
+          <div class="mt"><div class="v g">1,197</div><div class="pct">71.4%</div><div class="l">Confirmed</div></div>
+          <div class="mt"><div class="v r">38</div><div class="pct">2.3%</div><div class="l">Dropped</div></div>
         </div>
       </div>
     </div>
@@ -588,7 +588,7 @@ table.sum .delta-cell.bad{color:var(--r);}
   <div class="step-h">
     <div class="num">08</div>
     <div class="txt"><div class="label">Step 8</div><div class="ttl">Slot Confirmed → Rohit (Technician) Assigned</div><div class="from-to">Partner assigns technician for the confirmed slot</div></div>
-    <div class="badges"><span class="bdg pre">PRE: 137 (4.6%)</span><span class="bdg post">POST: 127 (7.4%)</span><span class="delta bad">▲ +2.8% worse</span></div>
+    <div class="badges"><span class="bdg pre">PRE: 137 (4.6%)</span><span class="bdg post">POST: 127 (7.6%)</span><span class="delta bad">▲ +3.0% worse</span></div>
   </div>
   <div class="step-b">
     <div class="compare">
@@ -596,8 +596,8 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
         <div class="figma"><div class="fl">Screens: Engineer Found → Engineer Assigned</div><div class="fs"><img src="s8_engineer_found.png" alt="Found"><img src="s8_engineer_assigned.png" alt="Assigned"></div><div class="fh">← Scroll horizontally →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v">2,174</div><div class="pct">72.9%</div><div class="l">Slot Confirmed</div></div>
-          <div class="mt"><div class="v y">2,037</div><div class="pct">68.3%</div><div class="l">Rohit Assigned</div></div>
+          <div class="mt"><div class="v">2,173</div><div class="pct">73.4%</div><div class="l">Slot Confirmed</div></div>
+          <div class="mt"><div class="v y">2,036</div><div class="pct">68.8%</div><div class="l">Rohit Assigned</div></div>
           <div class="mt"><div class="v r">137</div><div class="pct">4.6%</div><div class="l">Never Assigned</div></div>
         </div>
       </div>
@@ -605,9 +605,9 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
         <div class="figma"><div class="fl">Same screens · UI unchanged at this step</div><div class="fs"><img src="s8_engineer_found.png" alt="Found POST"><img src="s8_engineer_assigned.png" alt="Assigned POST"></div><div class="fh">← Scroll horizontally →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v">1,198</div><div class="pct">69.7%</div><div class="l">Slot Confirmed</div></div>
-          <div class="mt"><div class="v y">1,071</div><div class="pct">62.3%</div><div class="l">Rohit Assigned</div></div>
-          <div class="mt"><div class="v r">127</div><div class="pct">7.4%</div><div class="l">Never Assigned</div></div>
+          <div class="mt"><div class="v">1,197</div><div class="pct">71.4%</div><div class="l">Slot Confirmed</div></div>
+          <div class="mt"><div class="v y">1,070</div><div class="pct">63.8%</div><div class="l">Rohit Assigned</div></div>
+          <div class="mt"><div class="v r">127</div><div class="pct">7.6%</div><div class="l">Never Assigned</div></div>
         </div>
       </div>
     </div>
@@ -630,7 +630,7 @@ table.sum .delta-cell.bad{color:var(--r);}
   <div class="step-h">
     <div class="num">09</div>
     <div class="txt"><div class="label">Step 9 — BIGGEST LEAK</div><div class="ttl">Rohit Assigned → WiFi Installation Complete</div><div class="from-to">Rohit reaches home → Selfie → Aadhaar → SD Rs.300 → Router → Speed Test → OTP Verified</div></div>
-    <div class="badges"><span class="bdg pre">PRE: 879 (29.5%)</span><span class="bdg post">POST: 498 (29.0%)</span><span class="delta neutral">≈ Maturing</span></div>
+    <div class="badges"><span class="bdg pre">PRE: 879 (29.7%)</span><span class="bdg post">POST: 497 (29.7%)</span><span class="delta neutral">≈ Maturing</span></div>
   </div>
   <div class="step-b">
     <div class="compare">
@@ -638,24 +638,24 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
         <div class="same-flow">Field installation — <b>no customer-facing UI change</b></div>
         <div class="mets">
-          <div class="mt"><div class="v">2,037</div><div class="pct">68.3%</div><div class="l">Rohit Assigned</div></div>
-          <div class="mt"><div class="v g">1,158</div><div class="pct">38.8%</div><div class="l">Reached Home</div></div>
-          <div class="mt"><div class="v r">879</div><div class="pct">29.5%</div><div class="l">NEVER SHOWED</div></div>
-          <div class="mt"><div class="v g">1,158</div><div class="pct">38.8%</div><div class="l">OTP Verified</div></div>
+          <div class="mt"><div class="v">2,036</div><div class="pct">68.8%</div><div class="l">Rohit Assigned</div></div>
+          <div class="mt"><div class="v g">1,157</div><div class="pct">39.1%</div><div class="l">Reached Home</div></div>
+          <div class="mt"><div class="v r">879</div><div class="pct">29.7%</div><div class="l">NEVER SHOWED</div></div>
+          <div class="mt"><div class="v g">1,157</div><div class="pct">39.1%</div><div class="l">OTP Verified</div></div>
         </div>
       </div>
       <div class="compare-col post">
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
         <div class="same-flow">Field installation — <b>still maturing</b> (many bookings in-flight)</div>
         <div class="mets">
-          <div class="mt"><div class="v">1,071</div><div class="pct">62.3%</div><div class="l">Rohit Assigned</div></div>
-          <div class="mt"><div class="v g">573</div><div class="pct">33.3%</div><div class="l">Reached Home</div></div>
-          <div class="mt"><div class="v r">498</div><div class="pct">29.0%</div><div class="l">NEVER SHOWED*</div></div>
-          <div class="mt"><div class="v g">573</div><div class="pct">33.3%</div><div class="l">OTP Verified*</div></div>
+          <div class="mt"><div class="v">1,070</div><div class="pct">63.8%</div><div class="l">Rohit Assigned</div></div>
+          <div class="mt"><div class="v g">573</div><div class="pct">34.2%</div><div class="l">Reached Home</div></div>
+          <div class="mt"><div class="v r">497</div><div class="pct">29.7%</div><div class="l">NEVER SHOWED*</div></div>
+          <div class="mt"><div class="v g">573</div><div class="pct">34.2%</div><div class="l">OTP Verified*</div></div>
         </div>
       </div>
     </div>
-    <div class="db"><div class="db-bg"><div class="db-f r" style="width:43.2%"></div></div><div class="db-l">PRE: 879 customers (29.5% of total) — tech assigned but NEVER reached home. Once tech reaches → 100% completion.</div></div>
+    <div class="db"><div class="db-bg"><div class="db-f r" style="width:43.2%"></div></div><div class="db-l">PRE: 879 customers (29.7% of total) — tech assigned but NEVER reached home. Once tech reaches → 100% completion.</div></div>
     <div class="tags"><span class="tg ev">ASSIGNED → REACHED_HOME → OTP_VERIFIED</span><span class="tg es">879 lost — #1 problem (PRE)</span></div>
     <div class="edge"><div class="et">Cancelled at Rohit Stage (PRE): 883 users</div><ul><li>Only <b>128 (14.5%)</b> had REACHED_HOME</li><li>Customer cancel: <b>~243 hrs (~10 days)</b> | System: <b>~280 hrs (~12 days)</b></li><li><b>170</b> cancelled with delay-related reason</li></ul></div>
     <div class="ibox sla"><div class="ib-t">* POST Caveat</div><p>POST metrics at Step 9 are <b>still maturing</b>. Bookings made in the last ~7 days typically haven't completed installation yet (Rohit visit happens days after assignment). Expect the POST install % to trend higher as the cohort matures.</p></div>
@@ -676,12 +676,12 @@ table.sum .delta-cell.bad{color:var(--r);}
 <div style="text-align:center;padding:28px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
   <div style="display:inline-block;background:linear-gradient(135deg,#1e3a8a,#2563eb,#60a5fa);padding:22px 38px;border-radius:20px;box-shadow:0 8px 32px rgba(37,99,235,.3);">
     <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;opacity:.85;">PRE Installation</div>
-    <div style="font-size:28px;font-weight:900;margin-top:6px;letter-spacing:-1px;">1,158 / 2,984 = 38.8%</div>
+    <div style="font-size:28px;font-weight:900;margin-top:6px;letter-spacing:-1px;">1,157 / 2,959 = 39.1%</div>
     <div style="font-size:11px;opacity:0.7;margin-top:4px;font-weight:500;">Feb 20 – Mar 25</div>
   </div>
   <div style="display:inline-block;background:linear-gradient(135deg,#6b21a8,#9333ea,#c084fc);padding:22px 38px;border-radius:20px;box-shadow:0 8px 32px rgba(147,51,234,.3);">
     <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;opacity:.85;">POST Installation*</div>
-    <div style="font-size:28px;font-weight:900;margin-top:6px;letter-spacing:-1px;">573 / 1,719 = 33.3%</div>
+    <div style="font-size:28px;font-weight:900;margin-top:6px;letter-spacing:-1px;">573 / 1,676 = 34.2%</div>
     <div style="font-size:11px;opacity:0.7;margin-top:4px;font-weight:500;">Mar 28 – Apr 12 (still maturing)</div>
   </div>
 </div>
@@ -707,16 +707,16 @@ table.sum .delta-cell.bad{color:var(--r);}
     </tr>
   </thead>
   <tbody>
-    <tr><td>1</td><td class="tl">BFP → SSID Set</td><td class="div-l">2,984</td><td>22</td><td>0.7%</td><td class="div-p">1,719</td><td>58</td><td>3.4%</td><td class="delta-cell bad">▲ +2.7%</td></tr>
-    <tr><td>2</td><td class="tl">SSID → Address Updated</td><td class="div-l">2,962</td><td>70</td><td>2.3%</td><td class="div-p">1,661</td><td>16</td><td>0.9%</td><td class="delta-cell good">▼ -1.4%</td></tr>
-    <tr class="cr"><td>3</td><td class="tl">Address → Booking Verified</td><td class="div-l">2,892</td><td>270</td><td>9.0%</td><td class="div-p">1,645</td><td>128</td><td>7.4%</td><td class="delta-cell good">▼ -1.6%</td></tr>
-    <tr><td>4</td><td class="tl">Booking Verified → Notif Sent</td><td class="div-l">2,622</td><td>20</td><td>0.7%</td><td class="div-p">1,517</td><td>17</td><td>1.0%</td><td class="delta-cell bad">▲ +0.3%</td></tr>
-    <tr class="cr"><td>5</td><td class="tl">NOTIF → Partner Interest</td><td class="div-l">2,602</td><td>362</td><td>12.1%</td><td class="div-p">1,500</td><td>232</td><td>13.5%</td><td class="delta-cell bad">▲ +1.4%</td></tr>
-    <tr><td>6</td><td class="tl">Interest → Slot Selected</td><td class="div-l">2,240</td><td>47</td><td>1.6%</td><td class="div-p">1,268</td><td>31</td><td>1.8%</td><td class="delta-cell bad">▲ +0.2%</td></tr>
-    <tr><td>7</td><td class="tl">Slot → Customer Confirmed</td><td class="div-l">2,193</td><td>19</td><td>0.6%</td><td class="div-p">1,237</td><td>39</td><td>2.3%</td><td class="delta-cell bad">▲ +1.7%</td></tr>
-    <tr class="hi"><td>8</td><td class="tl">Confirmed → Rohit Assigned</td><td class="div-l">2,174</td><td>137</td><td>4.6%</td><td class="div-p">1,198</td><td>127</td><td>7.4%</td><td class="delta-cell bad">▲ +2.8%</td></tr>
-    <tr class="cr"><td><b>9</b></td><td class="tl"><b>Rohit Assigned → Installed</b></td><td class="div-l"><b>2,037</b></td><td><b>879</b></td><td style="color:var(--r);font-weight:700;">29.5%</td><td class="div-p"><b>1,071</b></td><td><b>498</b></td><td style="color:var(--r);font-weight:700;">29.0%*</td><td class="delta-cell neutral" style="color:var(--t2);">≈ maturing</td></tr>
-    <tr style="background:var(--s2);font-weight:700"><td colspan="2">TOTAL</td><td class="div-l">2,984</td><td style="color:var(--r);">1,826</td><td style="color:var(--r);">61.2%</td><td class="div-p">1,719</td><td style="color:var(--r);">1,146</td><td style="color:var(--r);">66.7%*</td><td class="delta-cell neutral" style="color:var(--t2);">* maturing</td></tr>
+    <tr><td>1</td><td class="tl">BFP → SSID Set</td><td class="div-l">2,959</td><td>0</td><td>0.0%</td><td class="div-p">1,676</td><td>17</td><td>1.0%</td><td class="delta-cell bad">▲ +1.0%</td></tr>
+    <tr><td>2</td><td class="tl">SSID → Address Updated</td><td class="div-l">2,959</td><td>75</td><td>2.5%</td><td class="div-p">1,659</td><td>21</td><td>1.3%</td><td class="delta-cell good">▼ -1.2%</td></tr>
+    <tr class="cr"><td>3</td><td class="tl">Address → Booking Verified</td><td class="div-l">2,884</td><td>263</td><td>8.9%</td><td class="div-p">1,638</td><td>123</td><td>7.3%</td><td class="delta-cell good">▼ -1.6%</td></tr>
+    <tr><td>4</td><td class="tl">Booking Verified → Notif Sent</td><td class="div-l">2,621</td><td>20</td><td>0.7%</td><td class="div-p">1,515</td><td>17</td><td>1.0%</td><td class="delta-cell bad">▲ +0.3%</td></tr>
+    <tr class="cr"><td>5</td><td class="tl">NOTIF → Partner Interest</td><td class="div-l">2,601</td><td>362</td><td>12.2%</td><td class="div-p">1,498</td><td>232</td><td>13.8%</td><td class="delta-cell bad">▲ +1.6%</td></tr>
+    <tr><td>6</td><td class="tl">Interest → Slot Selected</td><td class="div-l">2,239</td><td>47</td><td>1.6%</td><td class="div-p">1,266</td><td>31</td><td>1.8%</td><td class="delta-cell bad">▲ +0.2%</td></tr>
+    <tr><td>7</td><td class="tl">Slot → Customer Confirmed</td><td class="div-l">2,192</td><td>19</td><td>0.6%</td><td class="div-p">1,235</td><td>38</td><td>2.3%</td><td class="delta-cell bad">▲ +1.7%</td></tr>
+    <tr class="hi"><td>8</td><td class="tl">Confirmed → Rohit Assigned</td><td class="div-l">2,173</td><td>137</td><td>4.6%</td><td class="div-p">1,197</td><td>127</td><td>7.6%</td><td class="delta-cell bad">▲ +3.0%</td></tr>
+    <tr class="cr"><td><b>9</b></td><td class="tl"><b>Rohit Assigned → Installed</b></td><td class="div-l"><b>2,036</b></td><td><b>879</b></td><td style="color:var(--r);font-weight:700;">29.7%</td><td class="div-p"><b>1,070</b></td><td><b>497</b></td><td style="color:var(--r);font-weight:700;">29.7%*</td><td class="delta-cell neutral" style="color:var(--t2);">≈ maturing</td></tr>
+    <tr style="background:var(--s2);font-weight:700"><td colspan="2">TOTAL</td><td class="div-l">2,959</td><td style="color:var(--r);">1,802</td><td style="color:var(--r);">60.9%</td><td class="div-p">1,676</td><td style="color:var(--r);">1,103</td><td style="color:var(--r);">65.8%*</td><td class="delta-cell neutral" style="color:var(--t2);">* maturing</td></tr>
   </tbody>
 </table>
 <div style="font-size:11px;color:var(--t2);text-align:center;margin-top:-10px;margin-bottom:20px;font-style:italic;">* Step 9 / Install metrics in POST are still maturing — expect install % to trend upward as recent bookings complete</div>
@@ -725,7 +725,7 @@ table.sum .delta-cell.bad{color:var(--r);}
 
 <div class="footer">
   <p>Wiom Booking → Install: Pre vs Post UI Change Dashboard | Updated: April 13, 2026</p>
-  <p>PRE: Feb 20 – Mar 25, 2026 (34 days) | POST: Mar 28 – Apr 12, 2026 (16 days) | Counted by unique customer (distinct mobile) | Sources: booking_logs + task_logs (PayG filter on)</p>
+  <p>PRE: Feb 20 – Mar 25, 2026 (34 days) | POST: Mar 28 – Apr 12, 2026 (16 days) | Unique customers excluding early abandoners | Sources: booking_logs + task_logs (PayG filter on)</p>
 </div>
 
 </body>
