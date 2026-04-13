@@ -50,7 +50,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 /* Metrics */
 .mets{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;margin:12px 0;}
 .mt{background:rgba(0,0,0,.3);border-radius:10px;padding:10px 12px;text-align:center;border:1px solid rgba(255,255,255,.04);}
-.mt .v{font-size:18px;font-weight:800;letter-spacing:-.3px;}.mt .l{font-size:10px;color:var(--t2);margin-top:3px;font-weight:500;}
+.mt .v{font-size:18px;font-weight:800;letter-spacing:-.3px;}.mt .pct{font-size:11px;font-weight:700;color:var(--c);margin-top:2px;letter-spacing:.3px;}.mt .l{font-size:10px;color:var(--t2);margin-top:3px;font-weight:500;}
 .mt .v.g{color:var(--g);}.mt .v.r{color:var(--r);}.mt .v.y{color:var(--y);}
 
 /* Progress Bar */
@@ -120,7 +120,7 @@ table.sum tr.cr{background:rgba(248,113,113,.05);}table.sum tr.hi{background:rgb
 
 <div class="hdr">
   <h1>Wiom Booking &rarr; Install: 9-Step Flow Guide</h1>
-  <div class="sub">Figma screens &bull; Funnel data &bull; Notifications &bull; Edge cases &bull; Escalations &nbsp;|&nbsp; Data: Feb 20 &ndash; Mar 25, 2026</div>
+  <div class="sub">Figma screens &bull; Funnel data &bull; Notifications &bull; Edge cases &bull; Escalations &nbsp;|&nbsp; Data: Feb 20 &ndash; Mar 25, 2026 &nbsp;|&nbsp; All % = share of Total Booked (2,984)</div>
   <div class="pills">
     <div class="pill">Booked: <b>2,984</b></div>
     <div class="pill">Installed: <b style="color:#34d399;">1,156 (38.7%)</b></div>
@@ -137,10 +137,9 @@ table.sum tr.cr{background:rgba(248,113,113,.05);}table.sum tr.hi{background:rgb
   <div class="step-b">
     <div class="figma"><div class="fl">Screens: BFP Confirmation → SSID Selection → SSID Confirmed</div><div class="fs"><img src="s1_all.png" alt="Step 1"></div></div>
     <div class="mets">
-      <div class="mt"><div class="v g">2,984</div><div class="l">Booking Paid</div></div>
-      <div class="mt"><div class="v g">2,962</div><div class="l">SSID Set</div></div>
-      <div class="mt"><div class="v">22</div><div class="l">Dropped</div></div>
-      <div class="mt"><div class="v g">99.3%</div><div class="l">of Total Booked</div></div>
+      <div class="mt"><div class="v g">2,984</div><div class="pct">100%</div><div class="l">Booking Paid</div></div>
+      <div class="mt"><div class="v g">2,962</div><div class="pct">99.3%</div><div class="l">SSID Set</div></div>
+      <div class="mt"><div class="v">22</div><div class="pct">0.7%</div><div class="l">Dropped</div></div>
     </div>
     <div class="tags"><span class="tg ev">booking_fee_captured → ssid_set</span></div>
     <div class="notif-grid">
@@ -160,10 +159,9 @@ table.sum tr.cr{background:rgba(248,113,113,.05);}table.sum tr.hi{background:rgb
   <div class="step-b">
     <div class="figma"><div class="fl">Screens: Chat Welcome → Address Form → Landmark List → Confirm → Saved</div><div class="fs"><img src="s2_all.png" alt="Step 2"></div><div class="fh">← Scroll →</div></div>
     <div class="mets">
-      <div class="mt"><div class="v g">2,962</div><div class="l">SSID Set</div></div>
-      <div class="mt"><div class="v y">2,837</div><div class="l">Address Updated</div></div>
-      <div class="mt"><div class="v r">125</div><div class="l">Dropped</div></div>
-      <div class="mt"><div class="v y">95.1%</div><div class="l">of Total Booked</div></div>
+      <div class="mt"><div class="v g">2,962</div><div class="pct">99.3%</div><div class="l">SSID Set</div></div>
+      <div class="mt"><div class="v y">2,837</div><div class="pct">95.1%</div><div class="l">Address Updated</div></div>
+      <div class="mt"><div class="v r">125</div><div class="pct">4.2%</div><div class="l">Dropped</div></div>
     </div>
     <div class="tags"><span class="tg ev">ssid_set → address_updated</span></div>
     <div class="ibox esc"><div class="ib-t">Gap</div><p>No push notification, WhatsApp, or IVR nudge exists for this step. If a customer leaves the app without updating their address, there is no re-engagement mechanism to bring them back. 125 users dropped here with zero follow-up.</p></div>
@@ -184,13 +182,13 @@ table.sum tr.cr{background:rgba(248,113,113,.05);}table.sum tr.hi{background:rgb
   <div class="step-b">
     <div class="figma"><div class="fl">Screens: "हाँ / नहीं" → Location Response → Serviceability Check → Booking Confirmed</div><div class="fs"><img src="s4a_home_question.png" alt="Step 3 - Home Question"><img src="s4b_serviceable.png" alt="Step 3 - Serviceable Check"><img src="s4c_confirmed.png" alt="Step 3 - Booking Confirmed"></div><div class="fh">← Scroll →</div></div>
     <div class="mets">
-      <div class="mt"><div class="v y">2,837</div><div class="l">Address Updated</div></div>
-      <div class="mt"><div class="v r">2,620</div><div class="l">Booking Verified</div></div>
-      <div class="mt"><div class="v r">217</div><div class="l">Verification Drop</div></div>
-      <div class="mt"><div class="v r">444</div><div class="l">Hit Unserviceable</div></div>
-      <div class="mt"><div class="v">252</div><div class="l">Recovered</div></div>
-      <div class="mt"><div class="v r">192</div><div class="l">Stuck Unserviceable</div></div>
-      <div class="mt"><div class="v y">2,428</div><div class="l">Serviceable (81.4%)</div></div>
+      <div class="mt"><div class="v y">2,837</div><div class="pct">95.1%</div><div class="l">Address Updated</div></div>
+      <div class="mt"><div class="v r">2,620</div><div class="pct">87.8%</div><div class="l">Booking Verified</div></div>
+      <div class="mt"><div class="v r">217</div><div class="pct">7.3%</div><div class="l">Verification Drop</div></div>
+      <div class="mt"><div class="v r">444</div><div class="pct">14.9%</div><div class="l">Hit Unserviceable</div></div>
+      <div class="mt"><div class="v">252</div><div class="pct">8.4%</div><div class="l">Recovered</div></div>
+      <div class="mt"><div class="v r">192</div><div class="pct">6.4%</div><div class="l">Stuck Unserviceable</div></div>
+      <div class="mt"><div class="v y">2,428</div><div class="pct">81.4%</div><div class="l">Serviceable</div></div>
     </div>
     <div class="tags"><span class="tg ev">address_updated → booking_verified → serviceable</span><span class="tg es">611 stuck at ADDRESS_VERIFIED</span><span class="tg ev">unservisable</span></div>
     <div class="edge"><div class="et">Edge Case: "घर पर नहीं हूँ"</div><p>If customer selects "नहीं" → app shows "घर पहुँच कर बटन दबाएँ" → customer must return and tap "मैं घर पर हूँ" → location capture. No reminder or nudge if user forgets to come back.</p></div>
@@ -211,8 +209,8 @@ table.sum tr.cr{background:rgba(248,113,113,.05);}table.sum tr.hi{background:rgb
   <div class="step-h"><div class="num">04</div><div class="txt"><div class="label">Step 4</div><div class="ttl">Booking Verified → Notification Sent to Partners</div><div class="from-to">GINIE engine matches partners → FPN + Push sent to partners</div></div><div class="bdg l">~0 Dropped (system step)</div></div>
   <div class="step-b">
     <div class="mets">
-      <div class="mt"><div class="v g">2,428</div><div class="l">GINIE Triggered</div></div>
-      <div class="mt"><div class="v g">2,428</div><div class="l">Notif Sent</div></div>
+      <div class="mt"><div class="v g">2,428</div><div class="pct">81.4%</div><div class="l">GINIE Triggered</div></div>
+      <div class="mt"><div class="v g">2,428</div><div class="pct">81.4%</div><div class="l">Notif Sent</div></div>
       <div class="mt"><div class="v">5.2</div><div class="l">Avg Notifs/Lead</div></div>
     </div>
     <div class="tags"><span class="tg ev">GINIE_OUTPUT → NOTIF_SENT</span></div>
@@ -232,10 +230,9 @@ table.sum tr.cr{background:rgba(248,113,113,.05);}table.sum tr.hi{background:rgb
   <div class="step-h"><div class="num">05</div><div class="txt"><div class="label">Step 5</div><div class="ttl">NOTIF Sent → Partner Interest Marked</div><div class="from-to">Partner sees lead → Marks INTERESTED or DECLINED</div></div><div class="bdg c">363 Dropped (12.2%)</div></div>
   <div class="step-b">
     <div class="mets">
-      <div class="mt"><div class="v">2,428</div><div class="l">Notif Sent</div></div>
-      <div class="mt"><div class="v y">2,065</div><div class="l">Interest Marked</div></div>
-      <div class="mt"><div class="v r">363</div><div class="l">Zero Interest</div></div>
-      <div class="mt"><div class="v r">69.2%</div><div class="l">of Total Booked</div></div>
+      <div class="mt"><div class="v">2,428</div><div class="pct">81.4%</div><div class="l">Notif Sent</div></div>
+      <div class="mt"><div class="v y">2,065</div><div class="pct">69.2%</div><div class="l">Interest Marked</div></div>
+      <div class="mt"><div class="v r">363</div><div class="pct">12.2%</div><div class="l">Zero Interest</div></div>
     </div>
     <div class="tags"><span class="tg ev">NOTIF_SENT → INTERESTED</span><span class="tg es">Supply failure</span></div>
     <div class="ibox esc"><div class="ib-t">Gap</div><p>Customer is left on a vague "इंजीनियर ढूंढा जा रहा है" screen with no timeline or progress update. If no partner picks up, the customer has no visibility — they only find out days later via a generic delay message. 363 customers had zero partner interest and were never proactively informed.</p></div>
@@ -255,10 +252,9 @@ table.sum tr.cr{background:rgba(248,113,113,.05);}table.sum tr.hi{background:rgb
   <div class="step-h"><div class="num">06</div><div class="txt"><div class="label">Step 6</div><div class="ttl">Interest Marked → Partner Selects Slot</div><div class="from-to">Partner picks installation date/time</div></div><div class="bdg l">47 Dropped (1.6%)</div></div>
   <div class="step-b">
     <div class="mets">
-      <div class="mt"><div class="v g">2,065</div><div class="l">Interested</div></div>
-      <div class="mt"><div class="v g">2,018</div><div class="l">Slot Selected</div></div>
-      <div class="mt"><div class="v">47</div><div class="l">Dropped</div></div>
-      <div class="mt"><div class="v g">67.6%</div><div class="l">of Total Booked</div></div>
+      <div class="mt"><div class="v g">2,065</div><div class="pct">69.2%</div><div class="l">Interested</div></div>
+      <div class="mt"><div class="v g">2,018</div><div class="pct">67.6%</div><div class="l">Slot Selected</div></div>
+      <div class="mt"><div class="v">47</div><div class="pct">1.6%</div><div class="l">Dropped</div></div>
     </div>
     <div class="tags"><span class="tg ev">INTERESTED → SLOT_SELECTED</span></div>
     <div class="notif-grid">
@@ -278,10 +274,9 @@ table.sum tr.cr{background:rgba(248,113,113,.05);}table.sum tr.hi{background:rgb
   <div class="step-b">
     <div class="figma"><div class="fl">Screens: Date Proposal → Confirmation → Engineer Search</div><div class="fs"><img src="s6_slot_confirm.png" alt="Step 7"></div><div class="fh">← Scroll →</div></div>
     <div class="mets">
-      <div class="mt"><div class="v g">2,018</div><div class="l">Slot Selected</div></div>
-      <div class="mt"><div class="v g">1,999</div><div class="l">Confirmed</div></div>
-      <div class="mt"><div class="v">19</div><div class="l">Dropped</div></div>
-      <div class="mt"><div class="v g">67.0%</div><div class="l">of Total Booked</div></div>
+      <div class="mt"><div class="v g">2,018</div><div class="pct">67.6%</div><div class="l">Slot Selected</div></div>
+      <div class="mt"><div class="v g">1,999</div><div class="pct">67.0%</div><div class="l">Confirmed</div></div>
+      <div class="mt"><div class="v">19</div><div class="pct">0.6%</div><div class="l">Dropped</div></div>
     </div>
     <div class="tags"><span class="tg ev">SLOT_SELECTED → CUSTOMER_SLOT_CONFIRMED</span></div>
     <div class="notif-grid">
@@ -301,10 +296,9 @@ table.sum tr.cr{background:rgba(248,113,113,.05);}table.sum tr.hi{background:rgb
   <div class="step-b">
     <div class="figma"><div class="fl">Screens: Engineer Found → Engineer Assigned with Details</div><div class="fs"><img src="s8_engineer_found.png" alt="Step 8 - Engineer Found"><img src="s8_engineer_assigned.png" alt="Step 8 - Engineer Assigned"></div><div class="fh">← Scroll →</div></div>
     <div class="mets">
-      <div class="mt"><div class="v">1,999</div><div class="l">Slot Confirmed</div></div>
-      <div class="mt"><div class="v y">1,862</div><div class="l">Rohit Assigned</div></div>
-      <div class="mt"><div class="v r">137</div><div class="l">Never Assigned</div></div>
-      <div class="mt"><div class="v y">62.4%</div><div class="l">of Total Booked</div></div>
+      <div class="mt"><div class="v">1,999</div><div class="pct">67.0%</div><div class="l">Slot Confirmed</div></div>
+      <div class="mt"><div class="v y">1,862</div><div class="pct">62.4%</div><div class="l">Rohit Assigned</div></div>
+      <div class="mt"><div class="v r">137</div><div class="pct">4.6%</div><div class="l">Never Assigned</div></div>
     </div>
     <div class="tags"><span class="tg ev">CUSTOMER_SLOT_CONFIRMED → ASSIGNED</span></div>
     <div class="notif-grid">
@@ -324,11 +318,10 @@ table.sum tr.cr{background:rgba(248,113,113,.05);}table.sum tr.hi{background:rgb
   <div class="step-h"><div class="num">09</div><div class="txt"><div class="label">Step 9 — BIGGEST LEAK</div><div class="ttl">Rohit Assigned → WiFi Installation Complete</div><div class="from-to">Rohit reaches home → Selfie → Aadhaar → SD Rs.300 → Router → Speed Test → OTP Verified</div></div><div class="bdg c">706 Dropped (23.7%)</div></div>
   <div class="step-b">
     <div class="mets">
-      <div class="mt"><div class="v">1,862</div><div class="l">Rohit Assigned</div></div>
-      <div class="mt"><div class="v g">1,156</div><div class="l">Reached Home</div></div>
-      <div class="mt"><div class="v r">706</div><div class="l">NEVER SHOWED</div></div>
-      <div class="mt"><div class="v g">1,156</div><div class="l">OTP Verified</div></div>
-      <div class="mt"><div class="v g">38.7%</div><div class="l">of Total Booked</div></div>
+      <div class="mt"><div class="v">1,862</div><div class="pct">62.4%</div><div class="l">Rohit Assigned</div></div>
+      <div class="mt"><div class="v g">1,156</div><div class="pct">38.7%</div><div class="l">Reached Home</div></div>
+      <div class="mt"><div class="v r">706</div><div class="pct">23.7%</div><div class="l">NEVER SHOWED</div></div>
+      <div class="mt"><div class="v g">1,156</div><div class="pct">38.7%</div><div class="l">OTP Verified</div></div>
     </div>
     <div class="db"><div class="db-bg"><div class="db-f r" style="width:37.9%"></div></div><div class="db-l">706 users (23.7% of total booked) — tech assigned but NEVER reached home. Once tech reaches → 100% completion.</div></div>
     <div class="tags"><span class="tg ev">ASSIGNED → REACHED_HOME → OTP_VERIFIED</span><span class="tg es">706 lost — #1 problem</span></div>
