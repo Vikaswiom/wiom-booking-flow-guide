@@ -190,7 +190,7 @@ table.sum tr.cr{background:rgba(248,113,113,.05);}table.sum tr.hi{background:rgb
       <div class="mt"><div class="v r">444</div><div class="l">Hit Unserviceable</div></div>
       <div class="mt"><div class="v">252</div><div class="l">Recovered</div></div>
       <div class="mt"><div class="v r">192</div><div class="l">Stuck Unserviceable</div></div>
-      <div class="mt"><div class="v y">~2,428</div><div class="l">Serviceable (81.4%)</div></div>
+      <div class="mt"><div class="v y">2,428</div><div class="l">Serviceable (81.4%)</div></div>
     </div>
     <div class="tags"><span class="tg ev">address_updated → booking_verified → serviceable</span><span class="tg es">611 stuck at ADDRESS_VERIFIED</span><span class="tg ev">unservisable</span></div>
     <div class="edge"><div class="et">Edge Case: "घर पर नहीं हूँ"</div><p>If customer selects "नहीं" → app shows "घर पहुँच कर बटन दबाएँ" → customer must return and tap "मैं घर पर हूँ" → location capture. No reminder or nudge if user forgets to come back.</p></div>
@@ -211,8 +211,8 @@ table.sum tr.cr{background:rgba(248,113,113,.05);}table.sum tr.hi{background:rgb
   <div class="step-h"><div class="num">04</div><div class="txt"><div class="label">Step 4</div><div class="ttl">Booking Verified → Notification Sent to Partners</div><div class="from-to">GINIE engine matches partners → FPN + Push sent to partners</div></div><div class="bdg l">~0 Dropped (system step)</div></div>
   <div class="step-b">
     <div class="mets">
-      <div class="mt"><div class="v g">2,600</div><div class="l">GINIE Triggered</div></div>
-      <div class="mt"><div class="v g">2,600</div><div class="l">Notif Sent</div></div>
+      <div class="mt"><div class="v g">2,428</div><div class="l">GINIE Triggered</div></div>
+      <div class="mt"><div class="v g">2,428</div><div class="l">Notif Sent</div></div>
       <div class="mt"><div class="v">5.2</div><div class="l">Avg Notifs/Lead</div></div>
     </div>
     <div class="tags"><span class="tg ev">GINIE_OUTPUT → NOTIF_SENT</span></div>
@@ -232,10 +232,10 @@ table.sum tr.cr{background:rgba(248,113,113,.05);}table.sum tr.hi{background:rgb
   <div class="step-h"><div class="num">05</div><div class="txt"><div class="label">Step 5</div><div class="ttl">NOTIF Sent → Partner Interest Marked</div><div class="from-to">Partner sees lead → Marks INTERESTED or DECLINED</div></div><div class="bdg c">363 Dropped (12.2%)</div></div>
   <div class="step-b">
     <div class="mets">
-      <div class="mt"><div class="v">2,600</div><div class="l">Notif Sent</div></div>
-      <div class="mt"><div class="v y">2,237</div><div class="l">Interest Marked</div></div>
+      <div class="mt"><div class="v">2,428</div><div class="l">Notif Sent</div></div>
+      <div class="mt"><div class="v y">2,065</div><div class="l">Interest Marked</div></div>
       <div class="mt"><div class="v r">363</div><div class="l">Zero Interest</div></div>
-      <div class="mt"><div class="v r">75.0%</div><div class="l">of Total Booked</div></div>
+      <div class="mt"><div class="v r">69.2%</div><div class="l">of Total Booked</div></div>
     </div>
     <div class="tags"><span class="tg ev">NOTIF_SENT → INTERESTED</span><span class="tg es">Supply failure</span></div>
     <div class="ibox esc"><div class="ib-t">Gap</div><p>Customer is left on a vague "इंजीनियर ढूंढा जा रहा है" screen with no timeline or progress update. If no partner picks up, the customer has no visibility — they only find out days later via a generic delay message. 363 customers had zero partner interest and were never proactively informed.</p></div>
@@ -255,10 +255,10 @@ table.sum tr.cr{background:rgba(248,113,113,.05);}table.sum tr.hi{background:rgb
   <div class="step-h"><div class="num">06</div><div class="txt"><div class="label">Step 6</div><div class="ttl">Interest Marked → Partner Selects Slot</div><div class="from-to">Partner picks installation date/time</div></div><div class="bdg l">47 Dropped (1.6%)</div></div>
   <div class="step-b">
     <div class="mets">
-      <div class="mt"><div class="v g">2,237</div><div class="l">Interested</div></div>
-      <div class="mt"><div class="v g">2,190</div><div class="l">Slot Selected</div></div>
+      <div class="mt"><div class="v g">2,065</div><div class="l">Interested</div></div>
+      <div class="mt"><div class="v g">2,018</div><div class="l">Slot Selected</div></div>
       <div class="mt"><div class="v">47</div><div class="l">Dropped</div></div>
-      <div class="mt"><div class="v g">73.4%</div><div class="l">of Total Booked</div></div>
+      <div class="mt"><div class="v g">67.6%</div><div class="l">of Total Booked</div></div>
     </div>
     <div class="tags"><span class="tg ev">INTERESTED → SLOT_SELECTED</span></div>
     <div class="notif-grid">
@@ -278,10 +278,10 @@ table.sum tr.cr{background:rgba(248,113,113,.05);}table.sum tr.hi{background:rgb
   <div class="step-b">
     <div class="figma"><div class="fl">Screens: Date Proposal → Confirmation → Engineer Search</div><div class="fs"><img src="s6_slot_confirm.png" alt="Step 7"></div><div class="fh">← Scroll →</div></div>
     <div class="mets">
-      <div class="mt"><div class="v g">2,190</div><div class="l">Slot Selected</div></div>
-      <div class="mt"><div class="v g">2,171</div><div class="l">Confirmed</div></div>
+      <div class="mt"><div class="v g">2,018</div><div class="l">Slot Selected</div></div>
+      <div class="mt"><div class="v g">1,999</div><div class="l">Confirmed</div></div>
       <div class="mt"><div class="v">19</div><div class="l">Dropped</div></div>
-      <div class="mt"><div class="v g">72.8%</div><div class="l">of Total Booked</div></div>
+      <div class="mt"><div class="v g">67.0%</div><div class="l">of Total Booked</div></div>
     </div>
     <div class="tags"><span class="tg ev">SLOT_SELECTED → CUSTOMER_SLOT_CONFIRMED</span></div>
     <div class="notif-grid">
@@ -301,10 +301,10 @@ table.sum tr.cr{background:rgba(248,113,113,.05);}table.sum tr.hi{background:rgb
   <div class="step-b">
     <div class="figma"><div class="fl">Screens: Engineer Found → Engineer Assigned with Details</div><div class="fs"><img src="s8_engineer_found.png" alt="Step 8 - Engineer Found"><img src="s8_engineer_assigned.png" alt="Step 8 - Engineer Assigned"></div><div class="fh">← Scroll →</div></div>
     <div class="mets">
-      <div class="mt"><div class="v">2,171</div><div class="l">Slot Confirmed</div></div>
-      <div class="mt"><div class="v y">2,034</div><div class="l">Rohit Assigned</div></div>
+      <div class="mt"><div class="v">1,999</div><div class="l">Slot Confirmed</div></div>
+      <div class="mt"><div class="v y">1,862</div><div class="l">Rohit Assigned</div></div>
       <div class="mt"><div class="v r">137</div><div class="l">Never Assigned</div></div>
-      <div class="mt"><div class="v y">68.2%</div><div class="l">of Total Booked</div></div>
+      <div class="mt"><div class="v y">62.4%</div><div class="l">of Total Booked</div></div>
     </div>
     <div class="tags"><span class="tg ev">CUSTOMER_SLOT_CONFIRMED → ASSIGNED</span></div>
     <div class="notif-grid">
@@ -321,17 +321,17 @@ table.sum tr.cr{background:rgba(248,113,113,.05);}table.sum tr.hi{background:rgb
 
 <!-- ══ STEP 9 ══ -->
 <div class="step crit">
-  <div class="step-h"><div class="num">09</div><div class="txt"><div class="label">Step 9 — BIGGEST LEAK</div><div class="ttl">Rohit Assigned → WiFi Installation Complete</div><div class="from-to">Rohit reaches home → Selfie → Aadhaar → SD Rs.300 → Router → Speed Test → OTP Verified</div></div><div class="bdg c">878 Dropped (29.4%)</div></div>
+  <div class="step-h"><div class="num">09</div><div class="txt"><div class="label">Step 9 — BIGGEST LEAK</div><div class="ttl">Rohit Assigned → WiFi Installation Complete</div><div class="from-to">Rohit reaches home → Selfie → Aadhaar → SD Rs.300 → Router → Speed Test → OTP Verified</div></div><div class="bdg c">706 Dropped (23.7%)</div></div>
   <div class="step-b">
     <div class="mets">
-      <div class="mt"><div class="v">2,034</div><div class="l">Rohit Assigned</div></div>
-      <div class="mt"><div class="v r">1,126</div><div class="l">Reached Home</div></div>
-      <div class="mt"><div class="v r">908</div><div class="l">NEVER SHOWED</div></div>
+      <div class="mt"><div class="v">1,862</div><div class="l">Rohit Assigned</div></div>
+      <div class="mt"><div class="v g">1,156</div><div class="l">Reached Home</div></div>
+      <div class="mt"><div class="v r">706</div><div class="l">NEVER SHOWED</div></div>
       <div class="mt"><div class="v g">1,156</div><div class="l">OTP Verified</div></div>
       <div class="mt"><div class="v g">38.7%</div><div class="l">of Total Booked</div></div>
     </div>
-    <div class="db"><div class="db-bg"><div class="db-f r" style="width:56.9%"></div></div><div class="db-l">908 users (30.4% of total booked) — tech assigned but NEVER reached home. Once tech reaches → 100% completion.</div></div>
-    <div class="tags"><span class="tg ev">ASSIGNED → REACHED_HOME → OTP_VERIFIED</span><span class="tg es">908 lost — #1 problem</span></div>
+    <div class="db"><div class="db-bg"><div class="db-f r" style="width:37.9%"></div></div><div class="db-l">706 users (23.7% of total booked) — tech assigned but NEVER reached home. Once tech reaches → 100% completion.</div></div>
+    <div class="tags"><span class="tg ev">ASSIGNED → REACHED_HOME → OTP_VERIFIED</span><span class="tg es">706 lost — #1 problem</span></div>
     <div class="edge"><div class="et">Cancelled at Rohit Stage: 697 users</div><ul><li>Only <b>82 (12%)</b> had REACHED_HOME</li><li>Customer cancel: <b>48 hrs</b> | System: <b>336 hrs (14 days!)</b></li><li><b>124</b> said "Delay in installation"</li></ul></div>
     <div class="notif-grid">
       <div class="notif-card chat"><div class="nc-pri">1</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">💬</span><span class="nc-label">In-Chat Message</span></div><div class="nc-msg">Day of visit: "आज रोहित कुमार आपके घर आएँगे!"<br>After install: "बधाई हो! आपका नेट चालू हो गया है 🎉"</div></div></div>
@@ -361,13 +361,13 @@ table.sum tr.cr{background:rgba(248,113,113,.05);}table.sum tr.hi{background:rgb
   <tbody>
     <tr><td>1</td><td>BFP → SSID Set</td><td class="tc">2,984</td><td class="tc">2,962</td><td class="tc">22</td><td class="tc">0.7%</td><td class="tc">App</td></tr>
     <tr class="hi"><td>2</td><td>SSID → Address Updated</td><td class="tc">2,962</td><td class="tc">2,837</td><td class="tc">125</td><td class="tc" style="color:var(--y);">4.2%</td><td class="tc">App/Backend</td></tr>
-    <tr class="cr"><td>3</td><td>Address → Booking Verified</td><td class="tc">2,837</td><td class="tc">~2,428</td><td class="tc" style="font-weight:700;color:var(--r);">409</td><td class="tc" style="color:var(--r);">13.7%</td><td class="tc">Backend</td></tr>
-    <tr><td>4</td><td>Booking Verified → Notif Sent</td><td class="tc">~2,428</td><td class="tc">2,600</td><td class="tc">—</td><td class="tc">~0%</td><td class="tc">System</td></tr>
-    <tr class="cr"><td>5</td><td>NOTIF Sent → Partner Interest Marked</td><td class="tc">2,600</td><td class="tc">2,237</td><td class="tc" style="font-weight:700;color:var(--r);">363</td><td class="tc" style="color:var(--r);">12.2%</td><td class="tc">Supply</td></tr>
-    <tr><td>6</td><td>Interest → Slot Selected</td><td class="tc">2,237</td><td class="tc">2,190</td><td class="tc">47</td><td class="tc">1.6%</td><td class="tc">Supply</td></tr>
-    <tr><td>7</td><td>Slot → Customer Confirmed</td><td class="tc">2,190</td><td class="tc">2,171</td><td class="tc">19</td><td class="tc">0.6%</td><td class="tc">Customer</td></tr>
-    <tr class="hi"><td>8</td><td>Confirmed → Rohit Assigned</td><td class="tc">2,171</td><td class="tc">2,034</td><td class="tc" style="font-weight:700;">137</td><td class="tc" style="color:var(--y);">4.6%</td><td class="tc">Supply</td></tr>
-    <tr class="cr"><td><b>9</b></td><td><b>Rohit Assigned → Installed</b></td><td class="tc"><b>2,034</b></td><td class="tc"><b>1,156</b></td><td class="tc" style="font-weight:700;color:var(--r);font-size:14px;">878</td><td class="tc" style="color:var(--r);font-weight:700;">29.4%</td><td class="tc"><b>Supply/Ops</b></td></tr>
+    <tr class="cr"><td>3</td><td>Address → Booking Verified</td><td class="tc">2,837</td><td class="tc">2,428</td><td class="tc" style="font-weight:700;color:var(--r);">409</td><td class="tc" style="color:var(--r);">13.7%</td><td class="tc">Backend</td></tr>
+    <tr><td>4</td><td>Booking Verified → Notif Sent</td><td class="tc">2,428</td><td class="tc">2,428</td><td class="tc">—</td><td class="tc">~0%</td><td class="tc">System</td></tr>
+    <tr class="cr"><td>5</td><td>NOTIF Sent → Partner Interest Marked</td><td class="tc">2,428</td><td class="tc">2,065</td><td class="tc" style="font-weight:700;color:var(--r);">363</td><td class="tc" style="color:var(--r);">12.2%</td><td class="tc">Supply</td></tr>
+    <tr><td>6</td><td>Interest → Slot Selected</td><td class="tc">2,065</td><td class="tc">2,018</td><td class="tc">47</td><td class="tc">1.6%</td><td class="tc">Supply</td></tr>
+    <tr><td>7</td><td>Slot → Customer Confirmed</td><td class="tc">2,018</td><td class="tc">1,999</td><td class="tc">19</td><td class="tc">0.6%</td><td class="tc">Customer</td></tr>
+    <tr class="hi"><td>8</td><td>Confirmed → Rohit Assigned</td><td class="tc">1,999</td><td class="tc">1,862</td><td class="tc" style="font-weight:700;">137</td><td class="tc" style="color:var(--y);">4.6%</td><td class="tc">Supply</td></tr>
+    <tr class="cr"><td><b>9</b></td><td><b>Rohit Assigned → Installed</b></td><td class="tc"><b>1,862</b></td><td class="tc"><b>1,156</b></td><td class="tc" style="font-weight:700;color:var(--r);font-size:14px;">706</td><td class="tc" style="color:var(--r);font-weight:700;">23.7%</td><td class="tc"><b>Supply/Ops</b></td></tr>
     <tr style="background:var(--s2);font-weight:700"><td colspan="2">TOTAL</td><td class="tc">2,984</td><td class="tc">1,156</td><td class="tc" style="color:var(--r);">1,828</td><td class="tc" style="color:var(--r);">61.3%</td><td></td></tr>
   </tbody>
 </table>
