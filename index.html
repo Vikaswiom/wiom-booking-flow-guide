@@ -304,15 +304,15 @@ table.sum .delta-cell.bad{color:var(--r);}
 <!-- SECTION A: PRE-BOOKING ACQUISITION FUNNEL (CleverTap)     -->
 <!-- ════════════════════════════════════════════════════════ -->
 <div class="section-wrap">
-  <span class="section-divider">📱 Section A · Pre-Booking Acquisition Funnel<span class="section-sub">App opened (homepage loaded) → Booking fee paid · Source: CleverTap events</span></span>
+  <span class="section-divider">📱 Section A · Pre-Booking Acquisition Funnel<span class="section-sub">First-time homepage loaders → Booking fee paid · Source: CleverTap events</span></span>
 </div>
 
 <!-- ══ STEP A1 ══ -->
 <div class="step low">
   <div class="step-h">
     <div class="num">A1</div>
-    <div class="txt"><div class="label">Acquisition Step 1</div><div class="ttl">App Opened — Booking Homepage Loaded</div><div class="from-to">First screen after app open · "रिचार्ज वाला घर का नेट"</div></div>
-    <div class="badges"><span class="bdg pre">PRE: 81,037</span><span class="bdg post">POST: 46,701</span><span class="delta neutral">Entry point</span></div>
+    <div class="txt"><div class="label">Acquisition Step 1</div><div class="ttl">App Opened — Booking Homepage Loaded (First-Time Only)</div><div class="from-to">First screen after app open · "रिचार्ज वाला घर का नेट"</div></div>
+    <div class="badges"><span class="bdg pre">PRE: 44,430</span><span class="bdg post">POST: 16,910</span><span class="delta neutral">Entry point (first-time)</span></div>
   </div>
   <div class="step-b">
     <div class="compare">
@@ -320,18 +320,18 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
         <div class="figma"><div class="fl">Splash screen with calendar + devices · "मेरे इलाके में है या नहीं?" CTA</div><div class="fs"><img src="s_acq_1_splash.png" alt="A1 Splash"></div><div class="fh">← Scroll horizontally · 1 screen →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v g">81,037</div><div class="pct">100%</div><div class="l">Homepage Loaded</div></div>
+          <div class="mt"><div class="v g">44,430</div><div class="pct">100%</div><div class="l">First-Time Loaders</div></div>
         </div>
       </div>
       <div class="compare-col post">
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
         <div class="figma"><div class="fl">Same splash screen · UI unchanged</div><div class="fs"><img src="s_acq_1_splash.png" alt="A1 Splash POST"></div><div class="fh">← Scroll horizontally · 1 screen →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v g">46,701</div><div class="pct">100%</div><div class="l">Homepage Loaded</div></div>
+          <div class="mt"><div class="v g">16,910</div><div class="pct">100%</div><div class="l">First-Time Loaders</div></div>
         </div>
       </div>
     </div>
-    <div class="tags"><span class="tg ev">booking_homepage_loaded</span></div>
+    <div class="tags"><span class="tg ev">booking_homepage_loaded · count = 1 (first time)</span></div>
   </div>
 </div>
 <div class="arrow">▼</div>
@@ -341,7 +341,7 @@ table.sum .delta-cell.bad{color:var(--r);}
   <div class="step-h">
     <div class="num">A2</div>
     <div class="txt"><div class="label">Acquisition Step 2</div><div class="ttl">"Check Serviceability" Clicked</div><div class="from-to">Customer taps "मेरे इलाके में है या नहीं?" → loading screen</div></div>
-    <div class="badges"><span class="bdg pre">PRE: 7,928 (9.8%)</span><span class="bdg post">POST: 9,594 (20.5%)</span><span class="delta bad">▲ +10.7% worse</span></div>
+    <div class="badges"><span class="bdg pre">PRE: 6,606 (14.9%)</span><span class="bdg post">POST: 6,193 (36.6%)</span><span class="delta bad">▲ +21.7% worse</span></div>
   </div>
   <div class="step-b">
     <div class="compare">
@@ -349,18 +349,18 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
         <div class="figma"><div class="fl">Loading screen · "आपकी जगह पर नेट चेक कर रहे हैं..."</div><div class="fs"><img src="s_acq_2_loading.png" alt="A2 Loading"></div><div class="fh">← Scroll horizontally · 1 screen →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v g">81,037</div><div class="pct">100%</div><div class="l">Homepage Loaded</div></div>
-          <div class="mt"><div class="v y">73,109</div><div class="pct">90.2%</div><div class="l">Clicked Check</div></div>
-          <div class="mt"><div class="v">7,928</div><div class="pct">9.8%</div><div class="l">Dropped</div></div>
+          <div class="mt"><div class="v g">44,430</div><div class="pct">100%</div><div class="l">First-Time Loaders</div></div>
+          <div class="mt"><div class="v y">37,824</div><div class="pct">85.1%</div><div class="l">Clicked Check</div></div>
+          <div class="mt"><div class="v r">6,606</div><div class="pct">14.9%</div><div class="l">Dropped</div></div>
         </div>
       </div>
       <div class="compare-col post">
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
         <div class="figma"><div class="fl">Same loading screen · UI unchanged</div><div class="fs"><img src="s_acq_2_loading.png" alt="A2 Loading POST"></div><div class="fh">← Scroll horizontally · 1 screen →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v g">46,701</div><div class="pct">100%</div><div class="l">Homepage Loaded</div></div>
-          <div class="mt"><div class="v r">37,107</div><div class="pct">79.5%</div><div class="l">Clicked Check</div></div>
-          <div class="mt"><div class="v r">9,594</div><div class="pct">20.5%</div><div class="l">Dropped</div></div>
+          <div class="mt"><div class="v g">16,910</div><div class="pct">100%</div><div class="l">First-Time Loaders</div></div>
+          <div class="mt"><div class="v r">10,717</div><div class="pct">63.4%</div><div class="l">Clicked Check</div></div>
+          <div class="mt"><div class="v r">6,193</div><div class="pct">36.6%</div><div class="l">Dropped</div></div>
         </div>
       </div>
     </div>
@@ -374,7 +374,7 @@ table.sum .delta-cell.bad{color:var(--r);}
   <div class="step-h">
     <div class="num">A3</div>
     <div class="txt"><div class="label">Acquisition Step 3</div><div class="ttl">Serviceable Page Loaded</div><div class="from-to">Result shown · "यहाँ घर का नेट लग सकता है" (or unserviceable)</div></div>
-    <div class="badges"><span class="bdg pre">PRE: 20,546 (25.4%)</span><span class="bdg post">POST: 12,455 (26.7%)</span><span class="delta bad">▲ +1.3% worse</span></div>
+    <div class="badges"><span class="bdg pre">PRE: 10,152 (22.8%)</span><span class="bdg post">POST: 3,729 (22.0%)</span><span class="delta good">▼ -0.8% better</span></div>
   </div>
   <div class="step-b">
     <div class="compare">
@@ -382,18 +382,18 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
         <div class="figma"><div class="fl">Serviceable result · "Rajiv colony, Sector 40 - यहाँ घर का नेट लग सकता है"</div><div class="fs"><img src="s_acq_3_serviceable.png" alt="A3 Serviceable"></div><div class="fh">← Scroll horizontally · 1 screen →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v">73,109</div><div class="pct">90.2%</div><div class="l">Clicked Check</div></div>
-          <div class="mt"><div class="v y">52,563</div><div class="pct">64.9%</div><div class="l">Serviceable Page</div></div>
-          <div class="mt"><div class="v r">22,890</div><div class="pct">28.2%</div><div class="l">Unserviceable</div></div>
+          <div class="mt"><div class="v">37,824</div><div class="pct">85.1%</div><div class="l">Clicked Check</div></div>
+          <div class="mt"><div class="v y">27,672</div><div class="pct">62.3%</div><div class="l">Serviceable Page</div></div>
+          <div class="mt"><div class="v r">10,462</div><div class="pct">23.5%</div><div class="l">Unserviceable</div></div>
         </div>
       </div>
       <div class="compare-col post">
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
         <div class="figma"><div class="fl">Same serviceable result screen · UI unchanged</div><div class="fs"><img src="s_acq_3_serviceable.png" alt="A3 Serviceable POST"></div><div class="fh">← Scroll horizontally · 1 screen →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v">37,107</div><div class="pct">79.5%</div><div class="l">Clicked Check</div></div>
-          <div class="mt"><div class="v y">24,652</div><div class="pct">52.8%</div><div class="l">Serviceable Page</div></div>
-          <div class="mt"><div class="v r">8,765</div><div class="pct">18.8%</div><div class="l">Unserviceable</div></div>
+          <div class="mt"><div class="v">10,717</div><div class="pct">63.4%</div><div class="l">Clicked Check</div></div>
+          <div class="mt"><div class="v y">6,988</div><div class="pct">41.3%</div><div class="l">Serviceable Page</div></div>
+          <div class="mt"><div class="v r">2,085</div><div class="pct">12.3%</div><div class="l">Unserviceable</div></div>
         </div>
       </div>
     </div>
@@ -407,7 +407,7 @@ table.sum .delta-cell.bad{color:var(--r);}
   <div class="step-h">
     <div class="num">A4</div>
     <div class="txt"><div class="label">Acquisition Step 4</div><div class="ttl">"How Does It Work" Clicked</div><div class="from-to">Customer taps "इसे कैसे चलाना है?" → How-it-works page</div></div>
-    <div class="badges"><span class="bdg pre">PRE: 3,092 (3.8%)</span><span class="bdg post">POST: 1,182 (2.5%)</span><span class="delta good">▼ -1.3% better</span></div>
+    <div class="badges"><span class="bdg pre">PRE: 1,254 (2.8%)</span><span class="bdg post">POST: 178 (1.1%)</span><span class="delta good">▼ -1.7% better</span></div>
   </div>
   <div class="step-b">
     <div class="compare">
@@ -415,18 +415,18 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
         <div class="figma"><div class="fl">How it works steps · "रिचार्ज वाला नेट ऐसे चला सकते हैं"</div><div class="fs"><img src="s_acq_4_how_works.png" alt="A4 How Works"></div><div class="fh">← Scroll horizontally · 1 screen →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v y">52,563</div><div class="pct">64.9%</div><div class="l">Serviceable Page</div></div>
-          <div class="mt"><div class="v g">49,471</div><div class="pct">61.0%</div><div class="l">Clicked How</div></div>
-          <div class="mt"><div class="v">3,092</div><div class="pct">3.8%</div><div class="l">Dropped</div></div>
+          <div class="mt"><div class="v y">27,672</div><div class="pct">62.3%</div><div class="l">Serviceable Page</div></div>
+          <div class="mt"><div class="v g">26,418</div><div class="pct">59.5%</div><div class="l">Clicked How</div></div>
+          <div class="mt"><div class="v">1,254</div><div class="pct">2.8%</div><div class="l">Dropped</div></div>
         </div>
       </div>
       <div class="compare-col post">
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
         <div class="figma"><div class="fl">Same how-it-works screen · UI unchanged</div><div class="fs"><img src="s_acq_4_how_works.png" alt="A4 How Works POST"></div><div class="fh">← Scroll horizontally · 1 screen →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v y">24,652</div><div class="pct">52.8%</div><div class="l">Serviceable Page</div></div>
-          <div class="mt"><div class="v g">23,470</div><div class="pct">50.3%</div><div class="l">Clicked How</div></div>
-          <div class="mt"><div class="v">1,182</div><div class="pct">2.5%</div><div class="l">Dropped</div></div>
+          <div class="mt"><div class="v y">6,988</div><div class="pct">41.3%</div><div class="l">Serviceable Page</div></div>
+          <div class="mt"><div class="v g">6,810</div><div class="pct">40.3%</div><div class="l">Clicked How</div></div>
+          <div class="mt"><div class="v">178</div><div class="pct">1.1%</div><div class="l">Dropped</div></div>
         </div>
       </div>
     </div>
@@ -440,7 +440,7 @@ table.sum .delta-cell.bad{color:var(--r);}
   <div class="step-h">
     <div class="num">A5</div>
     <div class="txt"><div class="label">Acquisition Step 5 — BIG LEAK</div><div class="ttl">"How To Get Started" Clicked</div><div class="from-to">Customer taps "मेरे घर पर कैसे शुरू होगा?" → Setup steps page</div></div>
-    <div class="badges"><span class="bdg pre">PRE: 25,169 (31.1%)</span><span class="bdg post">POST: 10,856 (23.2%)</span><span class="delta good">▼ -7.9% better</span></div>
+    <div class="badges"><span class="bdg pre">PRE: 12,300 (27.7%)</span><span class="bdg post">POST: 2,802 (16.6%)</span><span class="delta good">▼ -11.1% better</span></div>
   </div>
   <div class="step-b">
     <div class="compare">
@@ -448,18 +448,18 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
         <div class="figma"><div class="fl">Setup steps · "घर पर नेट शुरू करने के लिए"</div><div class="fs"><img src="s_acq_5_get_started.png" alt="A5 Get Started"></div><div class="fh">← Scroll horizontally · 1 screen →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v g">49,471</div><div class="pct">61.0%</div><div class="l">Clicked How</div></div>
-          <div class="mt"><div class="v y">24,302</div><div class="pct">30.0%</div><div class="l">Get Started</div></div>
-          <div class="mt"><div class="v r">25,169</div><div class="pct">31.1%</div><div class="l">Dropped</div></div>
+          <div class="mt"><div class="v g">26,418</div><div class="pct">59.5%</div><div class="l">Clicked How</div></div>
+          <div class="mt"><div class="v y">14,118</div><div class="pct">31.8%</div><div class="l">Get Started</div></div>
+          <div class="mt"><div class="v r">12,300</div><div class="pct">27.7%</div><div class="l">Dropped</div></div>
         </div>
       </div>
       <div class="compare-col post">
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
         <div class="figma"><div class="fl">Same setup steps screen · UI unchanged</div><div class="fs"><img src="s_acq_5_get_started.png" alt="A5 Get Started POST"></div><div class="fh">← Scroll horizontally · 1 screen →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v g">23,470</div><div class="pct">50.3%</div><div class="l">Clicked How</div></div>
-          <div class="mt"><div class="v g">12,614</div><div class="pct">27.0%</div><div class="l">Get Started</div></div>
-          <div class="mt"><div class="v y">10,856</div><div class="pct">23.2%</div><div class="l">Dropped</div></div>
+          <div class="mt"><div class="v g">6,810</div><div class="pct">40.3%</div><div class="l">Clicked How</div></div>
+          <div class="mt"><div class="v g">4,008</div><div class="pct">23.7%</div><div class="l">Get Started</div></div>
+          <div class="mt"><div class="v y">2,802</div><div class="pct">16.6%</div><div class="l">Dropped</div></div>
         </div>
       </div>
     </div>
@@ -474,7 +474,7 @@ table.sum .delta-cell.bad{color:var(--r);}
   <div class="step-h">
     <div class="num">A6</div>
     <div class="txt"><div class="label">Acquisition Step 6</div><div class="ttl">"Cost Today" Clicked</div><div class="from-to">Customer taps "शुरू करने के लिए क्या देना होगा?" → Cost details</div></div>
-    <div class="badges"><span class="bdg pre">PRE: 1,245 (1.5%)</span><span class="bdg post">POST: 641 (1.4%)</span><span class="delta good">▼ -0.1% better</span></div>
+    <div class="badges"><span class="bdg pre">PRE: 648 (1.5%)</span><span class="bdg post">POST: 163 (1.0%)</span><span class="delta good">▼ -0.5% better</span></div>
   </div>
   <div class="step-b">
     <div class="compare">
@@ -482,18 +482,18 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
         <div class="figma"><div class="fl">Cost details · ₹100 visit + ₹300 security</div><div class="fs"><img src="s_acq_6_cost.png" alt="A6 Cost"></div><div class="fh">← Scroll horizontally · 1 screen →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v y">24,302</div><div class="pct">30.0%</div><div class="l">Get Started</div></div>
-          <div class="mt"><div class="v g">23,057</div><div class="pct">28.5%</div><div class="l">Cost Today</div></div>
-          <div class="mt"><div class="v">1,245</div><div class="pct">1.5%</div><div class="l">Dropped</div></div>
+          <div class="mt"><div class="v y">14,118</div><div class="pct">31.8%</div><div class="l">Get Started</div></div>
+          <div class="mt"><div class="v g">13,470</div><div class="pct">30.3%</div><div class="l">Cost Today</div></div>
+          <div class="mt"><div class="v">648</div><div class="pct">1.5%</div><div class="l">Dropped</div></div>
         </div>
       </div>
       <div class="compare-col post">
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
         <div class="figma"><div class="fl">Same cost details screen · UI unchanged</div><div class="fs"><img src="s_acq_6_cost.png" alt="A6 Cost POST"></div><div class="fh">← Scroll horizontally · 1 screen →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v g">12,614</div><div class="pct">27.0%</div><div class="l">Get Started</div></div>
-          <div class="mt"><div class="v g">11,973</div><div class="pct">25.6%</div><div class="l">Cost Today</div></div>
-          <div class="mt"><div class="v">641</div><div class="pct">1.4%</div><div class="l">Dropped</div></div>
+          <div class="mt"><div class="v g">4,008</div><div class="pct">23.7%</div><div class="l">Get Started</div></div>
+          <div class="mt"><div class="v g">3,845</div><div class="pct">22.7%</div><div class="l">Cost Today</div></div>
+          <div class="mt"><div class="v">163</div><div class="pct">1.0%</div><div class="l">Dropped</div></div>
         </div>
       </div>
     </div>
@@ -507,7 +507,7 @@ table.sum .delta-cell.bad{color:var(--r);}
   <div class="step-h">
     <div class="num">A7</div>
     <div class="txt"><div class="label">Acquisition Step 7</div><div class="ttl">"Pay ₹100 To Move Forward" Clicked</div><div class="from-to">Customer taps "₹100 देकर विज़िट कन्फर्म करें" → Mobile/Name input → Payment method</div></div>
-    <div class="badges"><span class="bdg pre">PRE: 5,875 (7.3%)</span><span class="bdg post">POST: 3,158 (6.8%)</span><span class="delta good">▼ -0.5% better</span></div>
+    <div class="badges"><span class="bdg pre">PRE: 3,375 (7.6%)</span><span class="bdg post">POST: 849 (5.0%)</span><span class="delta good">▼ -2.6% better</span></div>
   </div>
   <div class="step-b">
     <div class="compare">
@@ -515,18 +515,18 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
         <div class="figma"><div class="fl">Mobile + Name input → Payment method selection</div><div class="fs"><img src="s_acq_7_mobile_name.png" alt="A7 Mobile Name"><img src="s_acq_8_payment.png" alt="A7 Payment"></div><div class="fh">← Scroll horizontally · 2 screens →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v g">23,057</div><div class="pct">28.5%</div><div class="l">Cost Today</div></div>
-          <div class="mt"><div class="v y">17,182</div><div class="pct">21.2%</div><div class="l">Pay ₹100 Click</div></div>
-          <div class="mt"><div class="v">5,875</div><div class="pct">7.3%</div><div class="l">Dropped</div></div>
+          <div class="mt"><div class="v g">13,470</div><div class="pct">30.3%</div><div class="l">Cost Today</div></div>
+          <div class="mt"><div class="v y">10,095</div><div class="pct">22.7%</div><div class="l">Pay ₹100 Click</div></div>
+          <div class="mt"><div class="v">3,375</div><div class="pct">7.6%</div><div class="l">Dropped</div></div>
         </div>
       </div>
       <div class="compare-col post">
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
         <div class="figma"><div class="fl">Same mobile + payment screens · UI unchanged</div><div class="fs"><img src="s_acq_7_mobile_name.png" alt="A7 Mobile Name POST"><img src="s_acq_8_payment.png" alt="A7 Payment POST"></div><div class="fh">← Scroll horizontally · 2 screens →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v g">11,973</div><div class="pct">25.6%</div><div class="l">Cost Today</div></div>
-          <div class="mt"><div class="v y">8,815</div><div class="pct">18.9%</div><div class="l">Pay ₹100 Click</div></div>
-          <div class="mt"><div class="v">3,158</div><div class="pct">6.8%</div><div class="l">Dropped</div></div>
+          <div class="mt"><div class="v g">3,845</div><div class="pct">22.7%</div><div class="l">Cost Today</div></div>
+          <div class="mt"><div class="v y">2,996</div><div class="pct">17.7%</div><div class="l">Pay ₹100 Click</div></div>
+          <div class="mt"><div class="v">849</div><div class="pct">5.0%</div><div class="l">Dropped</div></div>
         </div>
       </div>
     </div>
@@ -540,7 +540,7 @@ table.sum .delta-cell.bad{color:var(--r);}
   <div class="step-h">
     <div class="num">A8</div>
     <div class="txt"><div class="label">Acquisition Step 8 — BIGGEST LEAK</div><div class="ttl">Booking Fee Captured (₹100 Paid)</div><div class="from-to">Customer completes payment · Bridge to Booking Funnel ↓</div></div>
-    <div class="badges"><span class="bdg pre">PRE: 14,090 (17.4%)</span><span class="bdg post">POST: 7,072 (15.1%)</span><span class="delta good">▼ -2.3% better</span></div>
+    <div class="badges"><span class="bdg pre">PRE: 8,239 (18.5%)</span><span class="bdg post">POST: 2,249 (13.3%)</span><span class="delta good">▼ -5.2% better</span></div>
   </div>
   <div class="step-b">
     <div class="compare">
@@ -548,29 +548,29 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
         <div class="figma"><div class="fl">Payment success · "भुगतान सफल रहा! अमाउंट: ₹100"</div><div class="fs"><img src="s1_post_1_payment.png" alt="A8 Paid"></div><div class="fh">← Scroll horizontally · 1 screen →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v y">17,182</div><div class="pct">21.2%</div><div class="l">Pay ₹100 Click</div></div>
-          <div class="mt"><div class="v g">3,092</div><div class="pct">3.8%</div><div class="l">Booking Fee Captured</div></div>
-          <div class="mt"><div class="v r">14,090</div><div class="pct">17.4%</div><div class="l">Failed Payment</div></div>
+          <div class="mt"><div class="v y">10,095</div><div class="pct">22.7%</div><div class="l">Pay ₹100 Click</div></div>
+          <div class="mt"><div class="v g">1,856</div><div class="pct">4.2%</div><div class="l">Booking Fee Captured</div></div>
+          <div class="mt"><div class="v r">8,239</div><div class="pct">18.5%</div><div class="l">Failed Payment</div></div>
         </div>
       </div>
       <div class="compare-col post">
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
         <div class="figma"><div class="fl">Same payment success screen · UI unchanged</div><div class="fs"><img src="s1_post_1_payment.png" alt="A8 Paid POST"></div><div class="fh">← Scroll horizontally · 1 screen →</div></div>
         <div class="mets">
-          <div class="mt"><div class="v y">8,815</div><div class="pct">18.9%</div><div class="l">Pay ₹100 Click</div></div>
-          <div class="mt"><div class="v g">1,743</div><div class="pct">3.7%</div><div class="l">Booking Fee Captured</div></div>
-          <div class="mt"><div class="v r">7,072</div><div class="pct">15.1%</div><div class="l">Failed Payment</div></div>
+          <div class="mt"><div class="v y">2,996</div><div class="pct">17.7%</div><div class="l">Pay ₹100 Click</div></div>
+          <div class="mt"><div class="v g">747</div><div class="pct">4.4%</div><div class="l">Booking Fee Captured</div></div>
+          <div class="mt"><div class="v r">2,249</div><div class="pct">13.3%</div><div class="l">Failed Payment</div></div>
         </div>
       </div>
     </div>
-    <div class="tags"><span class="tg ev">booking_fee_captured</span><span class="tg es">82% drop at payment in PRE</span></div>
-    <div class="ibox esc"><div class="ib-t">Critical Insight</div><p>This is the <b>biggest single leak</b> in the entire acquisition funnel. Of users who clicked "Pay ₹100", only <b>18% (PRE) / 19.8% (POST)</b> actually completed payment. Likely causes: payment gateway failures, UPI declines, or last-second hesitation at the payment screen.</p></div>
+    <div class="tags"><span class="tg ev">booking_fee_captured</span><span class="tg es">~82% drop at payment in PRE</span></div>
+    <div class="ibox esc"><div class="ib-t">Critical Insight</div><p>This is the <b>biggest single leak</b> in the entire acquisition funnel. Of first-time users who clicked "Pay ₹100", only <b>18.4% (PRE) / 24.9% (POST)</b> actually completed payment. POST shows a meaningful improvement here. Likely causes: payment gateway failures, UPI declines, or last-second hesitation.</p></div>
   </div>
 </div>
 
 <!-- BRIDGE NOTE -->
 <div style="text-align:center;padding:20px 0 14px;">
-  <div class="bridge-note">↓ Bridge: Booking Fee Captured · CleverTap (3,092 / 1,743) → booking_logs (2,984 / 1,719) — small delta due to USER_ID vs mobile counting ↓</div>
+  <div class="bridge-note">↓ Bridge: A8 (1,856 / 747 — first-time loaders only) → Booking Section starts at 2,984 / 1,719 (all booking_fee_captured customers, includes returners) ↓</div>
 </div>
 
 <div class="section-wrap">
