@@ -72,21 +72,29 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 
 /* Compare Layout */
 .compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0;}
-.compare-col{background:rgba(0,0,0,.22);border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,.06);position:relative;}
-.compare-col.pre{border-top:3px solid var(--b);}
-.compare-col.post{border-top:3px solid var(--p);}
+.compare-col{border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,.06);position:relative;}
+.compare-col.pre{background:linear-gradient(145deg,rgba(96,165,250,.10),rgba(96,165,250,.04));border-top:3px solid var(--b);border:1px solid rgba(96,165,250,.18);}
+.compare-col.post{background:linear-gradient(145deg,rgba(192,132,252,.10),rgba(192,132,252,.04));border-top:3px solid var(--p);border:1px solid rgba(192,132,252,.18);}
 .period-tag{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1.3px;padding:5px 11px;border-radius:6px;display:inline-flex;align-items:center;gap:6px;margin-bottom:12px;}
-.pre .period-tag{background:rgba(96,165,250,.15);color:var(--b);border:1px solid rgba(96,165,250,.25);}
-.post .period-tag{background:rgba(192,132,252,.15);color:var(--p);border:1px solid rgba(192,132,252,.25);}
+.pre .period-tag{background:rgba(96,165,250,.2);color:var(--b);border:1px solid rgba(96,165,250,.35);}
+.post .period-tag{background:rgba(192,132,252,.2);color:var(--p);border:1px solid rgba(192,132,252,.35);}
 .period-tag .dt{font-weight:500;opacity:.8;letter-spacing:.3px;}
-.compare-col .figma{margin:0 0 12px;}
-.compare-col .figma .fs img{max-height:400px;}
+.compare-col .figma{margin:0 0 12px;background:rgba(0,0,0,.3);}
+.compare-col.pre .figma{border-color:rgba(96,165,250,.2);}
+.compare-col.post .figma{border-color:rgba(192,132,252,.2);}
+.compare-col .figma .fs{overflow-x:scroll !important;padding:12px 12px 14px;scroll-behavior:smooth;}
+.compare-col .figma .fs::-webkit-scrollbar{height:10px;background:rgba(0,0,0,.4);}
+.compare-col .figma .fs::-webkit-scrollbar-track{background:rgba(0,0,0,.4);border-radius:5px;}
+.compare-col.pre .figma .fs::-webkit-scrollbar-thumb{background:var(--b);border-radius:5px;border:2px solid rgba(0,0,0,.4);}
+.compare-col.post .figma .fs::-webkit-scrollbar-thumb{background:var(--p);border-radius:5px;border:2px solid rgba(0,0,0,.4);}
+.compare-col .figma .fs img{max-height:380px;min-width:190px;}
 .compare-col .mets{margin:10px 0 0;}
-.compare-col .mt{padding:10px 8px;min-height:62px;}
+.compare-col .mt{padding:10px 8px;min-height:62px;background:rgba(0,0,0,.35);}
 .compare-col .mt .pct{font-size:18px;}
 .shared-label{font-size:9px;color:var(--t2);text-align:center;margin:4px 0 10px;font-style:italic;letter-spacing:.5px;text-transform:uppercase;}
 .same-flow{background:rgba(136,153,184,.06);border:1px dashed rgba(136,153,184,.2);border-radius:10px;padding:14px;margin:0 0 12px;text-align:center;font-size:11px;color:var(--t2);font-style:italic;}
 .same-flow b{color:var(--t);font-style:normal;}
+.scroll-hint{font-size:9px;color:var(--t2);text-align:center;padding:4px 10px;font-style:italic;letter-spacing:.5px;}
 @media(max-width:900px){.compare{grid-template-columns:1fr;}.period-compare{grid-template-columns:1fr;}.impact-grid{grid-template-columns:1fr 1fr;}}
 
 /* Figma Screens */
@@ -259,7 +267,7 @@ table.sum .delta-cell.bad{color:var(--r);}
       </div>
       <div class="compare-col post">
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
-        <div class="figma"><div class="fl">New flow: Payment Success → Chat → SSID Options (4 choices) → Confirmed → Address Prompt</div><div class="fs"><img src="s1_post_1_payment.png" alt="Payment Success"><img src="s1_post_2_chat_welcome.png" alt="Chat Welcome"><img src="s1_post_3_ssid_options.png" alt="SSID Options"><img src="s1_post_4_ssid_saved.png" alt="SSID Saved"><img src="s1_post_5_address_prompt.png" alt="Address Prompt"></div><div class="fh">← Scroll →</div></div>
+        <div class="figma"><div class="fl">New flow: Payment Success → Chat → SSID Options (4 choices) → Confirmed → Address Prompt</div><div class="fs"><img src="s1_post_1_payment.png" alt="Payment Success"><img src="s1_post_2_chat_welcome.png" alt="Chat Welcome"><img src="s1_post_3_ssid_options.png" alt="SSID Options"><img src="s1_post_4_ssid_saved.png" alt="SSID Saved"><img src="s1_post_5_address_prompt.png" alt="Address Prompt"></div><div class="fh">← Scroll horizontally →</div></div>
         <div class="mets">
           <div class="mt"><div class="v g">1,759</div><div class="pct">100%</div><div class="l">Booking Paid</div></div>
           <div class="mt"><div class="v y">1,691</div><div class="pct">96.1%</div><div class="l">SSID Set</div></div>
@@ -292,7 +300,7 @@ table.sum .delta-cell.bad{color:var(--r);}
     <div class="compare">
       <div class="compare-col pre">
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
-        <div class="figma"><div class="fl">Old flow: Chat Welcome → Address Form → Landmark List → Confirm → Saved</div><div class="fs"><img src="s2_all.png" alt="Step 2 PRE"></div><div class="fh">← Scroll →</div></div>
+        <div class="figma"><div class="fl">Old flow: Chat Welcome → Address Form → Landmark List → Confirm → Saved</div><div class="fs"><img src="s2_all.png" alt="Step 2 PRE"></div><div class="fh">← Scroll horizontally →</div></div>
         <div class="mets">
           <div class="mt"><div class="v g">3,025</div><div class="pct">98.8%</div><div class="l">SSID Set</div></div>
           <div class="mt"><div class="v y">2,900</div><div class="pct">94.7%</div><div class="l">Address Updated</div></div>
@@ -301,7 +309,7 @@ table.sum .delta-cell.bad{color:var(--r);}
       </div>
       <div class="compare-col post">
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
-        <div class="figma"><div class="fl">New flow: Chat Welcome → Address Form → Landmark List → Saved</div><div class="fs"><img src="s2_post_1_welcome.png" alt="Chat Welcome"><img src="s2_post_2_address_form.png" alt="Address Form"><img src="s2_post_3_landmark.png" alt="Landmark"><img src="s2_post_4_saved.png" alt="Saved"></div><div class="fh">← Scroll →</div></div>
+        <div class="figma"><div class="fl">New flow: Chat Welcome → Address Form → Landmark List → Saved</div><div class="fs"><img src="s2_post_1_welcome.png" alt="Chat Welcome"><img src="s2_post_2_address_form.png" alt="Address Form"><img src="s2_post_3_landmark.png" alt="Landmark"><img src="s2_post_4_saved.png" alt="Saved"></div><div class="fh">← Scroll horizontally →</div></div>
         <div class="mets">
           <div class="mt"><div class="v g">1,691</div><div class="pct">96.1%</div><div class="l">SSID Set</div></div>
           <div class="mt"><div class="v g">1,656</div><div class="pct">94.1%</div><div class="l">Address Updated</div></div>
@@ -335,7 +343,7 @@ table.sum .delta-cell.bad{color:var(--r);}
     <div class="compare">
       <div class="compare-col pre">
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
-        <div class="figma"><div class="fl">Screens: "हाँ / नहीं" → Location → Serviceability → Confirmed</div><div class="fs"><img src="s4a_home_question.png" alt="Home Question"><img src="s4b_serviceable.png" alt="Serviceable"><img src="s4c_confirmed.png" alt="Confirmed"></div><div class="fh">← Scroll →</div></div>
+        <div class="figma"><div class="fl">Screens: "हाँ / नहीं" → Location → Serviceability → Confirmed</div><div class="fs"><img src="s4a_home_question.png" alt="Home Question"><img src="s4b_serviceable.png" alt="Serviceable"><img src="s4c_confirmed.png" alt="Confirmed"></div><div class="fh">← Scroll horizontally →</div></div>
         <div class="mets">
           <div class="mt"><div class="v y">2,900</div><div class="pct">94.7%</div><div class="l">Address Updated</div></div>
           <div class="mt"><div class="v r">2,677</div><div class="pct">87.4%</div><div class="l">Booking Verified</div></div>
@@ -343,7 +351,7 @@ table.sum .delta-cell.bad{color:var(--r);}
       </div>
       <div class="compare-col post">
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
-        <div class="same-flow">Same screens as PRE — <b>UI unchanged at this step</b></div>
+        <div class="figma"><div class="fl">Same screens · UI unchanged at this step</div><div class="fs"><img src="s4a_home_question.png" alt="Home Question"><img src="s4b_serviceable.png" alt="Serviceable"><img src="s4c_confirmed.png" alt="Confirmed"></div><div class="fh">← Scroll horizontally →</div></div>
         <div class="mets">
           <div class="mt"><div class="v g">1,656</div><div class="pct">94.1%</div><div class="l">Address Updated</div></div>
           <div class="mt"><div class="v y">1,542</div><div class="pct">87.7%</div><div class="l">Booking Verified</div></div>
@@ -499,7 +507,7 @@ table.sum .delta-cell.bad{color:var(--r);}
     <div class="compare">
       <div class="compare-col pre">
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
-        <div class="figma"><div class="fl">Screens: Date Proposal → Confirmation → Engineer Search</div><div class="fs"><img src="s6_slot_confirm.png" alt="Step 7"></div><div class="fh">← Scroll →</div></div>
+        <div class="figma"><div class="fl">Screens: Date Proposal → Confirmation → Engineer Search</div><div class="fs"><img src="s6_slot_confirm.png" alt="Step 7"></div><div class="fh">← Scroll horizontally →</div></div>
         <div class="mets">
           <div class="mt"><div class="v g">2,216</div><div class="pct">72.4%</div><div class="l">Slot Selected</div></div>
           <div class="mt"><div class="v g">2,195</div><div class="pct">71.7%</div><div class="l">Confirmed</div></div>
@@ -508,7 +516,7 @@ table.sum .delta-cell.bad{color:var(--r);}
       </div>
       <div class="compare-col post">
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
-        <div class="same-flow">Same screens as PRE — <b>UI unchanged at this step</b></div>
+        <div class="figma"><div class="fl">Same screens · UI unchanged at this step</div><div class="fs"><img src="s6_slot_confirm.png" alt="Step 7 POST"></div><div class="fh">← Scroll horizontally →</div></div>
         <div class="mets">
           <div class="mt"><div class="v g">1,257</div><div class="pct">71.5%</div><div class="l">Slot Selected</div></div>
           <div class="mt"><div class="v g">1,231</div><div class="pct">70.0%</div><div class="l">Confirmed</div></div>
@@ -540,7 +548,7 @@ table.sum .delta-cell.bad{color:var(--r);}
     <div class="compare">
       <div class="compare-col pre">
         <div class="period-tag">🔵 PRE <span class="dt">Feb 20 – Mar 25</span></div>
-        <div class="figma"><div class="fl">Screens: Engineer Found → Engineer Assigned</div><div class="fs"><img src="s8_engineer_found.png" alt="Found"><img src="s8_engineer_assigned.png" alt="Assigned"></div><div class="fh">← Scroll →</div></div>
+        <div class="figma"><div class="fl">Screens: Engineer Found → Engineer Assigned</div><div class="fs"><img src="s8_engineer_found.png" alt="Found"><img src="s8_engineer_assigned.png" alt="Assigned"></div><div class="fh">← Scroll horizontally →</div></div>
         <div class="mets">
           <div class="mt"><div class="v">2,195</div><div class="pct">71.7%</div><div class="l">Slot Confirmed</div></div>
           <div class="mt"><div class="v y">2,055</div><div class="pct">67.1%</div><div class="l">Rohit Assigned</div></div>
@@ -549,7 +557,7 @@ table.sum .delta-cell.bad{color:var(--r);}
       </div>
       <div class="compare-col post">
         <div class="period-tag">🟣 POST <span class="dt">Mar 28 – Apr 12</span></div>
-        <div class="same-flow">Same screens as PRE — <b>UI unchanged at this step</b></div>
+        <div class="figma"><div class="fl">Same screens · UI unchanged at this step</div><div class="fs"><img src="s8_engineer_found.png" alt="Found POST"><img src="s8_engineer_assigned.png" alt="Assigned POST"></div><div class="fh">← Scroll horizontally →</div></div>
         <div class="mets">
           <div class="mt"><div class="v">1,231</div><div class="pct">70.0%</div><div class="l">Slot Confirmed</div></div>
           <div class="mt"><div class="v y">1,103</div><div class="pct">62.7%</div><div class="l">Rohit Assigned</div></div>
