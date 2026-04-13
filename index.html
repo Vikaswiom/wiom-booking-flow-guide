@@ -49,9 +49,13 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 
 /* Metrics */
 .mets{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;margin:12px 0;}
-.mt{background:rgba(0,0,0,.3);border-radius:10px;padding:10px 12px;text-align:center;border:1px solid rgba(255,255,255,.04);}
-.mt .v{font-size:18px;font-weight:800;letter-spacing:-.3px;}.mt .pct{font-size:11px;font-weight:700;color:var(--c);margin-top:2px;letter-spacing:.3px;}.mt .l{font-size:10px;color:var(--t2);margin-top:3px;font-weight:500;}
+.mt{background:rgba(0,0,0,.3);border-radius:10px;padding:12px;text-align:center;border:1px solid rgba(255,255,255,.04);display:flex;flex-direction:column;justify-content:center;}
+.mt .pct{order:1;font-size:22px;font-weight:900;color:var(--t);letter-spacing:-.5px;line-height:1.1;}
+.mt .v{order:2;font-size:11px;font-weight:600;margin-top:4px;opacity:.7;letter-spacing:0;}
+.mt:not(:has(.pct)) .v{font-size:22px;font-weight:900;opacity:1;margin-top:0;letter-spacing:-.5px;}
+.mt .l{order:3;font-size:10px;color:var(--t2);margin-top:4px;font-weight:500;}
 .mt .v.g{color:var(--g);}.mt .v.r{color:var(--r);}.mt .v.y{color:var(--y);}
+.mt .v.g+.pct{color:var(--g);}.mt .v.r+.pct{color:var(--r);}.mt .v.y+.pct{color:var(--y);}
 
 /* Progress Bar */
 .db{margin:8px 0;}.db-bg{background:rgba(0,0,0,.4);border-radius:6px;height:8px;overflow:hidden;}
