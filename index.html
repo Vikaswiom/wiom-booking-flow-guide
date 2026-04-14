@@ -1078,14 +1078,22 @@ table.sum .delta-cell.bad{color:var(--r);}
       <div class="cc-predict">
         <div class="cc-label">🔮 Delay / Churn Criteria</div>
         <ul>
-          <li>No delay message defined for this stage</li>
-          <li>Drops here are typically immediate (app crash / exit)</li>
-          <li>Cannot predict with time-based criteria</li>
+          <li>No delay message at this stage</li>
+          <li>Customer cannot self-cancel yet (just paid)</li>
+          <li>System auto-cancels abandoned bookings later</li>
         </ul>
       </div>
       <div class="cc-actual">
-        <div class="cc-label">📊 Customer-Cancelled (Actual)</div>
-        <div class="pred-na">No delay threshold · Immediate drops only · PRE: <b>0</b> · POST: <b>3</b></div>
+        <div class="cc-label">📊 Cancellation Rate (of stage entries)</div>
+        <table class="pred-table">
+          <thead><tr><th></th><th class="period-pre">🔵 PRE</th><th class="period-post">🟣 POST</th></tr></thead>
+          <tbody>
+            <tr><td>By Customer</td><td class="v pre">0.0%</td><td class="v post">0.2%</td></tr>
+            <tr><td>By System</td><td class="v pre">0.7%</td><td class="v post">2.6%</td></tr>
+            <tr class="acc"><td>Total Cancel</td><td class="v">0.7%</td><td class="v">2.7%</td></tr>
+          </tbody>
+        </table>
+        <div style="font-size:10px;color:var(--t2);margin-top:6px;font-style:italic;">Customers don't cancel themselves at this stage — almost all are system-cancelled (app abandoned after payment)</div>
       </div>
     </div>
   </div>
@@ -1101,14 +1109,22 @@ table.sum .delta-cell.bad{color:var(--r);}
       <div class="cc-predict">
         <div class="cc-label">🔮 Delay / Churn Criteria</div>
         <ul>
-          <li>No delay message defined for this stage</li>
-          <li>Cancellation is usually intent-based (changed mind)</li>
-          <li>Cannot predict with time-based criteria</li>
+          <li>No delay message at this stage</li>
+          <li>Customer can cancel (rare at this early stage)</li>
+          <li>System cancels most abandoned bookings</li>
         </ul>
       </div>
       <div class="cc-actual">
-        <div class="cc-label">📊 Customer-Cancelled (Actual)</div>
-        <div class="pred-na">No delay threshold · PRE: <b>11</b> · POST: <b>4</b></div>
+        <div class="cc-label">📊 Cancellation Rate (of stage entries)</div>
+        <table class="pred-table">
+          <thead><tr><th></th><th class="period-pre">🔵 PRE</th><th class="period-post">🟣 POST</th></tr></thead>
+          <tbody>
+            <tr><td>By Customer</td><td class="v pre">0.4%</td><td class="v post">0.2%</td></tr>
+            <tr><td>By System</td><td class="v pre">4.1%</td><td class="v post">1.9%</td></tr>
+            <tr class="acc"><td>Total Cancel</td><td class="v">4.5%</td><td class="v">2.1%</td></tr>
+          </tbody>
+        </table>
+        <div style="font-size:10px;color:var(--g);margin-top:6px;font-style:italic;">POST cuts total cancellation by more than half (4.5% → 2.1%) — new UI retains customers better</div>
       </div>
     </div>
   </div>
@@ -1124,14 +1140,22 @@ table.sum .delta-cell.bad{color:var(--r);}
       <div class="cc-predict">
         <div class="cc-label">🔮 Delay / Churn Criteria</div>
         <ul>
-          <li><b>Unserviceable area</b> — customers told "not available" after paying</li>
+          <li><b>Unserviceable area</b> — customer told "not available" after paying</li>
           <li>"नहीं" → "Come home and tap" → never returns</li>
-          <li>No time-based delay msg (driven by serviceability check)</li>
+          <li>Driven by serviceability check (not time-based)</li>
         </ul>
       </div>
       <div class="cc-actual">
-        <div class="cc-label">📊 Customer-Cancelled (Actual)</div>
-        <div class="pred-na">Unserviceable-driven · PRE: <b>30</b> · POST: <b>3</b></div>
+        <div class="cc-label">📊 Cancellation Rate (of stage entries)</div>
+        <table class="pred-table">
+          <thead><tr><th></th><th class="period-pre">🔵 PRE</th><th class="period-post">🟣 POST</th></tr></thead>
+          <tbody>
+            <tr><td>By Customer</td><td class="v pre">1.1%</td><td class="v post">0.2%</td></tr>
+            <tr><td>By System</td><td class="v pre">7.9%</td><td class="v post">4.2%</td></tr>
+            <tr class="acc"><td>Total Cancel</td><td class="v">8.9%</td><td class="v">4.4%</td></tr>
+          </tbody>
+        </table>
+        <div style="font-size:10px;color:var(--r);margin-top:6px;font-style:italic;">System cancels dominate (unserviceable area). POST halved cancellation — new UI + better serviceability checking.</div>
       </div>
     </div>
   </div>
@@ -1145,23 +1169,24 @@ table.sum .delta-cell.bad{color:var(--r);}
     </div>
     <div class="cc-body">
       <div class="cc-predict">
-        <div class="cc-label">🔮 Delay Criteria (48h wait)</div>
+        <div class="cc-label">🔮 Delay Criteria: 48h after verified without NOTIF_SENT</div>
         <ul>
-          <li>Delay msg triggers <b>2 days after booking_verified</b> if no partner notification sent</li>
-          <li>Prediction: customers verified but no NOTIF_SENT in 48h</li>
+          <li>Delay msg: <b>"हमें खेद है कि इसमें उम्मीद से अधिक समय लग रहा है"</b></li>
+          <li>Predicts customers who will likely churn due to GINIE / system delay</li>
         </ul>
       </div>
       <div class="cc-actual">
-        <div class="cc-label">📊 Prediction vs Actual Customer Cancellation</div>
+        <div class="cc-label">📊 Stage Rates (of stage entries)</div>
         <table class="pred-table">
           <thead><tr><th></th><th class="period-pre">🔵 PRE</th><th class="period-post">🟣 POST</th></tr></thead>
           <tbody>
-            <tr><td>Predicted</td><td class="v pre">14</td><td class="v post">1</td></tr>
-            <tr><td>Actual</td><td class="v pre">9</td><td class="v post">6</td></tr>
-            <tr class="acc"><td>Accuracy</td><td class="v">64%</td><td class="v">600%*</td></tr>
+            <tr><td>🔮 Predicted</td><td class="v pre">0.5%</td><td class="v post">0.1%</td></tr>
+            <tr><td>By Customer</td><td class="v pre">0.3%</td><td class="v post">0.4%</td></tr>
+            <tr><td>By System</td><td class="v pre">0.8%</td><td class="v post">0.3%</td></tr>
+            <tr class="acc"><td>Actual Total</td><td class="v">1.1%</td><td class="v">0.7%</td></tr>
           </tbody>
         </table>
-        <div style="font-size:10px;color:var(--y);margin-top:6px;font-style:italic;">*POST over-cancels vs prediction — 48h threshold too loose at this stage</div>
+        <div style="font-size:10px;color:var(--t2);margin-top:6px;font-style:italic;">Low volume stage — actual cancellation slightly exceeds prediction, threshold catches most but not all.</div>
       </div>
     </div>
   </div>
@@ -1175,23 +1200,24 @@ table.sum .delta-cell.bad{color:var(--r);}
     </div>
     <div class="cc-body">
       <div class="cc-predict">
-        <div class="cc-label">🔮 Delay Criteria (48h wait)</div>
+        <div class="cc-label">🔮 Delay Criteria: 48h after notif without partner interest</div>
         <ul>
-          <li>Delay msg triggers <b>48h after NOTIF_SENT</b> if no partner marked interest</li>
-          <li>Prediction: customers notified but no INTERESTED in 48h</li>
+          <li>Delay msg: <b>"कुछ तकनीकी कारणों से हमें आपका नेट लगाने में थोड़ा अधिक समय लग रहा है"</b></li>
+          <li>Predicts churn when no partner picks up within 48h</li>
         </ul>
       </div>
       <div class="cc-actual">
-        <div class="cc-label">📊 Prediction vs Actual Customer Cancellation</div>
+        <div class="cc-label">📊 Stage Rates (of stage entries)</div>
         <table class="pred-table">
           <thead><tr><th></th><th class="period-pre">🔵 PRE</th><th class="period-post">🟣 POST</th></tr></thead>
           <tbody>
-            <tr><td>Predicted</td><td class="v pre">321</td><td class="v post">181</td></tr>
-            <tr><td>Actual</td><td class="v pre">132</td><td class="v post">107</td></tr>
-            <tr class="acc"><td>Accuracy</td><td class="v">41%</td><td class="v">59%</td></tr>
+            <tr><td>🔮 Predicted</td><td class="v pre">12.3%</td><td class="v post">12.0%</td></tr>
+            <tr><td>By Customer</td><td class="v pre">5.1%</td><td class="v post">7.1%</td></tr>
+            <tr><td>By System</td><td class="v pre">12.9%</td><td class="v post">8.1%</td></tr>
+            <tr class="acc"><td>Actual Total</td><td class="v">18.0%</td><td class="v">15.2%</td></tr>
           </tbody>
         </table>
-        <div style="font-size:10px;color:var(--t2);margin-top:6px;font-style:italic;">Only 41% (PRE) / 59% (POST) of stuck customers cancel — rest wait patiently or system-cancels them</div>
+        <div style="font-size:10px;color:var(--r);margin-top:6px;font-style:italic;">Actual (18%) exceeds predicted (12%) — some customers cancel before 48h threshold. POST lowered total by ~3 points.</div>
       </div>
     </div>
   </div>
@@ -1205,23 +1231,24 @@ table.sum .delta-cell.bad{color:var(--r);}
     </div>
     <div class="cc-body">
       <div class="cc-predict">
-        <div class="cc-label">🔮 Delay Criteria (48h wait)</div>
+        <div class="cc-label">🔮 Delay Criteria: 48h after interest without slot selected</div>
         <ul>
-          <li>Delay msg triggers <b>48h after INTERESTED</b> if partner hasn't selected a slot</li>
-          <li>Prediction: interest marked but no SLOT_SELECTED in 48h</li>
+          <li>Delay msg: <b>"कुछ तकनीकी कारणों से... कृपया इंतज़ार करें"</b></li>
+          <li>Predicts churn when partner marks interest but doesn't select date</li>
         </ul>
       </div>
       <div class="cc-actual">
-        <div class="cc-label">📊 Prediction vs Actual Customer Cancellation</div>
+        <div class="cc-label">📊 Stage Rates (of stage entries)</div>
         <table class="pred-table">
           <thead><tr><th></th><th class="period-pre">🔵 PRE</th><th class="period-post">🟣 POST</th></tr></thead>
           <tbody>
-            <tr><td>Predicted</td><td class="v pre">40</td><td class="v post">23</td></tr>
-            <tr><td>Actual</td><td class="v pre">20</td><td class="v post">13</td></tr>
-            <tr class="acc"><td>Accuracy</td><td class="v">50%</td><td class="v">57%</td></tr>
+            <tr><td>🔮 Predicted</td><td class="v pre">1.7%</td><td class="v post">1.8%</td></tr>
+            <tr><td>By Customer</td><td class="v pre">0.9%</td><td class="v post">1.0%</td></tr>
+            <tr><td>By System</td><td class="v pre">1.2%</td><td class="v post">0.2%</td></tr>
+            <tr class="acc"><td>Actual Total</td><td class="v">2.1%</td><td class="v">1.2%</td></tr>
           </tbody>
         </table>
-        <div style="font-size:10px;color:var(--t2);margin-top:6px;font-style:italic;">Half of stuck customers cancel; the other half wait or get system-cancelled</div>
+        <div style="font-size:10px;color:var(--t2);margin-top:6px;font-style:italic;">Prediction aligns closely with actual. POST reduced total cancellation by 0.9%.</div>
       </div>
     </div>
   </div>
@@ -1235,23 +1262,24 @@ table.sum .delta-cell.bad{color:var(--r);}
     </div>
     <div class="cc-body">
       <div class="cc-predict">
-        <div class="cc-label">🔮 Delay Criteria (6h escalation)</div>
+        <div class="cc-label">🔮 Delay Criteria: 6h escalation ladder (PN + WA + 5x IVR)</div>
         <ul>
-          <li>Escalation ladder peaks at <b>+6h</b> with final IVR attempt</li>
-          <li>Prediction: slot proposed but no confirm in 6h</li>
+          <li>Escalation peaks at <b>+6h</b> with final IVR attempt</li>
+          <li>Predicts churn if customer doesn't respond to any channel</li>
         </ul>
       </div>
       <div class="cc-actual">
-        <div class="cc-label">📊 Prediction vs Actual Customer Cancellation</div>
+        <div class="cc-label">📊 Stage Rates (of stage entries)</div>
         <table class="pred-table">
           <thead><tr><th></th><th class="period-pre">🔵 PRE</th><th class="period-post">🟣 POST</th></tr></thead>
           <tbody>
-            <tr><td>Predicted</td><td class="v pre">8</td><td class="v post">5</td></tr>
-            <tr><td>Actual</td><td class="v pre">16</td><td class="v post">9</td></tr>
-            <tr class="acc"><td>Accuracy</td><td class="v">200%</td><td class="v">180%</td></tr>
+            <tr><td>🔮 Predicted</td><td class="v pre">0.4%</td><td class="v post">0.3%</td></tr>
+            <tr><td>By Customer</td><td class="v pre">0.7%</td><td class="v post">0.7%</td></tr>
+            <tr><td>By System</td><td class="v pre">0.2%</td><td class="v post">0.1%</td></tr>
+            <tr class="acc"><td>Actual Total</td><td class="v">0.9%</td><td class="v">0.8%</td></tr>
           </tbody>
         </table>
-        <div style="font-size:10px;color:var(--y);margin-top:6px;font-style:italic;">⚠ Over 100%: customers cancel BEFORE 6h threshold. Suggest tighter criteria (e.g. 2h).</div>
+        <div style="font-size:10px;color:var(--y);margin-top:6px;font-style:italic;">⚠ Actual exceeds predicted — customers cancel before 6h threshold. Suggest tighter escalation (2h).</div>
       </div>
     </div>
   </div>
@@ -1265,23 +1293,24 @@ table.sum .delta-cell.bad{color:var(--r);}
     </div>
     <div class="cc-body">
       <div class="cc-predict">
-        <div class="cc-label">🔮 Delay Criteria (confirmed date breached)</div>
+        <div class="cc-label">🔮 Delay Criteria: confirmed date breached without tech assigned</div>
         <ul>
-          <li>Delay msg: <b>"कुछ तकनीकी कारणों से हम {{confirmedInstallationDate}} को आपके घर पर नेट नहीं लगा पाए"</b></li>
-          <li>Prediction: slot confirmed but no ASSIGNED within 24h</li>
+          <li>Delay msg: <b>"हम {{confirmedInstallationDate}} को नेट नहीं लगा पाए"</b></li>
+          <li>Predicts churn when partner fails to assign tech on confirmed date</li>
         </ul>
       </div>
       <div class="cc-actual">
-        <div class="cc-label">📊 Prediction vs Actual Customer Cancellation</div>
+        <div class="cc-label">📊 Stage Rates (of stage entries)</div>
         <table class="pred-table">
           <thead><tr><th></th><th class="period-pre">🔵 PRE</th><th class="period-post">🟣 POST</th></tr></thead>
           <tbody>
-            <tr><td>Predicted</td><td class="v pre">114</td><td class="v post">98</td></tr>
-            <tr><td>Actual</td><td class="v pre">83</td><td class="v post">66</td></tr>
-            <tr class="acc"><td>Accuracy</td><td class="v">73%</td><td class="v">67%</td></tr>
+            <tr><td>🔮 Predicted</td><td class="v pre">5.2%</td><td class="v post">7.8%</td></tr>
+            <tr><td>By Customer</td><td class="v pre">3.8%</td><td class="v post">5.3%</td></tr>
+            <tr><td>By System</td><td class="v pre">3.0%</td><td class="v post">0.6%</td></tr>
+            <tr class="acc"><td>Actual Total</td><td class="v">6.9%</td><td class="v">6.0%</td></tr>
           </tbody>
         </table>
-        <div style="font-size:10px;color:var(--t2);margin-top:6px;font-style:italic;">Strong signal: ~70% of customers whose date is breached do cancel. High-confidence trigger.</div>
+        <div style="font-size:10px;color:var(--g);margin-top:6px;font-style:italic;">✓ Good predictor: PRE prediction (5.2%) aligns well with actual (6.9%). Strong signal for intervention.</div>
       </div>
     </div>
   </div>
@@ -1295,23 +1324,24 @@ table.sum .delta-cell.bad{color:var(--r);}
     </div>
     <div class="cc-body">
       <div class="cc-predict">
-        <div class="cc-label">🔮 Delay Criteria (install date breached)</div>
+        <div class="cc-label">🔮 Delay Criteria: install date breached (tech no-show)</div>
         <ul>
-          <li>Delay msg: <b>"किसी कारण से आज {{technicianName}} आपके घर पर नेट लगाने नहीं आ पाए"</b></li>
-          <li>Prediction: ASSIGNED but no OTP_VERIFIED within 24h</li>
+          <li>Delay msg: <b>"{{technicianName}} आपके घर पर नेट लगाने नहीं आ पाए"</b></li>
+          <li>Predicts churn when technician no-shows on scheduled date</li>
         </ul>
       </div>
       <div class="cc-actual">
-        <div class="cc-label">📊 Prediction vs Actual Customer Cancellation</div>
+        <div class="cc-label">📊 Stage Rates (of stage entries)</div>
         <table class="pred-table">
           <thead><tr><th></th><th class="period-pre">🔵 PRE</th><th class="period-post">🟣 POST</th></tr></thead>
           <tbody>
-            <tr><td>Predicted</td><td class="v pre">744</td><td class="v post">414</td></tr>
-            <tr><td>Actual</td><td class="v pre">425</td><td class="v post">226</td></tr>
-            <tr class="acc"><td>Accuracy</td><td class="v">57%</td><td class="v">55%</td></tr>
+            <tr><td>🔮 Predicted</td><td class="v pre">36.4%</td><td class="v post">37.0%</td></tr>
+            <tr><td>By Customer</td><td class="v pre">21.0%</td><td class="v post">20.3%</td></tr>
+            <tr><td>By System</td><td class="v pre">23.3%</td><td class="v post">4.7%*</td></tr>
+            <tr class="acc"><td>Actual Total</td><td class="v">44.3%</td><td class="v">25.0%*</td></tr>
           </tbody>
         </table>
-        <div style="font-size:10px;color:var(--r);margin-top:6px;font-style:italic;">🔴 55-57% of tech-no-show customers cancel. Remaining ~45% still waiting or reassigned.</div>
+        <div style="font-size:10px;color:var(--r);margin-top:6px;font-style:italic;">🔴 Biggest leak: ~36% predicted by delay criteria, 44% actually cancel. POST system cancel (4.7%*) is still maturing.</div>
       </div>
     </div>
   </div>
@@ -1321,10 +1351,10 @@ table.sum .delta-cell.bad{color:var(--r);}
 <div style="background:rgba(34,211,238,.05);border:1px solid rgba(34,211,238,.2);border-radius:14px;padding:18px 22px;margin:24px 0;font-size:12px;line-height:1.7;color:var(--t2);">
   <div style="font-size:11px;font-weight:800;color:var(--c);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">📘 How To Read The Matrix</div>
   <ul style="padding-left:18px;margin:0;">
-    <li><b style="color:var(--p);">🔮 Delay / Churn Criteria</b> — the delay message threshold from the booking flow (e.g., "48h without partner interest"). Customers meeting this criteria are <b>predicted</b> to churn.</li>
-    <li><b style="color:var(--c);">📊 Prediction vs Actual</b> — <b>Predicted</b> = customers who hit the delay threshold (could have cancelled). <b>Actual</b> = customers who actually cancelled themselves (customer-initiated, not system). <b>Accuracy</b> = Actual / Predicted.</li>
-    <li><b>Accuracy &lt; 100%</b> = threshold is loose (most stuck customers wait); <b>&gt; 100%</b> = threshold is too tight (customers cancel before threshold).</li>
-    <li><b>Steps 1-3</b> have no delay message criteria — cancellations there are intent-based / serviceability-driven.</li>
+    <li><b style="color:var(--p);">🔮 Delay / Churn Criteria</b> — the delay message threshold from the booking flow (e.g., "48h without partner interest"). Customers hitting this threshold are <b>predicted</b> likely to churn.</li>
+    <li><b style="color:var(--c);">📊 Stage Rates (% of stage entries)</b> — shows what fraction of customers who reached each stage ultimately got cancelled. All numbers are percentages of stage entries, so you can directly compare stages.</li>
+    <li><b>By Customer</b> = self-cancelled by the user. <b>By System</b> = `cops_unserviceable` / cops-initiated auto-cancellation. <b>Actual Total</b> = sum of both.</li>
+    <li><b>Predicted vs Actual:</b> if Predicted ≈ Actual → the delay criteria is a reliable churn signal. If Actual &gt; Predicted → customers cancel BEFORE the threshold (suggest tighter criteria). If Predicted &gt; Actual → many stuck customers don't cancel (threshold is loose or they're waiting).</li>
   </ul>
 </div>
 

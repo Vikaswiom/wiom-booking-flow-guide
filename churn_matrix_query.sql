@@ -31,10 +31,11 @@ task_times AS (
   LEFT JOIN prod_db.public.task_logs tl ON tl.mobile = b.mobile
   GROUP BY 1
 ),
-cancel_times AS (
+cancel_info AS (
   SELECT
     b.mobile,
-    MIN(CASE WHEN c.event_name = 'cancelled' AND TRY_PARSE_JSON(c.data):initiated_by::STRING = 'customer' AND c.added_time >= b.booking_time THEN c.added_time END) AS t_cust_cancel
+    MIN(CASE WHEN c.event_name = 'cancelled' AND TRY_PARSE_JSON(c.data):initiated_by::STRING = 'customer' AND c.added_time >= b.booking_time THEN c.added_time END) AS t_cust_cancel,
+    MIN(CASE WHEN c.event_name = 'cancelled' AND TRY_PARSE_JSON(c.data):initiated_by::STRING LIKE 'cops%' AND c.added_time >= b.booking_time THEN c.added_time END) AS t_sys_cancel
   FROM bookings b
   LEFT JOIN prod_db.public.booking_logs c ON c.mobile = b.mobile
   GROUP BY 1
@@ -44,11 +45,11 @@ joined AS (
     b.mobile, b.booking_time,
     s.t_ssid, s.t_address, s.t_verified,
     t.t_notif, t.t_interested, t.t_slot, t.t_confirmed, t.t_assigned, t.t_otp,
-    c.t_cust_cancel
+    c.t_cust_cancel, c.t_sys_cancel
   FROM bookings b
   LEFT JOIN stage_times s ON s.mobile = b.mobile
   LEFT JOIN task_times t ON t.mobile = b.mobile
-  LEFT JOIN cancel_times c ON c.mobile = b.mobile
+  LEFT JOIN cancel_info c ON c.mobile = b.mobile
 ),
 analysis AS (
   SELECT
@@ -65,30 +66,51 @@ analysis AS (
       WHEN t_otp IS NULL THEN 9
       ELSE 99
     END AS stuck_stage,
-    DATEDIFF('hour', booking_time, COALESCE(t_cust_cancel, CURRENT_TIMESTAMP())) AS hours_to_cancel_or_now,
-    CASE WHEN t_cust_cancel IS NOT NULL THEN 1 ELSE 0 END AS did_cancel,
-    CASE WHEN t_verified IS NOT NULL AND t_notif IS NULL AND DATEDIFF('hour', t_verified, COALESCE(t_cust_cancel, CURRENT_TIMESTAMP())) >= 48 THEN 1 ELSE 0 END AS s4_pred,
-    CASE WHEN t_notif IS NOT NULL AND t_interested IS NULL AND DATEDIFF('hour', t_notif, COALESCE(t_cust_cancel, CURRENT_TIMESTAMP())) >= 48 THEN 1 ELSE 0 END AS s5_pred,
-    CASE WHEN t_interested IS NOT NULL AND t_slot IS NULL AND DATEDIFF('hour', t_interested, COALESCE(t_cust_cancel, CURRENT_TIMESTAMP())) >= 48 THEN 1 ELSE 0 END AS s6_pred,
-    CASE WHEN t_slot IS NOT NULL AND t_confirmed IS NULL AND DATEDIFF('hour', t_slot, COALESCE(t_cust_cancel, CURRENT_TIMESTAMP())) >= 6 THEN 1 ELSE 0 END AS s7_pred,
-    CASE WHEN t_confirmed IS NOT NULL AND t_assigned IS NULL AND DATEDIFF('hour', t_confirmed, COALESCE(t_cust_cancel, CURRENT_TIMESTAMP())) >= 24 THEN 1 ELSE 0 END AS s8_pred,
-    CASE WHEN t_assigned IS NOT NULL AND t_otp IS NULL AND DATEDIFF('hour', t_assigned, COALESCE(t_cust_cancel, CURRENT_TIMESTAMP())) >= 24 THEN 1 ELSE 0 END AS s9_pred
+    CASE WHEN t_cust_cancel IS NOT NULL THEN 1 ELSE 0 END AS did_cust_cancel,
+    CASE WHEN t_sys_cancel IS NOT NULL THEN 1 ELSE 0 END AS did_sys_cancel,
+    CASE WHEN t_verified IS NOT NULL AND t_notif IS NULL AND DATEDIFF('hour', t_verified, COALESCE(t_cust_cancel, t_sys_cancel, CURRENT_TIMESTAMP())) >= 48 THEN 1 ELSE 0 END AS s4_pred,
+    CASE WHEN t_notif IS NOT NULL AND t_interested IS NULL AND DATEDIFF('hour', t_notif, COALESCE(t_cust_cancel, t_sys_cancel, CURRENT_TIMESTAMP())) >= 48 THEN 1 ELSE 0 END AS s5_pred,
+    CASE WHEN t_interested IS NOT NULL AND t_slot IS NULL AND DATEDIFF('hour', t_interested, COALESCE(t_cust_cancel, t_sys_cancel, CURRENT_TIMESTAMP())) >= 48 THEN 1 ELSE 0 END AS s6_pred,
+    CASE WHEN t_slot IS NOT NULL AND t_confirmed IS NULL AND DATEDIFF('hour', t_slot, COALESCE(t_cust_cancel, t_sys_cancel, CURRENT_TIMESTAMP())) >= 6 THEN 1 ELSE 0 END AS s7_pred,
+    CASE WHEN t_confirmed IS NOT NULL AND t_assigned IS NULL AND DATEDIFF('hour', t_confirmed, COALESCE(t_cust_cancel, t_sys_cancel, CURRENT_TIMESTAMP())) >= 24 THEN 1 ELSE 0 END AS s8_pred,
+    CASE WHEN t_assigned IS NOT NULL AND t_otp IS NULL AND DATEDIFF('hour', t_assigned, COALESCE(t_cust_cancel, t_sys_cancel, CURRENT_TIMESTAMP())) >= 24 THEN 1 ELSE 0 END AS s9_pred
   FROM joined
+),
+stage_counts AS (
+  SELECT
+    SUM(CASE WHEN stuck_stage >= 1 THEN 1 ELSE 0 END) AS s1_entry,
+    SUM(CASE WHEN stuck_stage >= 2 THEN 1 ELSE 0 END) AS s2_entry,
+    SUM(CASE WHEN stuck_stage >= 3 THEN 1 ELSE 0 END) AS s3_entry,
+    SUM(CASE WHEN stuck_stage >= 4 THEN 1 ELSE 0 END) AS s4_entry,
+    SUM(CASE WHEN stuck_stage >= 5 THEN 1 ELSE 0 END) AS s5_entry,
+    SUM(CASE WHEN stuck_stage >= 6 THEN 1 ELSE 0 END) AS s6_entry,
+    SUM(CASE WHEN stuck_stage >= 7 THEN 1 ELSE 0 END) AS s7_entry,
+    SUM(CASE WHEN stuck_stage >= 8 THEN 1 ELSE 0 END) AS s8_entry,
+    SUM(CASE WHEN stuck_stage >= 9 THEN 1 ELSE 0 END) AS s9_entry,
+    SUM(CASE WHEN stuck_stage = 1 AND did_cust_cancel = 1 THEN 1 ELSE 0 END) AS s1_cust,
+    SUM(CASE WHEN stuck_stage = 2 AND did_cust_cancel = 1 THEN 1 ELSE 0 END) AS s2_cust,
+    SUM(CASE WHEN stuck_stage = 3 AND did_cust_cancel = 1 THEN 1 ELSE 0 END) AS s3_cust,
+    SUM(CASE WHEN stuck_stage = 4 AND did_cust_cancel = 1 THEN 1 ELSE 0 END) AS s4_cust,
+    SUM(CASE WHEN stuck_stage = 5 AND did_cust_cancel = 1 THEN 1 ELSE 0 END) AS s5_cust,
+    SUM(CASE WHEN stuck_stage = 6 AND did_cust_cancel = 1 THEN 1 ELSE 0 END) AS s6_cust,
+    SUM(CASE WHEN stuck_stage = 7 AND did_cust_cancel = 1 THEN 1 ELSE 0 END) AS s7_cust,
+    SUM(CASE WHEN stuck_stage = 8 AND did_cust_cancel = 1 THEN 1 ELSE 0 END) AS s8_cust,
+    SUM(CASE WHEN stuck_stage = 9 AND did_cust_cancel = 1 THEN 1 ELSE 0 END) AS s9_cust,
+    SUM(CASE WHEN stuck_stage = 1 AND did_sys_cancel = 1 THEN 1 ELSE 0 END) AS s1_sys,
+    SUM(CASE WHEN stuck_stage = 2 AND did_sys_cancel = 1 THEN 1 ELSE 0 END) AS s2_sys,
+    SUM(CASE WHEN stuck_stage = 3 AND did_sys_cancel = 1 THEN 1 ELSE 0 END) AS s3_sys,
+    SUM(CASE WHEN stuck_stage = 4 AND did_sys_cancel = 1 THEN 1 ELSE 0 END) AS s4_sys,
+    SUM(CASE WHEN stuck_stage = 5 AND did_sys_cancel = 1 THEN 1 ELSE 0 END) AS s5_sys,
+    SUM(CASE WHEN stuck_stage = 6 AND did_sys_cancel = 1 THEN 1 ELSE 0 END) AS s6_sys,
+    SUM(CASE WHEN stuck_stage = 7 AND did_sys_cancel = 1 THEN 1 ELSE 0 END) AS s7_sys,
+    SUM(CASE WHEN stuck_stage = 8 AND did_sys_cancel = 1 THEN 1 ELSE 0 END) AS s8_sys,
+    SUM(CASE WHEN stuck_stage = 9 AND did_sys_cancel = 1 THEN 1 ELSE 0 END) AS s9_sys,
+    SUM(s4_pred) AS s4_pred,
+    SUM(s5_pred) AS s5_pred,
+    SUM(s6_pred) AS s6_pred,
+    SUM(s7_pred) AS s7_pred,
+    SUM(s8_pred) AS s8_pred,
+    SUM(s9_pred) AS s9_pred
+  FROM analysis
 )
-SELECT
-  SUM(CASE WHEN stuck_stage = 1 AND did_cancel = 1 THEN 1 ELSE 0 END) AS s1_actual_cancel,
-  SUM(CASE WHEN stuck_stage = 2 AND did_cancel = 1 THEN 1 ELSE 0 END) AS s2_actual_cancel,
-  SUM(CASE WHEN stuck_stage = 3 AND did_cancel = 1 THEN 1 ELSE 0 END) AS s3_actual_cancel,
-  SUM(CASE WHEN stuck_stage = 4 AND did_cancel = 1 THEN 1 ELSE 0 END) AS s4_actual_cancel,
-  SUM(CASE WHEN stuck_stage = 5 AND did_cancel = 1 THEN 1 ELSE 0 END) AS s5_actual_cancel,
-  SUM(CASE WHEN stuck_stage = 6 AND did_cancel = 1 THEN 1 ELSE 0 END) AS s6_actual_cancel,
-  SUM(CASE WHEN stuck_stage = 7 AND did_cancel = 1 THEN 1 ELSE 0 END) AS s7_actual_cancel,
-  SUM(CASE WHEN stuck_stage = 8 AND did_cancel = 1 THEN 1 ELSE 0 END) AS s8_actual_cancel,
-  SUM(CASE WHEN stuck_stage = 9 AND did_cancel = 1 THEN 1 ELSE 0 END) AS s9_actual_cancel,
-  SUM(s4_pred) AS s4_predicted,
-  SUM(s5_pred) AS s5_predicted,
-  SUM(s6_pred) AS s6_predicted,
-  SUM(s7_pred) AS s7_predicted,
-  SUM(s8_pred) AS s8_predicted,
-  SUM(s9_pred) AS s9_predicted
-FROM analysis
+SELECT * FROM stage_counts
