@@ -228,6 +228,44 @@ table.sum .delta-cell{font-size:10px;font-weight:800;}
 table.sum .delta-cell.good{color:var(--g);}
 table.sum .delta-cell.bad{color:var(--r);}
 
+/* Churn Matrix */
+.churn-matrix{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:14px;margin:20px 0;}
+.churn-card{background:rgba(0,0,0,.25);border-radius:14px;padding:16px 20px;border:1px solid rgba(255,255,255,.06);border-left:4px solid var(--p);transition:all .2s;}
+.churn-card:hover{background:rgba(0,0,0,.42);transform:translateX(4px);box-shadow:0 4px 22px rgba(0,0,0,.45);}
+.churn-card.low{border-left-color:var(--g);}
+.churn-card.med{border-left-color:var(--y);}
+.churn-card.high{border-left-color:var(--r);}
+.churn-card.crit{border-left-color:var(--r);background:rgba(248,113,113,.05);}
+.cc-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06);}
+.cc-num{min-width:32px;height:32px;border-radius:10px;background:rgba(192,132,252,.15);color:var(--p);font-weight:900;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.churn-card.low .cc-num{background:rgba(52,211,153,.15);color:var(--g);}
+.churn-card.med .cc-num{background:rgba(251,191,36,.15);color:var(--y);}
+.churn-card.high .cc-num,.churn-card.crit .cc-num{background:rgba(248,113,113,.15);color:var(--r);}
+.cc-title{flex:1;font-size:13px;font-weight:700;letter-spacing:-.2px;line-height:1.3;}
+.cc-risk{font-size:9px;font-weight:800;padding:4px 10px;border-radius:12px;text-transform:uppercase;letter-spacing:.8px;white-space:nowrap;}
+.cc-risk.low{background:rgba(52,211,153,.15);color:var(--g);border:1px solid rgba(52,211,153,.35);}
+.cc-risk.med{background:rgba(251,191,36,.15);color:var(--y);border:1px solid rgba(251,191,36,.35);}
+.cc-risk.high{background:rgba(248,113,113,.15);color:var(--r);border:1px solid rgba(248,113,113,.35);}
+.cc-risk.crit{background:rgba(248,113,113,.22);color:#fca5a5;border:1px solid rgba(248,113,113,.5);}
+.cc-body{display:flex;flex-direction:column;gap:10px;}
+.cc-predict,.cc-actual{background:rgba(0,0,0,.3);border-radius:10px;padding:11px 14px;border:1px solid rgba(255,255,255,.04);}
+.cc-predict{border-left:3px solid var(--p);}
+.cc-actual{border-left:3px solid var(--c);}
+.cc-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1.1px;margin-bottom:7px;display:flex;align-items:center;gap:6px;}
+.cc-predict .cc-label{color:var(--p);}
+.cc-actual .cc-label{color:var(--c);}
+.cc-predict ul{margin:0;padding-left:18px;font-size:11.5px;line-height:1.65;color:var(--t);font-weight:400;}
+.cc-predict li{margin:2px 0;}
+.cc-actual .cc-stats{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--t2);font-weight:500;align-items:center;}
+.cc-stat{display:flex;flex-direction:column;line-height:1.2;}
+.cc-stat .cc-stat-l{font-size:9px;font-weight:800;color:var(--t2);text-transform:uppercase;letter-spacing:.5px;}
+.cc-stat .cc-stat-v{font-size:18px;font-weight:900;color:var(--t);letter-spacing:-.3px;margin-top:1px;}
+.cc-stat.pre .cc-stat-v{color:var(--b);}
+.cc-stat.post .cc-stat-v{color:var(--p);}
+.cc-stat.delta .cc-stat-v{font-size:13px;}
+.cc-stat.delta.good .cc-stat-v{color:var(--g);}
+.cc-stat.delta.bad .cc-stat-v{color:var(--r);}
+
 /* Section Divider */
 .section-divider{display:inline-block;background:linear-gradient(135deg,rgba(34,211,238,.15),rgba(192,132,252,.15));padding:14px 36px;border-radius:30px;font-size:14px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--c);border:1px solid rgba(34,211,238,.3);margin:30px 0;box-shadow:0 4px 24px rgba(34,211,238,.15);}
 .section-wrap{margin:30px 0 14px;text-align:center;}
@@ -1005,10 +1043,278 @@ table.sum .delta-cell.bad{color:var(--r);}
 </table>
 <div style="font-size:11px;color:var(--t2);text-align:center;margin-top:-10px;margin-bottom:20px;font-style:italic;">* Step 9 / Install metrics in POST are still maturing — expect install % to trend upward as recent bookings complete</div>
 
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- SECTION C: CHURN PREDICTION MATRIX                        -->
+<!-- ════════════════════════════════════════════════════════ -->
+<div class="section-wrap">
+  <span class="section-divider">🔮 Section C · Churn Prediction Matrix<span class="section-sub">For each stage: signals that predict churn &bull; Actual churned counts (PRE vs POST)</span></span>
+</div>
+
+<div class="churn-matrix">
+
+  <!-- Step 1 -->
+  <div class="churn-card low">
+    <div class="cc-header">
+      <span class="cc-num">1</span>
+      <span class="cc-title">BFP → SSID Set</span>
+      <span class="cc-risk low">Low Risk</span>
+    </div>
+    <div class="cc-body">
+      <div class="cc-predict">
+        <div class="cc-label">🔮 Predicted Churn Signals</div>
+        <ul>
+          <li>App force-closed right after payment success</li>
+          <li>Poor network on SSID input page</li>
+          <li>Customer intent to return later, never comes back</li>
+        </ul>
+      </div>
+      <div class="cc-actual">
+        <div class="cc-label">📊 Actual Churn</div>
+        <div class="cc-stats">
+          <div class="cc-stat pre"><span class="cc-stat-l">PRE</span><span class="cc-stat-v">22</span></div>
+          <div class="cc-stat post"><span class="cc-stat-l">POST</span><span class="cc-stat-v">58</span></div>
+          <div class="cc-stat delta bad"><span class="cc-stat-l">Δ</span><span class="cc-stat-v">+2.7%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="churn-card low">
+    <div class="cc-header">
+      <span class="cc-num">2</span>
+      <span class="cc-title">SSID → Address Updated</span>
+      <span class="cc-risk low">Low Risk</span>
+    </div>
+    <div class="cc-body">
+      <div class="cc-predict">
+        <div class="cc-label">🔮 Predicted Churn Signals</div>
+        <ul>
+          <li>Invalid / incomplete address format entered</li>
+          <li>Landmark selection confusion (multiple edits)</li>
+          <li>Customer needs to physically verify exact address</li>
+        </ul>
+      </div>
+      <div class="cc-actual">
+        <div class="cc-label">📊 Actual Churn</div>
+        <div class="cc-stats">
+          <div class="cc-stat pre"><span class="cc-stat-l">PRE</span><span class="cc-stat-v">70</span></div>
+          <div class="cc-stat post"><span class="cc-stat-l">POST</span><span class="cc-stat-v">16</span></div>
+          <div class="cc-stat delta good"><span class="cc-stat-l">Δ</span><span class="cc-stat-v">-1.4%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="churn-card crit">
+    <div class="cc-header">
+      <span class="cc-num">3</span>
+      <span class="cc-title">Address → Booking Verified</span>
+      <span class="cc-risk crit">Critical</span>
+    </div>
+    <div class="cc-body">
+      <div class="cc-predict">
+        <div class="cc-label">🔮 Predicted Churn Signals</div>
+        <ul>
+          <li><b>Area unserviceable</b> — biggest driver (~192 PRE)</li>
+          <li>"नहीं" selected → "Come home and tap" → never returns</li>
+          <li>Location verification failure (GPS denied)</li>
+          <li>Pain: told unserviceable AFTER paying ₹100</li>
+        </ul>
+      </div>
+      <div class="cc-actual">
+        <div class="cc-label">📊 Actual Churn</div>
+        <div class="cc-stats">
+          <div class="cc-stat pre"><span class="cc-stat-l">PRE</span><span class="cc-stat-v">270</span></div>
+          <div class="cc-stat post"><span class="cc-stat-l">POST</span><span class="cc-stat-v">128</span></div>
+          <div class="cc-stat delta good"><span class="cc-stat-l">Δ</span><span class="cc-stat-v">-1.6%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 4 -->
+  <div class="churn-card low">
+    <div class="cc-header">
+      <span class="cc-num">4</span>
+      <span class="cc-title">Verified → Notif Sent</span>
+      <span class="cc-risk low">Low Risk</span>
+    </div>
+    <div class="cc-body">
+      <div class="cc-predict">
+        <div class="cc-label">🔮 Predicted Churn Signals</div>
+        <ul>
+          <li>GINIE engine failure or timeout</li>
+          <li>Zero partner density in customer's pincode</li>
+          <li>System step — mostly tech failures</li>
+        </ul>
+      </div>
+      <div class="cc-actual">
+        <div class="cc-label">📊 Actual Churn</div>
+        <div class="cc-stats">
+          <div class="cc-stat pre"><span class="cc-stat-l">PRE</span><span class="cc-stat-v">20</span></div>
+          <div class="cc-stat post"><span class="cc-stat-l">POST</span><span class="cc-stat-v">17</span></div>
+          <div class="cc-stat delta bad"><span class="cc-stat-l">Δ</span><span class="cc-stat-v">+0.3%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 5 -->
+  <div class="churn-card crit">
+    <div class="cc-header">
+      <span class="cc-num">5</span>
+      <span class="cc-title">NOTIF → Partner Interest</span>
+      <span class="cc-risk crit">Critical</span>
+    </div>
+    <div class="cc-body">
+      <div class="cc-predict">
+        <div class="cc-label">🔮 Predicted Churn Signals</div>
+        <ul>
+          <li>&gt; 2 hours elapsed without any partner interest</li>
+          <li>Low-performing partner zone (0 recent interest)</li>
+          <li>Weekend / night booking (partner inactive)</li>
+          <li>Customer sees vague "इंजीनियर ढूंढा जा रहा है" indefinitely</li>
+        </ul>
+      </div>
+      <div class="cc-actual">
+        <div class="cc-label">📊 Actual Churn</div>
+        <div class="cc-stats">
+          <div class="cc-stat pre"><span class="cc-stat-l">PRE</span><span class="cc-stat-v">362</span></div>
+          <div class="cc-stat post"><span class="cc-stat-l">POST</span><span class="cc-stat-v">232</span></div>
+          <div class="cc-stat delta bad"><span class="cc-stat-l">Δ</span><span class="cc-stat-v">+1.4%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 6 -->
+  <div class="churn-card low">
+    <div class="cc-header">
+      <span class="cc-num">6</span>
+      <span class="cc-title">Interest → Slot Selected</span>
+      <span class="cc-risk low">Low Risk</span>
+    </div>
+    <div class="cc-body">
+      <div class="cc-predict">
+        <div class="cc-label">🔮 Predicted Churn Signals</div>
+        <ul>
+          <li>Partner marked interest but calendar unavailable</li>
+          <li>Partner went offline after marking interest</li>
+          <li>Zone overbooked / no slot available in 3 days</li>
+        </ul>
+      </div>
+      <div class="cc-actual">
+        <div class="cc-label">📊 Actual Churn</div>
+        <div class="cc-stats">
+          <div class="cc-stat pre"><span class="cc-stat-l">PRE</span><span class="cc-stat-v">47</span></div>
+          <div class="cc-stat post"><span class="cc-stat-l">POST</span><span class="cc-stat-v">31</span></div>
+          <div class="cc-stat delta bad"><span class="cc-stat-l">Δ</span><span class="cc-stat-v">+0.2%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 7 -->
+  <div class="churn-card low">
+    <div class="cc-header">
+      <span class="cc-num">7</span>
+      <span class="cc-title">Slot → Customer Confirmed</span>
+      <span class="cc-risk med">Medium</span>
+    </div>
+    <div class="cc-body">
+      <div class="cc-predict">
+        <div class="cc-label">🔮 Predicted Churn Signals</div>
+        <ul>
+          <li>Customer unresponsive to 5 IVR attempts</li>
+          <li>WhatsApp + Push notification ignored</li>
+          <li>Proposed date inconvenient → wants to reschedule</li>
+        </ul>
+      </div>
+      <div class="cc-actual">
+        <div class="cc-label">📊 Actual Churn</div>
+        <div class="cc-stats">
+          <div class="cc-stat pre"><span class="cc-stat-l">PRE</span><span class="cc-stat-v">19</span></div>
+          <div class="cc-stat post"><span class="cc-stat-l">POST</span><span class="cc-stat-v">39</span></div>
+          <div class="cc-stat delta bad"><span class="cc-stat-l">Δ</span><span class="cc-stat-v">+1.7%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 8 -->
+  <div class="churn-card high">
+    <div class="cc-header">
+      <span class="cc-num">8</span>
+      <span class="cc-title">Confirmed → Rohit Assigned</span>
+      <span class="cc-risk high">High Risk</span>
+    </div>
+    <div class="cc-body">
+      <div class="cc-predict">
+        <div class="cc-label">🔮 Predicted Churn Signals</div>
+        <ul>
+          <li>Partner has no free technician on confirmed date</li>
+          <li>Partner inactive / went offline</li>
+          <li>Zone technician shortage (reassignment needed)</li>
+          <li>Confirmed date already passed without action</li>
+        </ul>
+      </div>
+      <div class="cc-actual">
+        <div class="cc-label">📊 Actual Churn</div>
+        <div class="cc-stats">
+          <div class="cc-stat pre"><span class="cc-stat-l">PRE</span><span class="cc-stat-v">137</span></div>
+          <div class="cc-stat post"><span class="cc-stat-l">POST</span><span class="cc-stat-v">127</span></div>
+          <div class="cc-stat delta bad"><span class="cc-stat-l">Δ</span><span class="cc-stat-v">+2.8%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 9 -->
+  <div class="churn-card crit">
+    <div class="cc-header">
+      <span class="cc-num">9</span>
+      <span class="cc-title">Rohit Assigned → Installed</span>
+      <span class="cc-risk crit">Biggest Leak</span>
+    </div>
+    <div class="cc-body">
+      <div class="cc-predict">
+        <div class="cc-label">🔮 Predicted Churn Signals</div>
+        <ul>
+          <li><b>Tech no-show</b> — the #1 driver (~879 PRE)</li>
+          <li>Customer not at home on scheduled slot</li>
+          <li>₹300 security deposit payment fails</li>
+          <li>Tech cancels last-minute (customer cancels 48h later)</li>
+          <li>Router not available in zone warehouse</li>
+        </ul>
+      </div>
+      <div class="cc-actual">
+        <div class="cc-label">📊 Actual Churn</div>
+        <div class="cc-stats">
+          <div class="cc-stat pre"><span class="cc-stat-l">PRE</span><span class="cc-stat-v">879</span></div>
+          <div class="cc-stat post"><span class="cc-stat-l">POST</span><span class="cc-stat-v">498</span></div>
+          <div class="cc-stat delta neutral"><span class="cc-stat-l">Δ</span><span class="cc-stat-v">≈ maturing</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="background:rgba(34,211,238,.05);border:1px solid rgba(34,211,238,.2);border-radius:14px;padding:18px 22px;margin:24px 0;font-size:12px;line-height:1.7;color:var(--t2);">
+  <div style="font-size:11px;font-weight:800;color:var(--c);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">📘 How To Read The Matrix</div>
+  <ul style="padding-left:18px;margin:0;">
+    <li><b style="color:var(--p);">🔮 Predicted Churn Signals</b> — behavioral / system signals that indicate a customer is likely to churn at this stage. Use these to build targeted interventions.</li>
+    <li><b style="color:var(--c);">📊 Actual Churn</b> — real numbers of customers who dropped at this stage in PRE vs POST period, plus delta vs PRE.</li>
+    <li><b>Risk Level</b> — overall severity: Low → Medium → High → Critical. Prioritize interventions at Critical stages (3, 5, 9).</li>
+  </ul>
+</div>
+
 </div>
 
 <div class="footer">
-  <p>Wiom Booking → Install: Pre vs Post UI Change Dashboard | Updated: April 13, 2026</p>
+  <p>Wiom Booking → Install: Pre vs Post UI Change Dashboard | Updated: April 14, 2026</p>
   <p>PRE: Feb 20 – Mar 25, 2026 (34 days) | POST: Mar 28 – Apr 12, 2026 (16 days) | Counted by unique customer (distinct mobile) | Sources: booking_logs + task_logs (PayG filter on)</p>
 </div>
 
