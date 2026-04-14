@@ -266,6 +266,21 @@ table.sum .delta-cell.bad{color:var(--r);}
 .cc-stat.delta.good .cc-stat-v{color:var(--g);}
 .cc-stat.delta.bad .cc-stat-v{color:var(--r);}
 
+/* Prediction vs Actual Table */
+.pred-table{width:100%;border-collapse:separate;border-spacing:0;font-size:11px;margin-top:4px;border-radius:8px;overflow:hidden;}
+.pred-table th{background:rgba(0,0,0,.4);color:var(--t2);font-weight:700;text-transform:uppercase;letter-spacing:.6px;font-size:9px;padding:6px 8px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06);}
+.pred-table th.period-pre{color:var(--b);}
+.pred-table th.period-post{color:var(--p);}
+.pred-table td{padding:6px 8px;text-align:center;border-bottom:1px solid rgba(255,255,255,.04);}
+.pred-table td:first-child{text-align:left;color:var(--t2);font-weight:700;text-transform:uppercase;font-size:9px;letter-spacing:.4px;}
+.pred-table td.v{font-size:14px;font-weight:900;color:var(--t);}
+.pred-table td.v.pre{color:var(--b);}
+.pred-table td.v.post{color:var(--p);}
+.pred-table tr.acc td{background:rgba(0,0,0,.2);font-weight:700;color:var(--c);}
+.pred-table tr.acc td:first-child{color:var(--c);}
+.pred-table tr.acc td.v{color:var(--c);font-size:13px;}
+.pred-na{background:rgba(136,153,184,.08);border:1px dashed rgba(136,153,184,.2);border-radius:8px;padding:10px 14px;text-align:center;font-size:11px;color:var(--t2);font-style:italic;margin-top:4px;}
+
 /* Section Divider */
 .section-divider{display:inline-block;background:linear-gradient(135deg,rgba(34,211,238,.15),rgba(192,132,252,.15));padding:14px 36px;border-radius:30px;font-size:14px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--c);border:1px solid rgba(34,211,238,.3);margin:30px 0;box-shadow:0 4px 24px rgba(34,211,238,.15);}
 .section-wrap{margin:30px 0 14px;text-align:center;}
@@ -1061,20 +1076,16 @@ table.sum .delta-cell.bad{color:var(--r);}
     </div>
     <div class="cc-body">
       <div class="cc-predict">
-        <div class="cc-label">🔮 Predicted Churn Signals</div>
+        <div class="cc-label">🔮 Delay / Churn Criteria</div>
         <ul>
-          <li>App force-closed right after payment success</li>
-          <li>Poor network on SSID input page</li>
-          <li>Customer intent to return later, never comes back</li>
+          <li>No delay message defined for this stage</li>
+          <li>Drops here are typically immediate (app crash / exit)</li>
+          <li>Cannot predict with time-based criteria</li>
         </ul>
       </div>
       <div class="cc-actual">
-        <div class="cc-label">📊 Actual Churn</div>
-        <div class="cc-stats">
-          <div class="cc-stat pre"><span class="cc-stat-l">PRE</span><span class="cc-stat-v">22</span></div>
-          <div class="cc-stat post"><span class="cc-stat-l">POST</span><span class="cc-stat-v">58</span></div>
-          <div class="cc-stat delta bad"><span class="cc-stat-l">Δ</span><span class="cc-stat-v">+2.7%</span></div>
-        </div>
+        <div class="cc-label">📊 Customer-Cancelled (Actual)</div>
+        <div class="pred-na">No delay threshold · Immediate drops only · PRE: <b>0</b> · POST: <b>3</b></div>
       </div>
     </div>
   </div>
@@ -1088,20 +1099,16 @@ table.sum .delta-cell.bad{color:var(--r);}
     </div>
     <div class="cc-body">
       <div class="cc-predict">
-        <div class="cc-label">🔮 Predicted Churn Signals</div>
+        <div class="cc-label">🔮 Delay / Churn Criteria</div>
         <ul>
-          <li>Invalid / incomplete address format entered</li>
-          <li>Landmark selection confusion (multiple edits)</li>
-          <li>Customer needs to physically verify exact address</li>
+          <li>No delay message defined for this stage</li>
+          <li>Cancellation is usually intent-based (changed mind)</li>
+          <li>Cannot predict with time-based criteria</li>
         </ul>
       </div>
       <div class="cc-actual">
-        <div class="cc-label">📊 Actual Churn</div>
-        <div class="cc-stats">
-          <div class="cc-stat pre"><span class="cc-stat-l">PRE</span><span class="cc-stat-v">70</span></div>
-          <div class="cc-stat post"><span class="cc-stat-l">POST</span><span class="cc-stat-v">16</span></div>
-          <div class="cc-stat delta good"><span class="cc-stat-l">Δ</span><span class="cc-stat-v">-1.4%</span></div>
-        </div>
+        <div class="cc-label">📊 Customer-Cancelled (Actual)</div>
+        <div class="pred-na">No delay threshold · PRE: <b>11</b> · POST: <b>4</b></div>
       </div>
     </div>
   </div>
@@ -1115,21 +1122,16 @@ table.sum .delta-cell.bad{color:var(--r);}
     </div>
     <div class="cc-body">
       <div class="cc-predict">
-        <div class="cc-label">🔮 Predicted Churn Signals</div>
+        <div class="cc-label">🔮 Delay / Churn Criteria</div>
         <ul>
-          <li><b>Area unserviceable</b> — biggest driver (~192 PRE)</li>
-          <li>"नहीं" selected → "Come home and tap" → never returns</li>
-          <li>Location verification failure (GPS denied)</li>
-          <li>Pain: told unserviceable AFTER paying ₹100</li>
+          <li><b>Unserviceable area</b> — customers told "not available" after paying</li>
+          <li>"नहीं" → "Come home and tap" → never returns</li>
+          <li>No time-based delay msg (driven by serviceability check)</li>
         </ul>
       </div>
       <div class="cc-actual">
-        <div class="cc-label">📊 Actual Churn</div>
-        <div class="cc-stats">
-          <div class="cc-stat pre"><span class="cc-stat-l">PRE</span><span class="cc-stat-v">270</span></div>
-          <div class="cc-stat post"><span class="cc-stat-l">POST</span><span class="cc-stat-v">128</span></div>
-          <div class="cc-stat delta good"><span class="cc-stat-l">Δ</span><span class="cc-stat-v">-1.6%</span></div>
-        </div>
+        <div class="cc-label">📊 Customer-Cancelled (Actual)</div>
+        <div class="pred-na">Unserviceable-driven · PRE: <b>30</b> · POST: <b>3</b></div>
       </div>
     </div>
   </div>
@@ -1143,20 +1145,23 @@ table.sum .delta-cell.bad{color:var(--r);}
     </div>
     <div class="cc-body">
       <div class="cc-predict">
-        <div class="cc-label">🔮 Predicted Churn Signals</div>
+        <div class="cc-label">🔮 Delay Criteria (48h wait)</div>
         <ul>
-          <li>GINIE engine failure or timeout</li>
-          <li>Zero partner density in customer's pincode</li>
-          <li>System step — mostly tech failures</li>
+          <li>Delay msg triggers <b>2 days after booking_verified</b> if no partner notification sent</li>
+          <li>Prediction: customers verified but no NOTIF_SENT in 48h</li>
         </ul>
       </div>
       <div class="cc-actual">
-        <div class="cc-label">📊 Actual Churn</div>
-        <div class="cc-stats">
-          <div class="cc-stat pre"><span class="cc-stat-l">PRE</span><span class="cc-stat-v">20</span></div>
-          <div class="cc-stat post"><span class="cc-stat-l">POST</span><span class="cc-stat-v">17</span></div>
-          <div class="cc-stat delta bad"><span class="cc-stat-l">Δ</span><span class="cc-stat-v">+0.3%</span></div>
-        </div>
+        <div class="cc-label">📊 Prediction vs Actual Customer Cancellation</div>
+        <table class="pred-table">
+          <thead><tr><th></th><th class="period-pre">🔵 PRE</th><th class="period-post">🟣 POST</th></tr></thead>
+          <tbody>
+            <tr><td>Predicted</td><td class="v pre">14</td><td class="v post">1</td></tr>
+            <tr><td>Actual</td><td class="v pre">9</td><td class="v post">6</td></tr>
+            <tr class="acc"><td>Accuracy</td><td class="v">64%</td><td class="v">600%*</td></tr>
+          </tbody>
+        </table>
+        <div style="font-size:10px;color:var(--y);margin-top:6px;font-style:italic;">*POST over-cancels vs prediction — 48h threshold too loose at this stage</div>
       </div>
     </div>
   </div>
@@ -1170,21 +1175,23 @@ table.sum .delta-cell.bad{color:var(--r);}
     </div>
     <div class="cc-body">
       <div class="cc-predict">
-        <div class="cc-label">🔮 Predicted Churn Signals</div>
+        <div class="cc-label">🔮 Delay Criteria (48h wait)</div>
         <ul>
-          <li>&gt; 2 hours elapsed without any partner interest</li>
-          <li>Low-performing partner zone (0 recent interest)</li>
-          <li>Weekend / night booking (partner inactive)</li>
-          <li>Customer sees vague "इंजीनियर ढूंढा जा रहा है" indefinitely</li>
+          <li>Delay msg triggers <b>48h after NOTIF_SENT</b> if no partner marked interest</li>
+          <li>Prediction: customers notified but no INTERESTED in 48h</li>
         </ul>
       </div>
       <div class="cc-actual">
-        <div class="cc-label">📊 Actual Churn</div>
-        <div class="cc-stats">
-          <div class="cc-stat pre"><span class="cc-stat-l">PRE</span><span class="cc-stat-v">362</span></div>
-          <div class="cc-stat post"><span class="cc-stat-l">POST</span><span class="cc-stat-v">232</span></div>
-          <div class="cc-stat delta bad"><span class="cc-stat-l">Δ</span><span class="cc-stat-v">+1.4%</span></div>
-        </div>
+        <div class="cc-label">📊 Prediction vs Actual Customer Cancellation</div>
+        <table class="pred-table">
+          <thead><tr><th></th><th class="period-pre">🔵 PRE</th><th class="period-post">🟣 POST</th></tr></thead>
+          <tbody>
+            <tr><td>Predicted</td><td class="v pre">321</td><td class="v post">181</td></tr>
+            <tr><td>Actual</td><td class="v pre">132</td><td class="v post">107</td></tr>
+            <tr class="acc"><td>Accuracy</td><td class="v">41%</td><td class="v">59%</td></tr>
+          </tbody>
+        </table>
+        <div style="font-size:10px;color:var(--t2);margin-top:6px;font-style:italic;">Only 41% (PRE) / 59% (POST) of stuck customers cancel — rest wait patiently or system-cancels them</div>
       </div>
     </div>
   </div>
@@ -1198,26 +1205,29 @@ table.sum .delta-cell.bad{color:var(--r);}
     </div>
     <div class="cc-body">
       <div class="cc-predict">
-        <div class="cc-label">🔮 Predicted Churn Signals</div>
+        <div class="cc-label">🔮 Delay Criteria (48h wait)</div>
         <ul>
-          <li>Partner marked interest but calendar unavailable</li>
-          <li>Partner went offline after marking interest</li>
-          <li>Zone overbooked / no slot available in 3 days</li>
+          <li>Delay msg triggers <b>48h after INTERESTED</b> if partner hasn't selected a slot</li>
+          <li>Prediction: interest marked but no SLOT_SELECTED in 48h</li>
         </ul>
       </div>
       <div class="cc-actual">
-        <div class="cc-label">📊 Actual Churn</div>
-        <div class="cc-stats">
-          <div class="cc-stat pre"><span class="cc-stat-l">PRE</span><span class="cc-stat-v">47</span></div>
-          <div class="cc-stat post"><span class="cc-stat-l">POST</span><span class="cc-stat-v">31</span></div>
-          <div class="cc-stat delta bad"><span class="cc-stat-l">Δ</span><span class="cc-stat-v">+0.2%</span></div>
-        </div>
+        <div class="cc-label">📊 Prediction vs Actual Customer Cancellation</div>
+        <table class="pred-table">
+          <thead><tr><th></th><th class="period-pre">🔵 PRE</th><th class="period-post">🟣 POST</th></tr></thead>
+          <tbody>
+            <tr><td>Predicted</td><td class="v pre">40</td><td class="v post">23</td></tr>
+            <tr><td>Actual</td><td class="v pre">20</td><td class="v post">13</td></tr>
+            <tr class="acc"><td>Accuracy</td><td class="v">50%</td><td class="v">57%</td></tr>
+          </tbody>
+        </table>
+        <div style="font-size:10px;color:var(--t2);margin-top:6px;font-style:italic;">Half of stuck customers cancel; the other half wait or get system-cancelled</div>
       </div>
     </div>
   </div>
 
   <!-- Step 7 -->
-  <div class="churn-card low">
+  <div class="churn-card med">
     <div class="cc-header">
       <span class="cc-num">7</span>
       <span class="cc-title">Slot → Customer Confirmed</span>
@@ -1225,20 +1235,23 @@ table.sum .delta-cell.bad{color:var(--r);}
     </div>
     <div class="cc-body">
       <div class="cc-predict">
-        <div class="cc-label">🔮 Predicted Churn Signals</div>
+        <div class="cc-label">🔮 Delay Criteria (6h escalation)</div>
         <ul>
-          <li>Customer unresponsive to 5 IVR attempts</li>
-          <li>WhatsApp + Push notification ignored</li>
-          <li>Proposed date inconvenient → wants to reschedule</li>
+          <li>Escalation ladder peaks at <b>+6h</b> with final IVR attempt</li>
+          <li>Prediction: slot proposed but no confirm in 6h</li>
         </ul>
       </div>
       <div class="cc-actual">
-        <div class="cc-label">📊 Actual Churn</div>
-        <div class="cc-stats">
-          <div class="cc-stat pre"><span class="cc-stat-l">PRE</span><span class="cc-stat-v">19</span></div>
-          <div class="cc-stat post"><span class="cc-stat-l">POST</span><span class="cc-stat-v">39</span></div>
-          <div class="cc-stat delta bad"><span class="cc-stat-l">Δ</span><span class="cc-stat-v">+1.7%</span></div>
-        </div>
+        <div class="cc-label">📊 Prediction vs Actual Customer Cancellation</div>
+        <table class="pred-table">
+          <thead><tr><th></th><th class="period-pre">🔵 PRE</th><th class="period-post">🟣 POST</th></tr></thead>
+          <tbody>
+            <tr><td>Predicted</td><td class="v pre">8</td><td class="v post">5</td></tr>
+            <tr><td>Actual</td><td class="v pre">16</td><td class="v post">9</td></tr>
+            <tr class="acc"><td>Accuracy</td><td class="v">200%</td><td class="v">180%</td></tr>
+          </tbody>
+        </table>
+        <div style="font-size:10px;color:var(--y);margin-top:6px;font-style:italic;">⚠ Over 100%: customers cancel BEFORE 6h threshold. Suggest tighter criteria (e.g. 2h).</div>
       </div>
     </div>
   </div>
@@ -1252,21 +1265,23 @@ table.sum .delta-cell.bad{color:var(--r);}
     </div>
     <div class="cc-body">
       <div class="cc-predict">
-        <div class="cc-label">🔮 Predicted Churn Signals</div>
+        <div class="cc-label">🔮 Delay Criteria (confirmed date breached)</div>
         <ul>
-          <li>Partner has no free technician on confirmed date</li>
-          <li>Partner inactive / went offline</li>
-          <li>Zone technician shortage (reassignment needed)</li>
-          <li>Confirmed date already passed without action</li>
+          <li>Delay msg: <b>"कुछ तकनीकी कारणों से हम {{confirmedInstallationDate}} को आपके घर पर नेट नहीं लगा पाए"</b></li>
+          <li>Prediction: slot confirmed but no ASSIGNED within 24h</li>
         </ul>
       </div>
       <div class="cc-actual">
-        <div class="cc-label">📊 Actual Churn</div>
-        <div class="cc-stats">
-          <div class="cc-stat pre"><span class="cc-stat-l">PRE</span><span class="cc-stat-v">137</span></div>
-          <div class="cc-stat post"><span class="cc-stat-l">POST</span><span class="cc-stat-v">127</span></div>
-          <div class="cc-stat delta bad"><span class="cc-stat-l">Δ</span><span class="cc-stat-v">+2.8%</span></div>
-        </div>
+        <div class="cc-label">📊 Prediction vs Actual Customer Cancellation</div>
+        <table class="pred-table">
+          <thead><tr><th></th><th class="period-pre">🔵 PRE</th><th class="period-post">🟣 POST</th></tr></thead>
+          <tbody>
+            <tr><td>Predicted</td><td class="v pre">114</td><td class="v post">98</td></tr>
+            <tr><td>Actual</td><td class="v pre">83</td><td class="v post">66</td></tr>
+            <tr class="acc"><td>Accuracy</td><td class="v">73%</td><td class="v">67%</td></tr>
+          </tbody>
+        </table>
+        <div style="font-size:10px;color:var(--t2);margin-top:6px;font-style:italic;">Strong signal: ~70% of customers whose date is breached do cancel. High-confidence trigger.</div>
       </div>
     </div>
   </div>
@@ -1280,22 +1295,23 @@ table.sum .delta-cell.bad{color:var(--r);}
     </div>
     <div class="cc-body">
       <div class="cc-predict">
-        <div class="cc-label">🔮 Predicted Churn Signals</div>
+        <div class="cc-label">🔮 Delay Criteria (install date breached)</div>
         <ul>
-          <li><b>Tech no-show</b> — the #1 driver (~879 PRE)</li>
-          <li>Customer not at home on scheduled slot</li>
-          <li>₹300 security deposit payment fails</li>
-          <li>Tech cancels last-minute (customer cancels 48h later)</li>
-          <li>Router not available in zone warehouse</li>
+          <li>Delay msg: <b>"किसी कारण से आज {{technicianName}} आपके घर पर नेट लगाने नहीं आ पाए"</b></li>
+          <li>Prediction: ASSIGNED but no OTP_VERIFIED within 24h</li>
         </ul>
       </div>
       <div class="cc-actual">
-        <div class="cc-label">📊 Actual Churn</div>
-        <div class="cc-stats">
-          <div class="cc-stat pre"><span class="cc-stat-l">PRE</span><span class="cc-stat-v">879</span></div>
-          <div class="cc-stat post"><span class="cc-stat-l">POST</span><span class="cc-stat-v">498</span></div>
-          <div class="cc-stat delta neutral"><span class="cc-stat-l">Δ</span><span class="cc-stat-v">≈ maturing</span></div>
-        </div>
+        <div class="cc-label">📊 Prediction vs Actual Customer Cancellation</div>
+        <table class="pred-table">
+          <thead><tr><th></th><th class="period-pre">🔵 PRE</th><th class="period-post">🟣 POST</th></tr></thead>
+          <tbody>
+            <tr><td>Predicted</td><td class="v pre">744</td><td class="v post">414</td></tr>
+            <tr><td>Actual</td><td class="v pre">425</td><td class="v post">226</td></tr>
+            <tr class="acc"><td>Accuracy</td><td class="v">57%</td><td class="v">55%</td></tr>
+          </tbody>
+        </table>
+        <div style="font-size:10px;color:var(--r);margin-top:6px;font-style:italic;">🔴 55-57% of tech-no-show customers cancel. Remaining ~45% still waiting or reassigned.</div>
       </div>
     </div>
   </div>
@@ -1305,9 +1321,10 @@ table.sum .delta-cell.bad{color:var(--r);}
 <div style="background:rgba(34,211,238,.05);border:1px solid rgba(34,211,238,.2);border-radius:14px;padding:18px 22px;margin:24px 0;font-size:12px;line-height:1.7;color:var(--t2);">
   <div style="font-size:11px;font-weight:800;color:var(--c);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">📘 How To Read The Matrix</div>
   <ul style="padding-left:18px;margin:0;">
-    <li><b style="color:var(--p);">🔮 Predicted Churn Signals</b> — behavioral / system signals that indicate a customer is likely to churn at this stage. Use these to build targeted interventions.</li>
-    <li><b style="color:var(--c);">📊 Actual Churn</b> — real numbers of customers who dropped at this stage in PRE vs POST period, plus delta vs PRE.</li>
-    <li><b>Risk Level</b> — overall severity: Low → Medium → High → Critical. Prioritize interventions at Critical stages (3, 5, 9).</li>
+    <li><b style="color:var(--p);">🔮 Delay / Churn Criteria</b> — the delay message threshold from the booking flow (e.g., "48h without partner interest"). Customers meeting this criteria are <b>predicted</b> to churn.</li>
+    <li><b style="color:var(--c);">📊 Prediction vs Actual</b> — <b>Predicted</b> = customers who hit the delay threshold (could have cancelled). <b>Actual</b> = customers who actually cancelled themselves (customer-initiated, not system). <b>Accuracy</b> = Actual / Predicted.</li>
+    <li><b>Accuracy &lt; 100%</b> = threshold is loose (most stuck customers wait); <b>&gt; 100%</b> = threshold is too tight (customers cancel before threshold).</li>
+    <li><b>Steps 1-3</b> have no delay message criteria — cancellations there are intent-based / serviceability-driven.</li>
   </ul>
 </div>
 
