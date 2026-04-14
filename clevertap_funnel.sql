@@ -15,14 +15,14 @@ first_time_loaders_post AS (
 all_events AS (
   SELECT USER_ID, EVENT_NAME, TIMESTAMP
   FROM PROD_DB.PUBLIC.CLEVERTAP_CUSTOMER
-  WHERE EVENT_NAME IN ('check_serviceability_clicked','serviceable_page_loaded','unserviceable_page_loaded','how_does_it_work_clicked','how_to_get_started_clicked','cost_today_clicked','pay_100_to_move_forward_clicked','booking_fee_captured')
+  WHERE EVENT_NAME IN ('check_serviceability_clicked','current_loc_serviceability_check_clicked','serviceable_page_loaded','unserviceable_page_loaded','how_does_it_work_clicked','how_to_get_started_clicked','cost_today_clicked','pay_100_to_move_forward_clicked','booking_fee_captured')
     AND TIMESTAMP >= '2026-02-13' AND TIMESTAMP < '2026-04-20'
 ),
 pre_stages AS (
   SELECT
     'PRE' AS period,
     COUNT(DISTINCT b.USER_ID) AS homepage_loaded,
-    COUNT(DISTINCT CASE WHEN e.EVENT_NAME = 'check_serviceability_clicked' THEN b.USER_ID END) AS check_clicked,
+    COUNT(DISTINCT CASE WHEN e.EVENT_NAME IN ('check_serviceability_clicked','current_loc_serviceability_check_clicked') THEN b.USER_ID END) AS check_clicked,
     COUNT(DISTINCT CASE WHEN e.EVENT_NAME = 'serviceable_page_loaded' THEN b.USER_ID END) AS serviceable_loaded,
     COUNT(DISTINCT CASE WHEN e.EVENT_NAME = 'unserviceable_page_loaded' THEN b.USER_ID END) AS unserviceable_loaded,
     COUNT(DISTINCT CASE WHEN e.EVENT_NAME = 'how_does_it_work_clicked' THEN b.USER_ID END) AS how_works,
@@ -37,7 +37,7 @@ post_stages AS (
   SELECT
     'POST' AS period,
     COUNT(DISTINCT b.USER_ID) AS homepage_loaded,
-    COUNT(DISTINCT CASE WHEN e.EVENT_NAME = 'check_serviceability_clicked' THEN b.USER_ID END) AS check_clicked,
+    COUNT(DISTINCT CASE WHEN e.EVENT_NAME IN ('check_serviceability_clicked','current_loc_serviceability_check_clicked') THEN b.USER_ID END) AS check_clicked,
     COUNT(DISTINCT CASE WHEN e.EVENT_NAME = 'serviceable_page_loaded' THEN b.USER_ID END) AS serviceable_loaded,
     COUNT(DISTINCT CASE WHEN e.EVENT_NAME = 'unserviceable_page_loaded' THEN b.USER_ID END) AS unserviceable_loaded,
     COUNT(DISTINCT CASE WHEN e.EVENT_NAME = 'how_does_it_work_clicked' THEN b.USER_ID END) AS how_works,

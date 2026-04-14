@@ -394,7 +394,7 @@ table.sum .delta-cell.bad{color:var(--r);}
   <div class="step-h">
     <div class="num">A2</div>
     <div class="txt"><div class="label">Acquisition Step 2</div><div class="ttl">"Check Serviceability" Clicked</div><div class="from-to">Customer taps "मेरे इलाके में है या नहीं?" → loading screen</div></div>
-    <div class="badges"><span class="bdg pre">PRE: 6,606 (14.9%)</span><span class="bdg post">POST: 6,193 (36.6%)</span><span class="delta bad">▲ +21.7% worse</span></div>
+    <div class="badges"><span class="bdg pre">PRE: 6,598 (14.9%)</span><span class="bdg post">POST: 6,165 (36.5%)</span><span class="delta bad">▲ +21.6% worse</span></div>
   </div>
   <div class="step-b">
     <div class="compare">
@@ -403,8 +403,8 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="figma"><div class="fl">Loading screen · "आपकी जगह पर नेट चेक कर रहे हैं..."</div><div class="fs"><img src="s_acq_2_loading.png" alt="A2 Loading"></div><div class="fh">← Scroll horizontally · 1 screen →</div></div>
         <div class="mets">
           <div class="mt"><div class="v g">44,430</div><div class="pct">100%</div><div class="l">First-Time Loaders</div></div>
-          <div class="mt"><div class="v y">37,824</div><div class="pct">85.1%</div><div class="l">Clicked Check</div></div>
-          <div class="mt"><div class="v r">6,606</div><div class="pct">14.9%</div><div class="l">Dropped</div></div>
+          <div class="mt"><div class="v y">37,832</div><div class="pct">85.1%</div><div class="l">Any Serviceability</div></div>
+          <div class="mt"><div class="v r">6,598</div><div class="pct">14.9%</div><div class="l">Dropped</div></div>
         </div>
       </div>
       <div class="compare-col post">
@@ -412,12 +412,13 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="figma"><div class="fl">Same loading screen · UI unchanged</div><div class="fs"><img src="s_acq_2_loading.png" alt="A2 Loading POST"></div><div class="fh">← Scroll horizontally · 1 screen →</div></div>
         <div class="mets">
           <div class="mt"><div class="v g">16,910</div><div class="pct">100%</div><div class="l">First-Time Loaders</div></div>
-          <div class="mt"><div class="v r">10,717</div><div class="pct">63.4%</div><div class="l">Clicked Check</div></div>
-          <div class="mt"><div class="v r">6,193</div><div class="pct">36.6%</div><div class="l">Dropped</div></div>
+          <div class="mt"><div class="v r">10,745</div><div class="pct">63.5%</div><div class="l">Any Serviceability</div></div>
+          <div class="mt"><div class="v r">6,165</div><div class="pct">36.5%</div><div class="l">Dropped</div></div>
         </div>
       </div>
     </div>
-    <div class="tags"><span class="tg ev">check_serviceability_clicked</span></div>
+    <div class="tags"><span class="tg ev">check_serviceability_clicked</span><span class="tg ev">current_loc_serviceability_check_clicked</span></div>
+    <div class="ibox esc"><div class="ib-t">🔍 Data Recheck</div><p>We verified the 22pp drop is <b>NOT</b> a tracking issue. Combined both <code>check_serviceability_clicked</code> and the alternative <code>current_loc_serviceability_check_clicked</code> events — total changes by only ~28 users. Only 48 users had auto-detection without clicking. The real finding: <b>36.5% of POST first-time users open the homepage but never engage with the serviceability check at all</b> — a genuine UX regression or user-mix shift. Likely causes: splash redesign reduced button visibility, changed CTA prominence, or a different acquisition channel (ads) bringing lower-intent users.</p></div>
   </div>
 </div>
 <div class="arrow">▼</div>
