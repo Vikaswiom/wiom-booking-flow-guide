@@ -18,7 +18,7 @@ tl_events AS (
   WHERE event_name IN ('NOTIF_SENT','INTERESTED','SLOT_SELECTED','CUSTOMER_SLOT_CONFIRMED','ASSIGNED','OTP_VERIFIED')
     AND mobile >= '5999999999'
     AND DATEADD('minute', 330, added_time) >= '2026-03-21 00:00:00'
-    AND DATEADD('minute', 330, added_time) < '2026-04-13 00:00:00'
+    AND added_time <= CURRENT_TIMESTAMP()
 ),
 all_events AS (
   SELECT mobile, event_name FROM bl_events
