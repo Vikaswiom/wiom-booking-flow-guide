@@ -628,7 +628,7 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="mets">
           <div class="mt"><div class="v y">10,095</div><div class="pct">22.7%</div><div class="l">Pay ₹100 Click</div></div>
           <div class="mt"><div class="v g">1,856</div><div class="pct">4.2%</div><div class="l">Booking Fee Captured</div></div>
-          <div class="mt"><div class="v r">8,239</div><div class="pct">18.5%</div><div class="l">Failed Payment</div></div>
+          <div class="mt"><div class="v r">8,239</div><div class="pct">18.5%</div><div class="l">Dropped at Payment</div></div>
         </div>
       </div>
       <div class="compare-col post">
@@ -637,12 +637,12 @@ table.sum .delta-cell.bad{color:var(--r);}
         <div class="mets">
           <div class="mt"><div class="v y">2,996</div><div class="pct">17.7%</div><div class="l">Pay ₹100 Click</div></div>
           <div class="mt"><div class="v g">747</div><div class="pct">4.4%</div><div class="l">Booking Fee Captured</div></div>
-          <div class="mt"><div class="v r">2,249</div><div class="pct">13.3%</div><div class="l">Failed Payment</div></div>
+          <div class="mt"><div class="v r">2,249</div><div class="pct">13.3%</div><div class="l">Dropped at Payment</div></div>
         </div>
       </div>
     </div>
-    <div class="tags"><span class="tg ev">booking_fee_captured</span><span class="tg es">~82% drop at payment in PRE</span></div>
-    <div class="ibox esc"><div class="ib-t">Critical Insight</div><p>This is the <b>biggest single leak</b> in the entire acquisition funnel. Of first-time users who clicked "Pay ₹100", only <b>18.4% (PRE) / 24.9% (POST)</b> actually completed payment. POST shows a meaningful improvement here. Likely causes: payment gateway failures, UPI declines, or last-second hesitation.</p></div>
+    <div class="tags"><span class="tg ev">booking_fee_captured</span><span class="tg es">~82% dropped at payment page in PRE</span></div>
+    <div class="ibox esc"><div class="ib-t">Critical Insight</div><p>This is the <b>biggest single leak</b> in the entire acquisition funnel. Of first-time users who clicked "Pay ₹100", only <b>18.4% (PRE) / 24.9% (POST)</b> actually completed payment. These users reached the payment page but dropped off without completing — not necessarily payment failures. Likely causes: last-second hesitation, price shock, back-button, app close, or abandonment before initiating UPI/card entry.</p></div>
     <div class="notif-header">Notifications (shared — same in both flows)</div>
     <div class="notif-grid">
       <div class="notif-card chat inactive"><div class="nc-pri">1</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">💬</span><span class="nc-label">In-Chat Message</span></div><div class="na">NA — pre-booking stage, customer not yet in chat</div></div></div>
