@@ -14,7 +14,24 @@
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t);line-height:1.6;-webkit-font-smoothing:antialiased;}
 
 /* Header */
-.hdr{background:var(--hdr-grad);padding:28px 36px 24px;border-bottom:1px solid rgba(34,211,238,.15);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);}
+.hdr{background:var(--hdr-grad);padding:28px 36px 24px;border-bottom:1px solid rgba(34,211,238,.15);}
+
+/* Tab Navigation */
+.tab-nav{display:flex;gap:6px;padding:0 36px;background:var(--s);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);overflow-x:auto;}
+.tab-nav::-webkit-scrollbar{height:4px;}
+.tab-nav::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px;}
+.tab-btn{background:transparent;border:none;border-bottom:3px solid transparent;color:var(--t2);padding:14px 22px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s;font-family:inherit;letter-spacing:.3px;display:flex;align-items:center;gap:8px;position:relative;}
+.tab-btn:hover{color:var(--c);background:rgba(34,211,238,.04);}
+.tab-btn.active{color:var(--c);border-bottom-color:var(--c);background:linear-gradient(180deg,transparent,rgba(34,211,238,.05));}
+.tab-btn .tab-badge{font-size:9px;background:rgba(34,211,238,.15);color:var(--c);padding:2px 7px;border-radius:10px;font-weight:800;letter-spacing:.5px;border:1px solid rgba(34,211,238,.25);}
+.tab-btn.active .tab-badge{background:var(--c);color:var(--bg);border-color:var(--c);}
+.tab-pane{display:none;}
+.tab-pane.active{display:block;animation:fadeIn .25s ease-out;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.coming-soon{text-align:center;padding:80px 40px;background:var(--card);border-radius:20px;border:1px dashed var(--border-strong);margin:40px 0;}
+.coming-soon .cs-icon{font-size:48px;margin-bottom:16px;}
+.coming-soon h2{font-size:22px;font-weight:800;color:var(--c);margin-bottom:10px;letter-spacing:-.3px;}
+.coming-soon p{font-size:14px;color:var(--t2);max-width:520px;margin:0 auto;line-height:1.7;}
 .hdr-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;}
 .hdr-top .hdr-left{flex:1;min-width:240px;}
 .hdr h1{font-size:24px;font-weight:800;background:linear-gradient(135deg,#22d3ee,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.3px;}
@@ -332,6 +349,13 @@ table.sum .delta-cell.bad{color:var(--r);}
     </div>
   </div>
 </div>
+
+<nav class="tab-nav">
+  <button class="tab-btn active" data-tab="overall" onclick="switchTab('overall');">📊 Overall</button>
+  <button class="tab-btn" data-tab="new-flow-apr15" onclick="switchTab('new-flow-apr15');">🆕 New Flow Release · Apr 15 <span class="tab-badge">New</span></button>
+</nav>
+
+<div id="overall" class="tab-pane active">
 
 <div class="ctn">
 
@@ -1456,7 +1480,22 @@ table.sum .delta-cell.bad{color:var(--r);}
   </ul>
 </div>
 
+</div><!-- /.ctn -->
+</div><!-- /#overall -->
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- TAB: NEW FLOW RELEASE · APR 15                             -->
+<!-- ════════════════════════════════════════════════════════ -->
+<div id="new-flow-apr15" class="tab-pane">
+<div class="ctn">
+  <div class="coming-soon">
+    <div class="cs-icon">🆕</div>
+    <h2>New Flow Release — April 15, 2026</h2>
+    <p>This tab will track the next UI iteration launched on Apr 15. Structure will mirror the Overall tab: Section A (CleverTap acquisition), Section B (booking → install), Section C (churn matrix), and cohort comparisons. Data will populate once the release has matured for ~9 days.</p>
+    <p style="margin-top:18px;font-size:12px;color:var(--t2);"><b>Tab framework ready</b> — future releases can be added as new tabs alongside this one.</p>
+  </div>
 </div>
+</div><!-- /#new-flow-apr15 -->
 
 <div class="footer">
   <p>Wiom Acquisition Funnel Dashboard | Page rendered: <span class="js-now">—</span></p>
@@ -1496,6 +1535,26 @@ function toggleTheme(){
     var lbl = document.querySelector('.theme-label'); if(lbl) lbl.textContent = 'Dark';
   }
 }
+
+function switchTab(tabId){
+  document.querySelectorAll('.tab-pane').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  var pane = document.getElementById(tabId); if(pane) pane.classList.add('active');
+  var btn = document.querySelector('.tab-btn[data-tab="'+tabId+'"]'); if(btn) btn.classList.add('active');
+  localStorage.setItem('wiom-tab', tabId);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// Restore active tab on load
+(function(){
+  var savedTab = localStorage.getItem('wiom-tab');
+  if(savedTab && document.getElementById(savedTab)){
+    document.querySelectorAll('.tab-pane').forEach(function(p){ p.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+    document.getElementById(savedTab).classList.add('active');
+    var btn = document.querySelector('.tab-btn[data-tab="'+savedTab+'"]'); if(btn) btn.classList.add('active');
+  }
+})();
 </script>
 
 </body>
