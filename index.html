@@ -1519,51 +1519,7 @@ table.sum .delta-cell.bad{color:var(--r);}
     <span class="section-divider">📍 Change 1 · Location Clarity Before Payment<span class="section-sub">Multi-signal serviceability check + presence confirmation → no more post-payment rejections</span></span>
   </div>
 
-  <div class="step crit">
-    <div class="step-h">
-      <div class="num">📍</div>
-      <div class="txt"><div class="label">The Problem</div><div class="ttl">Post-payment serviceability rejections erode customer trust</div><div class="from-to">Current flow checks serviceability only AFTER ₹100 payment · False positives + false negatives</div></div>
-    </div>
-    <div class="step-b">
-      <div class="ibox esc"><div class="ib-t">Why now</div><p>Wiom's current booking flow uses a single GPS reading at app launch, matched against a broad area-level coverage map. The precise pin-level check happens only AFTER the customer has paid. When these disagree → booking cancelled, money refunded, but trust damage is already done. Additionally, GPS drift or customers not being at the install location → wrongly rejected serviceable customers (false negatives).</p></div>
-      <div class="ibox"><div class="ib-t" style="color:var(--g);">✓ What's new</div><ul>
-        <li><b>Multi-signal serviceability</b> — GPS + backend Wiom net proximity detection (active connections within ~10m / ~20m / ~50m)</li>
-        <li><b>Pre-payment recheck</b> — background GPS capture when customer taps "₹100 dekar book karein"</li>
-        <li><b>Presence confirmation screen</b> — "Kya aap abhi wahi hain jaha net lagwana hai?" before payment proceeds</li>
-        <li><b>Reminder flow</b> — "Jab ghar pahunchein bata dijiye" → push notification at 9 PM → deep-link back to confirmation</li>
-        <li><b>Trust recovery</b> — auto-refund for rare post-payment failures + "notify me" CTA</li>
-      </ul></div>
-      <div class="tags"><span class="tg ev">Affects: Section A Steps 2–3 (serviceability)</span><span class="tg ev">Adds: Pre-payment recheck before A7</span><span class="tg ev">Adds: Presence confirmation screen</span><span class="tg ev">Impacts: Section B Step 3 (Booking Verified)</span></div>
-
-      <div class="notif-header">📊 Success Metrics to Track (target: review Apr 24+)</div>
-      <div class="churn-matrix">
-        <div class="churn-card high">
-          <div class="cc-header"><span class="cc-num">L1</span><span class="cc-title">Post-payment cancellation rate</span><span class="cc-risk high">Lag</span></div>
-          <div class="cc-body"><div class="cc-predict"><div class="cc-label">🎯 Target</div><ul><li>&lt; 2% post-payment cancels (currently much higher due to serviceability mismatch)</li></ul></div></div>
-        </div>
-        <div class="churn-card low">
-          <div class="cc-header"><span class="cc-num">L2</span><span class="cc-title">False positive rate</span><span class="cc-risk low">Lag</span></div>
-          <div class="cc-body"><div class="cc-predict"><div class="cc-label">🎯 Target</div><ul><li>% bookings cancelled post-payment due to serviceability mismatch → should trend toward zero</li></ul></div></div>
-        </div>
-        <div class="churn-card low">
-          <div class="cc-header"><span class="cc-num">L3</span><span class="cc-title">False negative rate</span><span class="cc-risk low">Lead</span></div>
-          <div class="cc-body"><div class="cc-predict"><div class="cc-label">🎯 Target</div><ul><li>Serviceable users wrongly rejected at launch → measure recovery via backend Wiom net proximity detection</li></ul></div></div>
-        </div>
-        <div class="churn-card med">
-          <div class="cc-header"><span class="cc-num">L4</span><span class="cc-title">Reminder-driven conversion</span><span class="cc-risk med">Lead</span></div>
-          <div class="cc-body"><div class="cc-predict"><div class="cc-label">🎯 Target</div><ul><li>% users setting reminder ("Mujhe yaad dila dena")</li><li>% returning via 9 PM push to complete booking</li></ul></div></div>
-        </div>
-        <div class="churn-card med">
-          <div class="cc-header"><span class="cc-num">L5</span><span class="cc-title">"Notify me" lead capture</span><span class="cc-risk med">Lead</span></div>
-          <div class="cc-body"><div class="cc-predict"><div class="cc-label">🎯 Target</div><ul><li>% unserviceable users who opt into "Uplabdh hone par bataein"</li><li>Later conversion rate when area becomes serviceable</li></ul></div></div>
-        </div>
-        <div class="churn-card low">
-          <div class="cc-header"><span class="cc-num">L6</span><span class="cc-title">Presence confirmation split</span><span class="cc-risk low">Lead</span></div>
-          <div class="cc-body"><div class="cc-predict"><div class="cc-label">🎯 Target</div><ul><li>% "Haan, main yahi hun" vs "Nahi, abhi nahi hun"</li><li>Drop rate at this new screen</li></ul></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="ibox"><div class="ib-t" style="color:var(--g);">📍 What changed</div><p>Multi-signal serviceability (GPS + Wiom net proximity) + pre-payment location recheck + presence confirmation screen ("मैं लोकेशन पर हूँ") + reminder flow for users not at home. <b>Target: &lt;2% post-payment cancellation.</b> Step A7.5 added for ALL variants.</p></div>
 
   <!-- ============================================================ -->
   <!-- CHANGE 2: COST BREAKDOWN A/B/C/D TEST                          -->
@@ -1572,82 +1528,28 @@ table.sum .delta-cell.bad{color:var(--r);}
     <span class="section-divider">🧪 Change 2 · Cost Breakdown A/B/C/D Test<span class="section-sub">Testing 4 variants between Step A5 (How to Get Started) → Step A6 (Cost Today)</span></span>
   </div>
 
-  <div class="step high">
-    <div class="step-h">
-      <div class="num">🧪</div>
-      <div class="txt"><div class="label">The Problem</div><div class="ttl">Users confused about what ₹100 + ₹300 covers</div><div class="from-to">Many assume it includes first recharge — it doesn't · Plan visibility is also unclear</div></div>
-    </div>
-    <div class="step-b">
-      <div class="ibox esc"><div class="ib-t">Two confusion sources</div><ol style="padding-left:18px;font-size:13px;line-height:1.7;">
-        <li><b>Booking vs Recharge</b> — users think ₹100 (booking fee) + ₹300 (refundable Net Box security) includes recharge. Recharge is separate, required after trial period.</li>
-        <li><b>Plan visibility &amp; flexibility</b> — customers unclear about recharge options, shorter-duration plans, and commitment level before booking.</li>
-      </ol></div>
+  <div class="ibox sla"><div class="ib-t">🧪 What's being tested</div><p><b>A</b> = Control (existing) · <b>B</b> = Minor UI polish (refund badge, plan durations) · <b>C</b> = Plan bottom sheet added between A5→A6 (CTA: "खर्चा कितना होगा?") · <b>D</b> = "बाद में करूंगा" Book Later CTA + reminder push. Goal: reduce ₹100+₹300 confusion, improve conversion from cost page to payment.</p></div>
 
-      <table class="sum" style="margin-top:16px;">
-        <thead><tr>
-          <th>Variant</th>
-          <th class="tc">How It Starts CTA</th>
-          <th class="tc">Cost Breakdown UI</th>
-          <th class="tc">New Screen</th>
-          <th class="tc">Book Later + Reminder</th>
-          <th class="tc">Hypothesis</th>
-        </tr></thead>
-        <tbody>
-          <tr><td><b style="color:var(--t2);">A · Control</b></td><td class="tc">Unchanged</td><td class="tc">Existing</td><td class="tc">—</td><td class="tc">—</td><td class="tc" style="text-align:left;">Baseline</td></tr>
-          <tr><td><b style="color:var(--b);">B · Polish</b></td><td class="tc">Unchanged</td><td class="tc">Minor UI tweaks</td><td class="tc">—</td><td class="tc">—</td><td class="tc" style="text-align:left;">Small polish lifts conversion</td></tr>
-          <tr class="hi"><td><b style="color:var(--y);">C · Bottom Sheet</b></td><td class="tc">"See Plans"</td><td class="tc">Existing</td><td class="tc">Plan bottom sheet</td><td class="tc">—</td><td class="tc" style="text-align:left;">Seeing plans pre-breakdown reduces drop</td></tr>
-          <tr class="cr"><td><b style="color:var(--p);">D · Book Later</b></td><td class="tc">Unchanged</td><td class="tc">+ "Book Later" CTA</td><td class="tc">Date picker</td><td class="tc">Push on selected date · deep-link to Cost Breakdown</td><td class="tc" style="text-align:left;">Captures deferred intent</td></tr>
-        </tbody>
-      </table>
-
-      <div class="tags" style="margin-top:16px;"><span class="tg ev">Affects: Section A Steps A5 → A6</span><span class="tg ev">Variant C adds: Plan bottom sheet</span><span class="tg es">Variant D adds: Book Later + 9 PM push</span></div>
-
-      <!-- Variant D bucket structure -->
-      <div class="notif-header">🪣 Variant D · Bucket Framework for measuring drop-off</div>
-      <div class="churn-matrix">
-        <div class="churn-card low">
-          <div class="cc-header"><span class="cc-num">A</span><span class="cc-title">Clicked "Book Later" + picked a slot</span><span class="cc-risk low">Intent</span></div>
-          <div class="cc-body">
-            <div class="cc-predict"><div class="cc-label">What it means</div><ul><li>User shows intent but not ready to pay right now</li></ul></div>
-            <div class="cc-actual"><div class="cc-label">Expected ~10-13 per 100 users</div>
-              <table class="pred-table">
-                <thead><tr><th></th><th class="period-pre">Target</th></tr></thead>
-                <tbody>
-                  <tr><td>A1 · picked &amp; paid</td><td class="v pre">~4-6</td></tr>
-                  <tr><td>A2 · picked, didn't pay</td><td class="v post">~5-7</td></tr>
-                  <tr class="acc"><td>A1 conversion</td><td class="v">40-50%</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="churn-card med">
-          <div class="cc-header"><span class="cc-num">B</span><span class="cc-title">Clicked "Book Later" + did not pick a slot</span><span class="cc-risk med">Partial</span></div>
-          <div class="cc-body">
-            <div class="cc-predict"><div class="cc-label">What it means</div><ul><li>User engaged with defer option but didn't commit</li><li>May indicate slot-step friction or soft exit behavior</li></ul></div>
-            <div class="cc-actual"><div class="cc-label">Expected ~5-6 per 100 users</div></div>
-          </div>
-        </div>
-        <div class="churn-card crit">
-          <div class="cc-header"><span class="cc-num">C</span><span class="cc-title">Did not click anything · hard drop</span><span class="cc-risk crit">Hard exit</span></div>
-          <div class="cc-body">
-            <div class="cc-predict"><div class="cc-label">What it means</div><ul><li>Problem is likely <b>price, trust, or clarity</b> — not timing</li><li>If Bucket C &gt; 70% of drops → need deeper fixes beyond Book Later</li></ul></div>
-            <div class="cc-actual"><div class="cc-label">Expected ~13-16 per 100 users</div></div>
-          </div>
-        </div>
+  <!-- EARLY WINNER INDICATOR -->
+  <div class="impact">
+    <h2>🏆 Early Variant Performance (2 days · tiny sample)</h2>
+    <div class="impact-grid">
+      <div class="impact-item good">
+        <div class="il">A · Control (n=64)</div>
+        <div class="iv">🥇 18.8% conversion</div>
       </div>
-
-      <div class="ibox sla" style="margin-top:14px;"><div class="ib-t">Reading signals (Week 1-2)</div><ul>
-        <li><b>A : B : C split ratio</b> — most important early read. Bucket A &gt; 30% of drop-offs = Book Later is working</li>
-        <li><b>Slot selection rate</b> — target &gt; 60% (of Book Later clickers who finish slot pick)</li>
-        <li><b>Return within 7 days</b> — early signal of real follow-through intent</li>
-      </ul></div>
-
-      <div class="ibox"><div class="ib-t" style="color:var(--g);">Reading signals (Week 3-4)</div><ul>
-        <li><b>Bucket A1 conversion rate</b> (slot → payment) — the TRUE recovery metric; target 40-50% of Bucket A</li>
-        <li><b>Avg days to convert</b> (A1) — 1-3d = timing/cash flow issue · 7+d = user not returning naturally</li>
-        <li><b>Effective conversion lift</b> — baseline vs A1-only recovered conversion (slot-pickers alone don't count)</li>
-      </ul></div>
+      <div class="impact-item neutral">
+        <div class="il">D · Book Later (n=14)</div>
+        <div class="iv">🥈 14.3% conversion</div>
+      </div>
+      <div class="impact-item neutral">
+        <div class="il">B · Polish (n=31)</div>
+        <div class="iv">🥉 12.9% conversion</div>
+      </div>
+      <div class="impact-item bad">
+        <div class="il">C · Bottom Sheet (n=20)</div>
+        <div class="iv">0% conversion (too early)</div>
+      </div>
     </div>
   </div>
 
@@ -1721,6 +1623,12 @@ table.sum .delta-cell.bad{color:var(--r);}
         </div>
       </div>
       <div class="tags"><span class="tg ev">how_to_get_started_clicked</span></div>
+      <div class="mets" style="margin-top:12px;">
+        <div class="mt" style="border-top:2px solid var(--t2);"><div class="v">64</div><div class="pct">100%</div><div class="l">A · Control</div></div>
+        <div class="mt" style="border-top:2px solid var(--b);"><div class="v">31</div><div class="pct">100%</div><div class="l">B · Polish</div></div>
+        <div class="mt" style="border-top:2px solid var(--y);"><div class="v">20</div><div class="pct">100%</div><div class="l">C · Sheet</div></div>
+        <div class="mt" style="border-top:2px solid var(--p);"><div class="v">14</div><div class="pct">100%</div><div class="l">D · Later</div></div>
+      </div>
     </div>
   </div>
   <div class="arrow">▼</div>
@@ -1762,6 +1670,12 @@ table.sum .delta-cell.bad{color:var(--r);}
         </div>
       </div>
       <div class="tags"><span class="tg ev">cost_today_clicked</span><span class="tg sl">book_later_clicked (D only · 0 — not instrumented)</span></div>
+      <div class="mets" style="margin-top:12px;">
+        <div class="mt" style="border-top:2px solid var(--t2);"><div class="v g">64</div><div class="pct">100%</div><div class="l">A · 0% drop</div></div>
+        <div class="mt" style="border-top:2px solid var(--b);"><div class="v g">31</div><div class="pct">100%</div><div class="l">B · 0% drop</div></div>
+        <div class="mt" style="border-top:2px solid var(--y);"><div class="v y">19</div><div class="pct">95%</div><div class="l">C · 5% drop</div></div>
+        <div class="mt" style="border-top:2px solid var(--p);"><div class="v y">13</div><div class="pct">92.9%</div><div class="l">D · 7.1% drop</div></div>
+      </div>
     </div>
   </div>
   <div class="arrow">▼</div>
@@ -1772,7 +1686,13 @@ table.sum .delta-cell.bad{color:var(--r);}
     <div class="step-b">
       <div class="figma"><div class="fl">Mobile + Name input</div><div class="fs"><img src="s_acq_7_mobile_name.png" alt="A7 Mobile"></div></div>
       <div class="tags"><span class="tg ev">pay_100_to_move_forward_clicked</span></div>
-      <div class="ibox esc"><div class="ib-t">Variant D signal</div><p>Only <b>42.9%</b> of Variant D users click Pay ₹100 (vs 83-87% in A/B). The remaining ~57% may be using the "बाद में करूंगा" Book Later CTA instead — <code>book_later_clicked</code> event will confirm once instrumented.</p></div>
+      <div class="mets" style="margin-top:12px;">
+        <div class="mt" style="border-top:2px solid var(--t2);"><div class="v y">53</div><div class="pct">82.8%</div><div class="l">A · 17.2% drop</div></div>
+        <div class="mt" style="border-top:2px solid var(--b);"><div class="v g">27</div><div class="pct">87.1%</div><div class="l">B · 12.9% drop 🟢</div></div>
+        <div class="mt" style="border-top:2px solid var(--y);"><div class="v y">16</div><div class="pct">80%</div><div class="l">C · 15.8% drop</div></div>
+        <div class="mt" style="border-top:2px solid var(--p);"><div class="v r">6</div><div class="pct">42.9%</div><div class="l">D · 53.8% drop 🔴</div></div>
+      </div>
+      <div style="font-size:10px;color:var(--p);margin-top:6px;font-style:italic;">D's low pay-click rate (42.9%) is expected — remaining ~57% may be using "बाद में करूंगा" Book Later CTA (not yet instrumented)</div>
     </div>
   </div>
   <div class="arrow">▼</div>
@@ -1792,6 +1712,12 @@ table.sum .delta-cell.bad{color:var(--r);}
     <div class="step-h"><div class="num">A8</div><div class="txt"><div class="label">Acquisition Step 8 · Same for all variants</div><div class="ttl">Booking Fee Captured (₹100 Paid)</div><div class="from-to">"भुगतान सफल रहा!"</div></div><div class="badges"><span class="bdg pre">A:12 (18.8%)</span><span class="bdg post">B:4 · C:0 · D:2</span></div></div>
     <div class="step-b">
       <div class="figma"><div class="fl">Payment success · ₹100</div><div class="fs"><img src="s1_post_1_payment.png" alt="A8 Paid"></div></div>
+      <div class="mets" style="margin-top:12px;">
+        <div class="mt" style="border-top:2px solid var(--g);"><div class="v g">12</div><div class="pct" style="color:var(--g);">18.8%</div><div class="l">🥇 A · Best</div></div>
+        <div class="mt" style="border-top:2px solid var(--b);"><div class="v">4</div><div class="pct">12.9%</div><div class="l">🥉 B · -5.9pp</div></div>
+        <div class="mt" style="border-top:2px solid var(--r);"><div class="v r">0</div><div class="pct" style="color:var(--r);">0%</div><div class="l">C · n=20 noise</div></div>
+        <div class="mt" style="border-top:2px solid var(--p);"><div class="v">2</div><div class="pct">14.3%</div><div class="l">🥈 D · -4.5pp</div></div>
+      </div>
       <div class="tags"><span class="tg ev">booking_fee_captured</span></div>
     </div>
   </div>
@@ -1827,7 +1753,7 @@ table.sum .delta-cell.bad{color:var(--r);}
   </table>
   <div style="font-size:11px;color:var(--t2);text-align:center;margin-top:-10px;margin-bottom:10px;font-style:italic;">Apr 15–17 · 2 days · tiny sample sizes (A=64, B=31, C=20, D=14) · no conclusions yet · check Apr 24+ for meaningful read</div>
 
-  <div class="ibox sla"><div class="ib-t">⚠ Early Read (2 days only)</div><p>Sample sizes are tiny. No conclusions can be drawn. Key signals to watch: <b>Variant D's A7 click rate (42.9%)</b> — the "Book Later" CTA may be capturing ~57% as deferred intent. <b>Variant C at 0%</b> is noise with 20 users. <b>Variant A (18.8%)</b> is the strongest but baseline is small.</p></div>
+  <div class="ibox sla"><div class="ib-t">⚠ 2 days only · n=129 total · check back Apr 24+</div><p>A leads at 18.8% but n=64. D's 42.9% pay-click is low by design (Book Later captures the rest). C at 0% is noise (n=20). Reliable read needs 500+ users per variant.</p></div>
 
   <!-- END OF NEW RELEASE TAB CONTENT -->
 
