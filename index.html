@@ -1694,24 +1694,86 @@ table.sum .delta-cell.bad{color:var(--r);}
     </div>
   </div>
 
-  <!-- Early funnel summary (Apr 15-17, 2 days) -->
-  <div style="margin-top:20px;text-align:center;"><span style="background:rgba(0,0,0,.3);padding:10px 28px;border-radius:24px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--c);border:1px solid rgba(34,211,238,.2);">Early Funnel Snapshot · Apr 15–17 (2 days · first-time loaders)</span></div>
+  <!-- FULL FUNNEL WITH A/B/C/D COMPARISON -->
+  <div style="margin-top:20px;text-align:center;"><span style="background:rgba(0,0,0,.3);padding:10px 28px;border-radius:24px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--c);border:1px solid rgba(34,211,238,.2);">Full Acquisition Funnel · Apr 15–17 (2 days · first-time loaders)</span></div>
+
+  <!-- Common funnel A1-A4 (pre-variant) -->
   <table class="sum" style="margin-top:16px;">
-    <thead><tr><th class="step-th">Step</th><th class="flow-th">Stage</th><th class="tc">Users</th><th class="tc">% of homepage</th><th class="tc">Event</th></tr></thead>
+    <thead><tr><th class="step-th">Step</th><th class="flow-th">Stage</th><th class="tc">All Users</th><th class="tc">%</th><th class="tc">Note</th></tr></thead>
     <tbody>
-      <tr><td>A1</td><td class="tl">Homepage Loaded</td><td class="tc">1,709</td><td class="tc">100%</td><td class="tl" style="font-size:10px;color:var(--t2);">booking_homepage_loaded</td></tr>
-      <tr><td>A2</td><td class="tl">Check Serviceability</td><td class="tc">1,075</td><td class="tc">62.9%</td><td class="tl" style="font-size:10px;color:var(--t2);">check_serviceability_clicked</td></tr>
-      <tr><td>A3</td><td class="tl">Serviceable Page</td><td class="tc">724</td><td class="tc">42.4%</td><td class="tl" style="font-size:10px;color:var(--t2);">serviceable_page_loaded</td></tr>
-      <tr style="color:var(--r);font-style:italic;"><td></td><td class="tl">└ Unserviceable</td><td class="tc">156</td><td class="tc">9.1%</td><td class="tl" style="font-size:10px;">unserviceable_page_loaded</td></tr>
-      <tr><td>A4</td><td class="tl">How Does It Work</td><td class="tc">706</td><td class="tc">41.3%</td><td class="tl" style="font-size:10px;color:var(--t2);">how_does_it_work_clicked</td></tr>
-      <tr><td>A5</td><td class="tl">How To Get Started</td><td class="tc">428</td><td class="tc">25.0%</td><td class="tl" style="font-size:10px;color:var(--t2);">how_to_get_started_clicked</td></tr>
-      <tr><td>A6</td><td class="tl">Cost Today</td><td class="tc">417</td><td class="tc">24.4%</td><td class="tl" style="font-size:10px;color:var(--t2);">cost_today_clicked</td></tr>
-      <tr><td>A7</td><td class="tl">Pay ₹100 Click</td><td class="tc">336</td><td class="tc">19.7%</td><td class="tl" style="font-size:10px;color:var(--t2);">pay_100_to_move_forward_clicked</td></tr>
-      <tr class="hi"><td><b>A7.5</b></td><td class="tl"><b>📍 Location Confirm (NEW)</b></td><td class="tc" style="color:var(--y);">0*</td><td class="tc" style="color:var(--y);">—</td><td class="tl" style="font-size:10px;color:var(--y);">I_AM_AT_INSTALL_LOCATION_CLICKED</td></tr>
-      <tr><td>A8</td><td class="tl">Booking Fee Captured</td><td class="tc"><b>71</b></td><td class="tc"><b>4.2%</b></td><td class="tl" style="font-size:10px;color:var(--t2);">booking_fee_captured</td></tr>
+      <tr><td>A1</td><td class="tl">Homepage Loaded</td><td class="tc"><b>1,709</b></td><td class="tc">100%</td><td class="tl" style="font-size:10px;color:var(--t2);">Common to all variants</td></tr>
+      <tr><td>A2</td><td class="tl">Check Serviceability</td><td class="tc">1,075</td><td class="tc">62.9%</td><td class="tl" style="font-size:10px;color:var(--t2);">Common</td></tr>
+      <tr><td>A3</td><td class="tl">Serviceable Page</td><td class="tc">724</td><td class="tc">42.4%</td><td class="tl" style="font-size:10px;color:var(--t2);">Common · Unserviceable: 156 (9.1%)</td></tr>
+      <tr><td>A4</td><td class="tl">How Does It Work</td><td class="tc">706</td><td class="tc">41.3%</td><td class="tl" style="font-size:10px;color:var(--t2);">Common · variants assigned from A5 onwards</td></tr>
     </tbody>
   </table>
-  <div style="font-size:11px;color:var(--t2);text-align:center;margin-top:-10px;margin-bottom:20px;font-style:italic;">* A7.5 event not yet instrumented · Overall conversion 4.2% (same as PRE baseline) · Based on first 2 days only</div>
+
+  <!-- Variant split A5-A8 -->
+  <div style="margin-top:24px;text-align:center;"><span style="background:rgba(192,132,252,.15);padding:8px 20px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--p);border:1px solid rgba(192,132,252,.3);">A/B/C/D Variant Split · Steps A5 → A8 (via <code style="background:rgba(0,0,0,.2);padding:2px 5px;border-radius:4px;">cost_breakdown_flow</code> property)</span></div>
+
+  <table class="sum" style="margin-top:14px;">
+    <thead>
+      <tr>
+        <th class="step-th" rowspan="2">Step</th>
+        <th class="flow-th" rowspan="2">Stage</th>
+        <th class="tc" style="color:var(--t2);" colspan="2">A · Control</th>
+        <th class="tc" style="color:var(--b);" colspan="2">B · Polish</th>
+        <th class="tc" style="color:var(--y);" colspan="2">C · Bottom Sheet</th>
+        <th class="tc" style="color:var(--p);" colspan="2">D · Book Later</th>
+      </tr>
+      <tr>
+        <th class="tc" style="color:var(--t2);">n</th><th class="tc" style="color:var(--t2);">%</th>
+        <th class="tc" style="color:var(--b);">n</th><th class="tc" style="color:var(--b);">%</th>
+        <th class="tc" style="color:var(--y);">n</th><th class="tc" style="color:var(--y);">%</th>
+        <th class="tc" style="color:var(--p);">n</th><th class="tc" style="color:var(--p);">%</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>A5</td><td class="tl">How To Get Started</td><td class="tc">64</td><td class="tc">100%</td><td class="tc">31</td><td class="tc">100%</td><td class="tc">20</td><td class="tc">100%</td><td class="tc">14</td><td class="tc">100%</td></tr>
+      <tr><td>A6</td><td class="tl">Cost Today Clicked</td><td class="tc">64</td><td class="tc">100%</td><td class="tc">31</td><td class="tc">100%</td><td class="tc">19</td><td class="tc" style="color:var(--y);">95%</td><td class="tc">13</td><td class="tc" style="color:var(--y);">92.9%</td></tr>
+      <tr><td>A7</td><td class="tl">Pay ₹100 Click</td><td class="tc">53</td><td class="tc">82.8%</td><td class="tc">27</td><td class="tc" style="color:var(--g);">87.1%</td><td class="tc">16</td><td class="tc">80.0%</td><td class="tc" style="color:var(--r);">6</td><td class="tc" style="color:var(--r);">42.9%</td></tr>
+      <tr class="hi"><td><b>A7.5</b></td><td class="tl"><b>📍 Location Confirm</b></td><td class="tc" style="color:var(--y);">0*</td><td class="tc">—</td><td class="tc" style="color:var(--y);">0*</td><td class="tc">—</td><td class="tc" style="color:var(--y);">0*</td><td class="tc">—</td><td class="tc" style="color:var(--y);">0*</td><td class="tc">—</td></tr>
+      <tr style="font-weight:700;"><td>A8</td><td class="tl">Booking Fee Captured</td><td class="tc" style="color:var(--g);">12</td><td class="tc" style="color:var(--g);">18.8%</td><td class="tc">4</td><td class="tc">12.9%</td><td class="tc" style="color:var(--r);">0</td><td class="tc" style="color:var(--r);">0%</td><td class="tc">2</td><td class="tc">14.3%</td></tr>
+    </tbody>
+  </table>
+  <div style="font-size:11px;color:var(--t2);text-align:center;margin-top:-10px;margin-bottom:10px;font-style:italic;">* A7.5 event not yet instrumented · % is of A5 (variant entry) · Very early data — 2 days only, small sample sizes</div>
+
+  <!-- VARIANT SCREENS COMPARISON -->
+  <div style="margin-top:20px;text-align:center;"><span style="background:rgba(0,0,0,.3);padding:8px 20px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--c);border:1px solid rgba(34,211,238,.2);">Variant Screens — What's Different</span></div>
+
+  <!-- 4-column variant grid -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:16px 0;">
+    <!-- Variant A -->
+    <div style="background:var(--card);border-radius:14px;padding:14px;border:1px solid var(--border-strong);border-top:3px solid var(--t2);">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--t2);margin-bottom:8px;">A · Control</div>
+      <div class="figma"><div class="fl" style="font-size:9px;">A6: Existing cost breakdown (unchanged)</div><div class="fs"><img src="s_var_a_cost.png" alt="Variant A Cost" style="max-height:320px;"></div></div>
+      <div style="font-size:18px;font-weight:900;color:var(--g);margin-top:8px;">18.8%</div>
+      <div style="font-size:10px;color:var(--t2);">A5→A8 conversion</div>
+    </div>
+    <!-- Variant B -->
+    <div style="background:var(--card);border-radius:14px;padding:14px;border:1px solid var(--border-strong);border-top:3px solid var(--b);">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--b);margin-bottom:8px;">B · Polish</div>
+      <div class="figma"><div class="fl" style="font-size:9px;">A6: Minor UI tweaks (refund badge, plan durations)</div><div class="fs"><img src="s_var_b_cost.png" alt="Variant B Cost" style="max-height:320px;"></div></div>
+      <div style="font-size:18px;font-weight:900;color:var(--t2);margin-top:8px;">12.9%</div>
+      <div style="font-size:10px;color:var(--t2);">A5→A8 conversion</div>
+    </div>
+    <!-- Variant C -->
+    <div style="background:var(--card);border-radius:14px;padding:14px;border:1px solid var(--border-strong);border-top:3px solid var(--y);">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--y);margin-bottom:8px;">C · Bottom Sheet</div>
+      <div class="figma"><div class="fl" style="font-size:9px;">A5: CTA "खर्चा कितना होगा?" → Plan bottom sheet → A6</div><div class="fs"><img src="s_var_c_a5.png" alt="Variant C A5" style="max-height:320px;"><img src="s_var_c_bottomsheet.png" alt="Variant C Sheet" style="max-height:320px;"><img src="s_var_c_cost.png" alt="Variant C Cost" style="max-height:320px;"></div><div class="fh">← Scroll · 3 screens →</div></div>
+      <div style="font-size:18px;font-weight:900;color:var(--r);margin-top:8px;">0%</div>
+      <div style="font-size:10px;color:var(--t2);">A5→A8 · only 20 users (too early)</div>
+    </div>
+    <!-- Variant D -->
+    <div style="background:var(--card);border-radius:14px;padding:14px;border:1px solid var(--border-strong);border-top:3px solid var(--p);">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--p);margin-bottom:8px;">D · Book Later</div>
+      <div class="figma"><div class="fl" style="font-size:9px;">A6: + "बाद में करूंगा" secondary CTA</div><div class="fs"><img src="s_var_d_cost.png" alt="Variant D Cost" style="max-height:320px;"></div></div>
+      <div style="font-size:18px;font-weight:900;color:var(--t2);margin-top:8px;">14.3%</div>
+      <div style="font-size:10px;color:var(--t2);">A5→A8 · A7 click only 42.9% (rest booked later?)</div>
+    </div>
+  </div>
+
+  <div class="ibox sla"><div class="ib-t">⚠ Early Read (2 days only)</div><p>Sample sizes are tiny: A=64, B=31, C=20, D=14 users. No conclusions can be drawn yet. The 0% conversion in C is likely noise — only 20 users. Need <b>7-10 more days</b> for statistically meaningful results. Key signal to watch: <b>Variant D's A7 click rate (42.9%)</b> — the "Book Later" CTA may be capturing the other ~57% as deferred intent (Bucket A/B from the PRD).</p></div>
 
   <!-- DATA TIMELINE -->
   <div class="section-wrap">
