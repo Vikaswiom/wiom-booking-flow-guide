@@ -1651,6 +1651,68 @@ table.sum .delta-cell.bad{color:var(--r);}
     </div>
   </div>
 
+  <!-- ============================================================ -->
+  <!-- SECTION A FUNNEL — NEW RELEASE (9 steps, +1 location confirm) -->
+  <!-- ============================================================ -->
+  <div class="section-wrap">
+    <span class="section-divider">📱 Section A · Acquisition Funnel (Apr 15 release)<span class="section-sub">Same 8 steps + NEW Step A7.5 Location Confirmation · First-time loaders · Data: Apr 15–17 (early 2 days)</span></span>
+  </div>
+
+  <!-- New step highlight -->
+  <div class="step high">
+    <div class="step-h">
+      <div class="num">A7.5</div>
+      <div class="txt"><div class="label">NEW STEP · Location Clarity</div><div class="ttl">Location Confirmation Before Payment</div><div class="from-to">"पेमेंट से पहले नेट लगवाने की लोकेशन कन्फर्म करें" · Between Pay ₹100 Click → Booking Fee Captured</div></div>
+      <div class="badges"><span class="tab-badge" style="font-size:10px;padding:4px 10px;">New in Apr 15</span></div>
+    </div>
+    <div class="step-b">
+      <div class="compare">
+        <div class="compare-col pre" style="opacity:.4;">
+          <div class="period-tag">🔵 PRE · Did not exist</div>
+          <div class="same-flow"><b>This step did not exist in PRE flow.</b><br>Customers went directly from Pay ₹100 Click → Booking Fee Captured without location confirmation.</div>
+        </div>
+        <div class="compare-col post">
+          <div class="period-tag">🟣 POST · Apr 15 release</div>
+          <div class="figma"><div class="fl">New screen: "पेमेंट से पहले नेट लगवाने की लोकेशन कन्फर्म करें" · CTA: "मैं लोकेशन पर हूँ" / "अभी लोकेशन पर नहीं हूँ"</div><div class="fs"><img src="s_acq_location_confirm.png" alt="Location Confirmation"></div><div class="fh">← Scroll horizontally →</div></div>
+          <div class="mets">
+            <div class="mt"><div class="v y">336</div><div class="pct">19.7%</div><div class="l">Pay ₹100 Click (entry)</div></div>
+            <div class="mt"><div class="v r">0</div><div class="pct">0.0%</div><div class="l">Location Confirm*</div></div>
+            <div class="mt"><div class="v g">71</div><div class="pct">4.2%</div><div class="l">Booking Fee Captured</div></div>
+          </div>
+          <div style="font-size:10px;color:var(--y);margin-top:8px;font-style:italic;">* Event <code>I_AM_AT_INSTALL_LOCATION_CLICKED</code> not yet firing in CleverTap. Likely not instrumented yet — check back after deployment.</div>
+        </div>
+      </div>
+      <div class="tags"><span class="tg ev">I_AM_AT_INSTALL_LOCATION_CLICKED</span><span class="tg sl">Event not yet live — awaiting instrumentation</span></div>
+      <div class="notif-header">Notifications (shared — same in both flows)</div>
+      <div class="notif-grid">
+        <div class="notif-card chat inactive"><div class="nc-pri">1</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">💬</span><span class="nc-label">In-Chat Message</span></div><div class="na">NA — pre-booking stage</div></div></div>
+        <div class="notif-card push inactive"><div class="nc-pri">2</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">🔔</span><span class="nc-label">Push Notification</span></div><div class="na">NA — not set for this step</div></div></div>
+        <div class="notif-card wa inactive"><div class="nc-pri">3</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📱</span><span class="nc-label">WhatsApp</span></div><div class="na">NA — not set for this step</div></div></div>
+        <div class="notif-card ivr inactive"><div class="nc-pri">4</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📞</span><span class="nc-label">IVR</span></div><div class="na">NA — not set for this step</div></div></div>
+        <div class="notif-card delay inactive"><div class="nc-pri">5</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">⏰</span><span class="nc-label">Delay Message</span></div><div class="na">NA — no delay at this step</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Early funnel summary (Apr 15-17, 2 days) -->
+  <div style="margin-top:20px;text-align:center;"><span style="background:rgba(0,0,0,.3);padding:10px 28px;border-radius:24px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--c);border:1px solid rgba(34,211,238,.2);">Early Funnel Snapshot · Apr 15–17 (2 days · first-time loaders)</span></div>
+  <table class="sum" style="margin-top:16px;">
+    <thead><tr><th class="step-th">Step</th><th class="flow-th">Stage</th><th class="tc">Users</th><th class="tc">% of homepage</th><th class="tc">Event</th></tr></thead>
+    <tbody>
+      <tr><td>A1</td><td class="tl">Homepage Loaded</td><td class="tc">1,709</td><td class="tc">100%</td><td class="tl" style="font-size:10px;color:var(--t2);">booking_homepage_loaded</td></tr>
+      <tr><td>A2</td><td class="tl">Check Serviceability</td><td class="tc">1,075</td><td class="tc">62.9%</td><td class="tl" style="font-size:10px;color:var(--t2);">check_serviceability_clicked</td></tr>
+      <tr><td>A3</td><td class="tl">Serviceable Page</td><td class="tc">724</td><td class="tc">42.4%</td><td class="tl" style="font-size:10px;color:var(--t2);">serviceable_page_loaded</td></tr>
+      <tr style="color:var(--r);font-style:italic;"><td></td><td class="tl">└ Unserviceable</td><td class="tc">156</td><td class="tc">9.1%</td><td class="tl" style="font-size:10px;">unserviceable_page_loaded</td></tr>
+      <tr><td>A4</td><td class="tl">How Does It Work</td><td class="tc">706</td><td class="tc">41.3%</td><td class="tl" style="font-size:10px;color:var(--t2);">how_does_it_work_clicked</td></tr>
+      <tr><td>A5</td><td class="tl">How To Get Started</td><td class="tc">428</td><td class="tc">25.0%</td><td class="tl" style="font-size:10px;color:var(--t2);">how_to_get_started_clicked</td></tr>
+      <tr><td>A6</td><td class="tl">Cost Today</td><td class="tc">417</td><td class="tc">24.4%</td><td class="tl" style="font-size:10px;color:var(--t2);">cost_today_clicked</td></tr>
+      <tr><td>A7</td><td class="tl">Pay ₹100 Click</td><td class="tc">336</td><td class="tc">19.7%</td><td class="tl" style="font-size:10px;color:var(--t2);">pay_100_to_move_forward_clicked</td></tr>
+      <tr class="hi"><td><b>A7.5</b></td><td class="tl"><b>📍 Location Confirm (NEW)</b></td><td class="tc" style="color:var(--y);">0*</td><td class="tc" style="color:var(--y);">—</td><td class="tl" style="font-size:10px;color:var(--y);">I_AM_AT_INSTALL_LOCATION_CLICKED</td></tr>
+      <tr><td>A8</td><td class="tl">Booking Fee Captured</td><td class="tc"><b>71</b></td><td class="tc"><b>4.2%</b></td><td class="tl" style="font-size:10px;color:var(--t2);">booking_fee_captured</td></tr>
+    </tbody>
+  </table>
+  <div style="font-size:11px;color:var(--t2);text-align:center;margin-top:-10px;margin-bottom:20px;font-style:italic;">* A7.5 event not yet instrumented · Overall conversion 4.2% (same as PRE baseline) · Based on first 2 days only</div>
+
   <!-- DATA TIMELINE -->
   <div class="section-wrap">
     <span class="section-divider">📅 When Data Will Populate<span class="section-sub">Apr 15 release → first reliable read on Apr 24 (9-day maturity buffer)</span></span>
