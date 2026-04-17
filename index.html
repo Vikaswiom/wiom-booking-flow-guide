@@ -1652,65 +1652,152 @@ table.sum .delta-cell.bad{color:var(--r);}
   </div>
 
   <!-- ============================================================ -->
-  <!-- SECTION A FUNNEL — NEW RELEASE (9 steps, +1 location confirm) -->
+  <!-- FULL A/B/C/D FUNNEL WITH SCREENS (A1→A8)                       -->
   <!-- ============================================================ -->
   <div class="section-wrap">
-    <span class="section-divider">📱 Section A · Acquisition Funnel (Apr 15 release)<span class="section-sub">Same 8 steps + NEW Step A7.5 Location Confirmation · First-time loaders · Data: Apr 15–17 (early 2 days)</span></span>
+    <span class="section-divider">📱 Full Acquisition Funnel · A/B/C/D Comparison<span class="section-sub">First-time loaders · Apr 15–17 (2 days) · Location Clarity applied to all variants</span></span>
   </div>
 
-  <!-- New step highlight -->
-  <div class="step high">
-    <div class="step-h">
-      <div class="num">A7.5</div>
-      <div class="txt"><div class="label">NEW STEP · Location Clarity</div><div class="ttl">Location Confirmation Before Payment</div><div class="from-to">"पेमेंट से पहले नेट लगवाने की लोकेशन कन्फर्म करें" · Between Pay ₹100 Click → Booking Fee Captured</div></div>
-      <div class="badges"><span class="tab-badge" style="font-size:10px;padding:4px 10px;">New in Apr 15</span></div>
-    </div>
+  <!-- STEP A1 — Homepage (same for all) -->
+  <div class="step low">
+    <div class="step-h"><div class="num">A1</div><div class="txt"><div class="label">Acquisition Step 1 · Same for all variants</div><div class="ttl">App Opened — Booking Homepage Loaded</div><div class="from-to">First screen after app open · "रिचार्ज वाला घर का नेट"</div></div><div class="badges"><span class="bdg pre">All: 1,709</span></div></div>
     <div class="step-b">
-      <div class="compare">
-        <div class="compare-col pre" style="opacity:.4;">
-          <div class="period-tag">🔵 PRE · Did not exist</div>
-          <div class="same-flow"><b>This step did not exist in PRE flow.</b><br>Customers went directly from Pay ₹100 Click → Booking Fee Captured without location confirmation.</div>
+      <div class="figma"><div class="fl">Splash screen · "मेरे इलाके में है या नहीं?" CTA</div><div class="fs"><img src="s_acq_1_splash.png" alt="A1 Splash"></div></div>
+      <div class="mets">
+        <div class="mt"><div class="v g">1,709</div><div class="pct">100%</div><div class="l">First-Time Loaders</div></div>
+      </div>
+      <div class="tags"><span class="tg ev">booking_homepage_loaded · count = 1</span></div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- STEP A2 — Check Serviceability (same for all) -->
+  <div class="step low">
+    <div class="step-h"><div class="num">A2</div><div class="txt"><div class="label">Acquisition Step 2 · Same for all variants</div><div class="ttl">"Check Serviceability" Clicked</div><div class="from-to">"मेरे इलाके में है या नहीं?" → loading screen</div></div><div class="badges"><span class="bdg pre">1,075 (62.9%)</span></div></div>
+    <div class="step-b">
+      <div class="figma"><div class="fl">Loading · "आपकी जगह पर नेट चेक कर रहे हैं..."</div><div class="fs"><img src="s_acq_2_loading.png" alt="A2 Loading"></div></div>
+      <div class="mets">
+        <div class="mt"><div class="v g">1,709</div><div class="pct">100%</div><div class="l">Homepage</div></div>
+        <div class="mt"><div class="v y">1,075</div><div class="pct">62.9%</div><div class="l">Clicked Check</div></div>
+      </div>
+      <div class="tags"><span class="tg ev">check_serviceability_clicked</span></div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- STEP A3 — Serviceable (same for all) -->
+  <div class="step low">
+    <div class="step-h"><div class="num">A3</div><div class="txt"><div class="label">Acquisition Step 3 · Same for all variants</div><div class="ttl">Serviceable Page Loaded</div><div class="from-to">"यहाँ घर का नेट लग सकता है"</div></div><div class="badges"><span class="bdg pre">724 (42.4%)</span><span class="bdg c">Unserviceable: 156 (9.1%)</span></div></div>
+    <div class="step-b">
+      <div class="figma"><div class="fl">Serviceable result · "Rajiv colony, Sector 40"</div><div class="fs"><img src="s_acq_3_serviceable.png" alt="A3 Serviceable"></div></div>
+      <div class="tags"><span class="tg ev">serviceable_page_loaded</span><span class="tg es">unserviceable_page_loaded</span></div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- STEP A4 — How It Works (same for all) -->
+  <div class="step low">
+    <div class="step-h"><div class="num">A4</div><div class="txt"><div class="label">Acquisition Step 4 · Same for all variants</div><div class="ttl">"How Does It Work" Clicked</div><div class="from-to">"रिचार्ज वाला नेट ऐसे चला सकते हैं"</div></div><div class="badges"><span class="bdg pre">706 (41.3%)</span></div></div>
+    <div class="step-b">
+      <div class="figma"><div class="fl">How it works steps page</div><div class="fs"><img src="s_acq_4_how_works.png" alt="A4 How Works"></div></div>
+      <div class="tags"><span class="tg ev">how_does_it_work_clicked</span></div>
+      <div class="ibox sla"><div class="ib-t">Variant assignment starts from next step</div><p>Users are randomly assigned A / B / C / D variant via <code>cost_breakdown_flow</code> event property from A5 onwards.</p></div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- STEP A5 — How To Get Started (C has different CTA) -->
+  <div class="step low">
+    <div class="step-h"><div class="num">A5</div><div class="txt"><div class="label">Acquisition Step 5 · Variant C has different CTA</div><div class="ttl">"How To Get Started" Clicked</div><div class="from-to">"घर पर नेट शुरू करने के लिए"</div></div><div class="badges"><span class="bdg pre">A:64 · B:31 · C:20 · D:14</span></div></div>
+    <div class="step-b">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;">
+        <div style="background:var(--card);border-radius:12px;padding:14px;border:1px solid var(--border);">
+          <div style="font-size:10px;font-weight:800;color:var(--t2);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">A / B / D — Same screen</div>
+          <div class="figma"><div class="fl" style="font-size:9px;">CTA: "शुरू करने के लिए क्या देना होगा?"</div><div class="fs"><img src="s_acq_5_get_started.png" alt="A5 Standard" style="max-height:350px;"></div></div>
         </div>
-        <div class="compare-col post">
-          <div class="period-tag">🟣 POST · Apr 15 release</div>
-          <div class="figma"><div class="fl">New screen: "पेमेंट से पहले नेट लगवाने की लोकेशन कन्फर्म करें" · CTA: "मैं लोकेशन पर हूँ" / "अभी लोकेशन पर नहीं हूँ"</div><div class="fs"><img src="s_acq_location_confirm.png" alt="Location Confirmation"></div><div class="fh">← Scroll horizontally →</div></div>
-          <div class="mets">
-            <div class="mt"><div class="v y">336</div><div class="pct">19.7%</div><div class="l">Pay ₹100 Click (entry)</div></div>
-            <div class="mt"><div class="v r">0</div><div class="pct">0.0%</div><div class="l">Location Confirm*</div></div>
-            <div class="mt"><div class="v g">71</div><div class="pct">4.2%</div><div class="l">Booking Fee Captured</div></div>
-          </div>
-          <div style="font-size:10px;color:var(--y);margin-top:8px;font-style:italic;">* Event <code>I_AM_AT_INSTALL_LOCATION_CLICKED</code> not yet firing in CleverTap. Likely not instrumented yet — check back after deployment.</div>
+        <div style="background:var(--card);border-radius:12px;padding:14px;border:1px solid rgba(251,191,36,.25);border-top:3px solid var(--y);">
+          <div style="font-size:10px;font-weight:800;color:var(--y);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">C — Different CTA</div>
+          <div class="figma"><div class="fl" style="font-size:9px;">CTA: "खर्चा कितना होगा?" → opens plan bottom sheet</div><div class="fs"><img src="s_var_c_a5.png" alt="A5 Variant C" style="max-height:350px;"></div></div>
         </div>
       </div>
-      <div class="tags"><span class="tg ev">I_AM_AT_INSTALL_LOCATION_CLICKED</span><span class="tg sl">Event not yet live — awaiting instrumentation</span></div>
-      <div class="notif-header">Notifications (shared — same in both flows)</div>
-      <div class="notif-grid">
-        <div class="notif-card chat inactive"><div class="nc-pri">1</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">💬</span><span class="nc-label">In-Chat Message</span></div><div class="na">NA — pre-booking stage</div></div></div>
-        <div class="notif-card push inactive"><div class="nc-pri">2</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">🔔</span><span class="nc-label">Push Notification</span></div><div class="na">NA — not set for this step</div></div></div>
-        <div class="notif-card wa inactive"><div class="nc-pri">3</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📱</span><span class="nc-label">WhatsApp</span></div><div class="na">NA — not set for this step</div></div></div>
-        <div class="notif-card ivr inactive"><div class="nc-pri">4</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">📞</span><span class="nc-label">IVR</span></div><div class="na">NA — not set for this step</div></div></div>
-        <div class="notif-card delay inactive"><div class="nc-pri">5</div><div class="nc-body"><div class="nc-h"><span class="nc-icon">⏰</span><span class="nc-label">Delay Message</span></div><div class="na">NA — no delay at this step</div></div></div>
+      <div class="tags"><span class="tg ev">how_to_get_started_clicked</span></div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- STEP A5.5 — Plan Bottom Sheet (C only) -->
+  <div class="step high" style="border-left-color:var(--y);">
+    <div class="step-h"><div class="num" style="color:var(--y);opacity:.3;">C</div><div class="txt"><div class="label" style="color:var(--y);">Variant C Only · New Screen</div><div class="ttl">Plan Bottom Sheet</div><div class="from-to">"1, 2, 7, 14 या 28 दिन — जितने दिन चाहें उतने दिन का रिचार्ज करें"</div></div><div class="badges"><span class="tab-badge" style="font-size:10px;padding:4px 10px;background:rgba(251,191,36,.15);color:var(--y);border-color:rgba(251,191,36,.3);">C only</span></div></div>
+    <div class="step-b">
+      <div class="figma"><div class="fl" style="color:var(--y);">Plan selection bottom sheet · Shows 1/2/7/14/28 day plans</div><div class="fs"><img src="s_var_c_bottomsheet.png" alt="C Bottom Sheet" style="max-height:400px;"></div></div>
+      <div class="tags"><span class="tg sl">plan_reveal_price_clicked (2 of 20 C-users · 10%)</span></div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- STEP A6 — Cost Breakdown (ALL variants differ) -->
+  <div class="step crit">
+    <div class="step-h"><div class="num">A6</div><div class="txt"><div class="label">Acquisition Step 6 · 🧪 ALL VARIANTS DIFFER HERE</div><div class="ttl">Cost Breakdown Screen</div><div class="from-to">"शुरू करने के लिए" · ₹100 + ₹300</div></div><div class="badges"><span class="bdg pre">A:64 (100%)</span><span class="bdg post">B:31 · C:19 · D:13</span></div></div>
+    <div class="step-b">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0;">
+        <div style="background:var(--card);border-radius:12px;padding:12px;border:1px solid var(--border);border-top:3px solid var(--t2);">
+          <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--t2);margin-bottom:6px;">A · Control</div>
+          <div class="figma"><div class="fs"><img src="s_var_a_cost.png" alt="A Cost" style="max-height:280px;"></div></div>
+          <div style="font-size:9px;color:var(--t2);margin-top:6px;">Existing unchanged</div>
+        </div>
+        <div style="background:var(--card);border-radius:12px;padding:12px;border:1px solid rgba(96,165,250,.2);border-top:3px solid var(--b);">
+          <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--b);margin-bottom:6px;">B · Polish</div>
+          <div class="figma"><div class="fs"><img src="s_var_b_cost.png" alt="B Cost" style="max-height:280px;"></div></div>
+          <div style="font-size:9px;color:var(--t2);margin-top:6px;">Refund badge + plan durations</div>
+        </div>
+        <div style="background:var(--card);border-radius:12px;padding:12px;border:1px solid rgba(251,191,36,.2);border-top:3px solid var(--y);">
+          <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--y);margin-bottom:6px;">C · After Sheet</div>
+          <div class="figma"><div class="fs"><img src="s_var_c_cost.png" alt="C Cost" style="max-height:280px;"></div></div>
+          <div style="font-size:9px;color:var(--t2);margin-top:6px;">Same breakdown, post-sheet</div>
+        </div>
+        <div style="background:var(--card);border-radius:12px;padding:12px;border:1px solid rgba(192,132,252,.2);border-top:3px solid var(--p);">
+          <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--p);margin-bottom:6px;">D · Book Later</div>
+          <div class="figma"><div class="fs"><img src="s_var_d_cost.png" alt="D Cost" style="max-height:280px;"></div></div>
+          <div style="font-size:9px;color:var(--t2);margin-top:6px;">+ "बाद में करूंगा" CTA</div>
+        </div>
       </div>
+      <div class="tags"><span class="tg ev">cost_today_clicked</span><span class="tg sl">book_later_clicked (D only · 0 — not instrumented)</span></div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- STEP A7 — Pay ₹100 Click (same screen, all variants) -->
+  <div class="step low">
+    <div class="step-h"><div class="num">A7</div><div class="txt"><div class="label">Acquisition Step 7 · Same for all variants</div><div class="ttl">"Pay ₹100 To Move Forward" Clicked</div><div class="from-to">"₹100 देकर विज़िट कन्फर्म करें"</div></div><div class="badges"><span class="bdg pre">A:53 (82.8%)</span><span class="bdg post">B:27 · C:16 · D:6 (42.9%)</span></div></div>
+    <div class="step-b">
+      <div class="figma"><div class="fl">Mobile + Name → Payment method</div><div class="fs"><img src="s_acq_7_mobile_name.png" alt="A7 Mobile"><img src="s_acq_8_payment.png" alt="A7 Payment"></div><div class="fh">← Scroll · 2 screens →</div></div>
+      <div class="tags"><span class="tg ev">pay_100_to_move_forward_clicked</span></div>
+      <div class="ibox esc"><div class="ib-t">Variant D signal</div><p>Only <b>42.9%</b> of Variant D users click Pay ₹100 (vs 83-87% in A/B). The remaining ~57% may be using the "बाद में करूंगा" Book Later CTA instead — <code>book_later_clicked</code> event will confirm once instrumented.</p></div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- STEP A7.5 — Location Confirm (NEW, ALL variants) -->
+  <div class="step high">
+    <div class="step-h"><div class="num">A7.5</div><div class="txt"><div class="label">NEW STEP · All variants · Location Clarity</div><div class="ttl">📍 Location Confirmation Before Payment</div><div class="from-to">"पेमेंट से पहले नेट लगवाने की लोकेशन कन्फर्म करें"</div></div><div class="badges"><span class="tab-badge" style="font-size:10px;padding:4px 10px;">New in Apr 15</span><span class="bdg h">0* (event pending)</span></div></div>
+    <div class="step-b">
+      <div class="figma"><div class="fl">All variants · "मैं लोकेशन पर हूँ" / "अभी लोकेशन पर नहीं हूँ"</div><div class="fs"><img src="s_acq_location_confirm.png" alt="Location Confirmation"></div></div>
+      <div class="tags"><span class="tg ev">I_AM_AT_INSTALL_LOCATION_CLICKED</span><span class="tg sl">Event not yet instrumented</span></div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- STEP A8 — Booking Fee Captured (same screen, all variants) -->
+  <div class="step low">
+    <div class="step-h"><div class="num">A8</div><div class="txt"><div class="label">Acquisition Step 8 · Same for all variants</div><div class="ttl">Booking Fee Captured (₹100 Paid)</div><div class="from-to">"भुगतान सफल रहा!"</div></div><div class="badges"><span class="bdg pre">A:12 (18.8%)</span><span class="bdg post">B:4 · C:0 · D:2</span></div></div>
+    <div class="step-b">
+      <div class="figma"><div class="fl">Payment success · ₹100</div><div class="fs"><img src="s1_post_1_payment.png" alt="A8 Paid"></div></div>
+      <div class="tags"><span class="tg ev">booking_fee_captured</span></div>
     </div>
   </div>
 
-  <!-- FULL FUNNEL WITH A/B/C/D COMPARISON -->
-  <div style="margin-top:20px;text-align:center;"><span style="background:rgba(0,0,0,.3);padding:10px 28px;border-radius:24px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--c);border:1px solid rgba(34,211,238,.2);">Full Acquisition Funnel · Apr 15–17 (2 days · first-time loaders)</span></div>
-
-  <!-- Common funnel A1-A4 (pre-variant) -->
-  <table class="sum" style="margin-top:16px;">
-    <thead><tr><th class="step-th">Step</th><th class="flow-th">Stage</th><th class="tc">All Users</th><th class="tc">%</th><th class="tc">Note</th></tr></thead>
-    <tbody>
-      <tr><td>A1</td><td class="tl">Homepage Loaded</td><td class="tc"><b>1,709</b></td><td class="tc">100%</td><td class="tl" style="font-size:10px;color:var(--t2);">Common to all variants</td></tr>
-      <tr><td>A2</td><td class="tl">Check Serviceability</td><td class="tc">1,075</td><td class="tc">62.9%</td><td class="tl" style="font-size:10px;color:var(--t2);">Common</td></tr>
-      <tr><td>A3</td><td class="tl">Serviceable Page</td><td class="tc">724</td><td class="tc">42.4%</td><td class="tl" style="font-size:10px;color:var(--t2);">Common · Unserviceable: 156 (9.1%)</td></tr>
-      <tr><td>A4</td><td class="tl">How Does It Work</td><td class="tc">706</td><td class="tc">41.3%</td><td class="tl" style="font-size:10px;color:var(--t2);">Common · variants assigned from A5 onwards</td></tr>
-    </tbody>
-  </table>
-
-  <!-- Variant split A5-A8 -->
-  <div style="margin-top:24px;text-align:center;"><span style="background:rgba(192,132,252,.15);padding:8px 20px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--p);border:1px solid rgba(192,132,252,.3);">A/B/C/D Variant Split · Steps A5 → A8 (via <code style="background:rgba(0,0,0,.2);padding:2px 5px;border-radius:4px;">cost_breakdown_flow</code> property)</span></div>
-
+  <!-- VARIANT SUMMARY TABLE -->
+  <div style="margin-top:28px;text-align:center;"><span style="background:rgba(0,0,0,.3);padding:10px 28px;border-radius:24px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--c);border:1px solid rgba(34,211,238,.2);">A/B/C/D Funnel Summary (A5 → A8)</span></div>
   <table class="sum" style="margin-top:14px;">
     <thead>
       <tr>
@@ -1730,79 +1817,19 @@ table.sum .delta-cell.bad{color:var(--r);}
     </thead>
     <tbody>
       <tr><td>A5</td><td class="tl">How To Get Started</td><td class="tc">64</td><td class="tc">100%</td><td class="tc">31</td><td class="tc">100%</td><td class="tc">20</td><td class="tc">100%</td><td class="tc">14</td><td class="tc">100%</td></tr>
-      <tr><td>A6</td><td class="tl">Cost Today Clicked</td><td class="tc">64</td><td class="tc">100%</td><td class="tc">31</td><td class="tc">100%</td><td class="tc">19</td><td class="tc" style="color:var(--y);">95%</td><td class="tc">13</td><td class="tc" style="color:var(--y);">92.9%</td></tr>
-      <tr style="background:rgba(251,191,36,.06);"><td style="color:var(--y);">C*</td><td class="tl" style="color:var(--y);">└ plan_reveal_price_clicked</td><td class="tc" style="color:var(--t2);">11</td><td class="tc" style="color:var(--t2);">17.2%</td><td class="tc" style="color:var(--t2);">2</td><td class="tc" style="color:var(--t2);">6.5%</td><td class="tc" style="color:var(--y);font-weight:700;">2</td><td class="tc" style="color:var(--y);font-weight:700;">10.0%</td><td class="tc" style="color:var(--t2);">1</td><td class="tc" style="color:var(--t2);">7.1%</td></tr>
-      <tr style="background:rgba(192,132,252,.06);"><td style="color:var(--p);">D*</td><td class="tl" style="color:var(--p);">└ book_later_clicked</td><td class="tc" style="color:var(--t2);">—</td><td class="tc" style="color:var(--t2);">—</td><td class="tc" style="color:var(--t2);">—</td><td class="tc" style="color:var(--t2);">—</td><td class="tc" style="color:var(--t2);">—</td><td class="tc" style="color:var(--t2);">—</td><td class="tc" style="color:var(--y);">0**</td><td class="tc" style="color:var(--y);">0%</td></tr>
-      <tr><td>A7</td><td class="tl">Pay ₹100 Click</td><td class="tc">53</td><td class="tc">82.8%</td><td class="tc">27</td><td class="tc" style="color:var(--g);">87.1%</td><td class="tc">16</td><td class="tc">80.0%</td><td class="tc" style="color:var(--r);">6</td><td class="tc" style="color:var(--r);">42.9%</td></tr>
-      <tr class="hi"><td><b>A7.5</b></td><td class="tl"><b>📍 Location Confirm</b></td><td class="tc" style="color:var(--y);">0*</td><td class="tc">—</td><td class="tc" style="color:var(--y);">0*</td><td class="tc">—</td><td class="tc" style="color:var(--y);">0*</td><td class="tc">—</td><td class="tc" style="color:var(--y);">0*</td><td class="tc">—</td></tr>
+      <tr><td>A6</td><td class="tl">Cost Today</td><td class="tc">64</td><td class="tc">100%</td><td class="tc">31</td><td class="tc">100%</td><td class="tc">19</td><td class="tc" style="color:var(--y);">95%</td><td class="tc">13</td><td class="tc" style="color:var(--y);">92.9%</td></tr>
+      <tr style="background:rgba(251,191,36,.04);font-size:11px;"><td></td><td class="tl" style="color:var(--y);">└ plan_reveal (C event)</td><td class="tc" style="color:var(--t2);">11</td><td class="tc" style="color:var(--t2);">17%</td><td class="tc" style="color:var(--t2);">2</td><td class="tc" style="color:var(--t2);">6%</td><td class="tc" style="color:var(--y);">2</td><td class="tc" style="color:var(--y);">10%</td><td class="tc" style="color:var(--t2);">1</td><td class="tc" style="color:var(--t2);">7%</td></tr>
+      <tr style="background:rgba(192,132,252,.04);font-size:11px;"><td></td><td class="tl" style="color:var(--p);">└ book_later (D event)</td><td class="tc" colspan="6" style="color:var(--t2);text-align:center;">—</td><td class="tc" style="color:var(--y);" colspan="2">0 (pending)</td></tr>
+      <tr><td>A7</td><td class="tl">Pay ₹100 Click</td><td class="tc">53</td><td class="tc">82.8%</td><td class="tc">27</td><td class="tc" style="color:var(--g);">87.1%</td><td class="tc">16</td><td class="tc">80%</td><td class="tc" style="color:var(--r);">6</td><td class="tc" style="color:var(--r);">42.9%</td></tr>
+      <tr class="hi"><td>A7.5</td><td class="tl">📍 Location Confirm</td><td class="tc" colspan="8" style="text-align:center;color:var(--y);">Event pending instrumentation (I_AM_AT_INSTALL_LOCATION_CLICKED)</td></tr>
       <tr style="font-weight:700;"><td>A8</td><td class="tl">Booking Fee Captured</td><td class="tc" style="color:var(--g);">12</td><td class="tc" style="color:var(--g);">18.8%</td><td class="tc">4</td><td class="tc">12.9%</td><td class="tc" style="color:var(--r);">0</td><td class="tc" style="color:var(--r);">0%</td><td class="tc">2</td><td class="tc">14.3%</td></tr>
     </tbody>
   </table>
-  <div style="font-size:11px;color:var(--t2);text-align:center;margin-top:-10px;margin-bottom:10px;font-style:italic;">* plan_reveal fires across all variants (not C-only) · ** book_later_clicked not yet instrumented · A7.5 also pending · % is of A5 entry · 2 days only</div>
+  <div style="font-size:11px;color:var(--t2);text-align:center;margin-top:-10px;margin-bottom:10px;font-style:italic;">Apr 15–17 · 2 days · tiny sample sizes (A=64, B=31, C=20, D=14) · no conclusions yet · check Apr 24+ for meaningful read</div>
 
-  <!-- VARIANT SCREENS COMPARISON -->
-  <div style="margin-top:20px;text-align:center;"><span style="background:rgba(0,0,0,.3);padding:8px 20px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--c);border:1px solid rgba(34,211,238,.2);">Variant Screens — What's Different</span></div>
+  <div class="ibox sla"><div class="ib-t">⚠ Early Read (2 days only)</div><p>Sample sizes are tiny. No conclusions can be drawn. Key signals to watch: <b>Variant D's A7 click rate (42.9%)</b> — the "Book Later" CTA may be capturing ~57% as deferred intent. <b>Variant C at 0%</b> is noise with 20 users. <b>Variant A (18.8%)</b> is the strongest but baseline is small.</p></div>
 
-  <!-- 4-column variant grid -->
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:16px 0;">
-    <!-- Variant A -->
-    <div style="background:var(--card);border-radius:14px;padding:14px;border:1px solid var(--border-strong);border-top:3px solid var(--t2);">
-      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--t2);margin-bottom:8px;">A · Control</div>
-      <div class="figma"><div class="fl" style="font-size:9px;">A6: Existing cost breakdown (unchanged)</div><div class="fs"><img src="s_var_a_cost.png" alt="Variant A Cost" style="max-height:320px;"></div></div>
-      <div style="font-size:18px;font-weight:900;color:var(--g);margin-top:8px;">18.8%</div>
-      <div style="font-size:10px;color:var(--t2);">A5→A8 conversion</div>
-    </div>
-    <!-- Variant B -->
-    <div style="background:var(--card);border-radius:14px;padding:14px;border:1px solid var(--border-strong);border-top:3px solid var(--b);">
-      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--b);margin-bottom:8px;">B · Polish</div>
-      <div class="figma"><div class="fl" style="font-size:9px;">A6: Minor UI tweaks (refund badge, plan durations)</div><div class="fs"><img src="s_var_b_cost.png" alt="Variant B Cost" style="max-height:320px;"></div></div>
-      <div style="font-size:18px;font-weight:900;color:var(--t2);margin-top:8px;">12.9%</div>
-      <div style="font-size:10px;color:var(--t2);">A5→A8 conversion</div>
-    </div>
-    <!-- Variant C -->
-    <div style="background:var(--card);border-radius:14px;padding:14px;border:1px solid var(--border-strong);border-top:3px solid var(--y);">
-      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--y);margin-bottom:8px;">C · Bottom Sheet</div>
-      <div class="figma"><div class="fl" style="font-size:9px;">A5: CTA "खर्चा कितना होगा?" → Plan bottom sheet → A6</div><div class="fs"><img src="s_var_c_a5.png" alt="Variant C A5" style="max-height:320px;"><img src="s_var_c_bottomsheet.png" alt="Variant C Sheet" style="max-height:320px;"><img src="s_var_c_cost.png" alt="Variant C Cost" style="max-height:320px;"></div><div class="fh">← Scroll · 3 screens →</div></div>
-      <div style="font-size:18px;font-weight:900;color:var(--r);margin-top:8px;">0%</div>
-      <div style="font-size:10px;color:var(--t2);">A5→A8 · only 20 users (too early)</div>
-    </div>
-    <!-- Variant D -->
-    <div style="background:var(--card);border-radius:14px;padding:14px;border:1px solid var(--border-strong);border-top:3px solid var(--p);">
-      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--p);margin-bottom:8px;">D · Book Later</div>
-      <div class="figma"><div class="fl" style="font-size:9px;">A6: + "बाद में करूंगा" secondary CTA</div><div class="fs"><img src="s_var_d_cost.png" alt="Variant D Cost" style="max-height:320px;"></div></div>
-      <div style="font-size:18px;font-weight:900;color:var(--t2);margin-top:8px;">14.3%</div>
-      <div style="font-size:10px;color:var(--t2);">A5→A8 · A7 click only 42.9% (rest booked later?)</div>
-    </div>
-  </div>
-
-  <div class="ibox sla"><div class="ib-t">⚠ Early Read (2 days only)</div><p>Sample sizes are tiny: A=64, B=31, C=20, D=14 users. No conclusions can be drawn yet. The 0% conversion in C is likely noise — only 20 users. Need <b>7-10 more days</b> for statistically meaningful results. Key signal to watch: <b>Variant D's A7 click rate (42.9%)</b> — the "Book Later" CTA may be capturing the other ~57% as deferred intent (Bucket A/B from the PRD).</p></div>
-
-  <!-- DATA TIMELINE -->
-  <div class="section-wrap">
-    <span class="section-divider">📅 When Data Will Populate<span class="section-sub">Apr 15 release → first reliable read on Apr 24 (9-day maturity buffer)</span></span>
-  </div>
-
-  <div class="impact">
-    <h2>Timeline</h2>
-    <div class="impact-grid">
-      <div class="impact-item neutral">
-        <div class="il">Apr 15 (today)</div>
-        <div class="iv">Release live · no data yet</div>
-      </div>
-      <div class="impact-item neutral">
-        <div class="il">Apr 16–22 (Week 1)</div>
-        <div class="iv">Early leading signals: permission grant %, serviceability pass %, bucket A:B:C split</div>
-      </div>
-      <div class="impact-item good">
-        <div class="il">Apr 24 onwards</div>
-        <div class="iv">Section A funnel + Cost Breakdown variant metrics matured</div>
-      </div>
-      <div class="impact-item good">
-        <div class="il">May 6 onwards</div>
-        <div class="iv">Booking → Install full funnel + post-payment cancellation rate (Change 1 impact)</div>
-      </div>
-    </div>
-  </div>
+  <!-- END OF NEW RELEASE TAB CONTENT -->
 
 </div><!-- /.ctn -->
 </div><!-- /#new-flow-apr15 -->
