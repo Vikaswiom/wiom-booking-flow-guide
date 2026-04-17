@@ -4,6 +4,7 @@ WITH first_time_loaders AS (
   WHERE EVENT_NAME = 'booking_homepage_loaded'
     AND TIMESTAMP >= '2026-04-15' AND TIMESTAMP < '2026-04-18'
     AND TRY_CAST(TRY_PARSE_JSON(PROPERTIES):"profile.events.booking_homepage_loaded.count"::STRING AS INT) = 1
+    AND TRY_PARSE_JSON(PROPERTIES):"profile.app_version"::STRING >= '2026_04_14'
 ),
 variant_map AS (
   SELECT USER_ID,

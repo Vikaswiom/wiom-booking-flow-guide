@@ -1557,16 +1557,16 @@ table.sum .delta-cell.bad{color:var(--r);}
   <!-- FULL A/B/C/D FUNNEL WITH SCREENS (A1→A8)                       -->
   <!-- ============================================================ -->
   <div class="section-wrap">
-    <span class="section-divider">📱 Full Acquisition Funnel · A/B/C/D Comparison<span class="section-sub">First-time loaders · Apr 15–17 (2 days) · Location Clarity applied to all variants</span></span>
+    <span class="section-divider">📱 Full Acquisition Funnel · A/B/C/D Comparison<span class="section-sub">First-time loaders on new version (ct_app_version >= 2026_04_14) · Apr 15–17 (2 days)</span></span>
   </div>
 
   <!-- STEP A1 — Homepage (same for all) -->
   <div class="step low">
-    <div class="step-h"><div class="num">A1</div><div class="txt"><div class="label">Acquisition Step 1 · Same for all variants</div><div class="ttl">App Opened — Booking Homepage Loaded</div><div class="from-to">First screen after app open · "रिचार्ज वाला घर का नेट"</div></div><div class="badges"><span class="bdg pre">All: 1,709</span></div></div>
+    <div class="step-h"><div class="num">A1</div><div class="txt"><div class="label">Acquisition Step 1 · Same for all variants</div><div class="ttl">App Opened — Booking Homepage Loaded</div><div class="from-to">First screen after app open · "रिचार्ज वाला घर का नेट" · New version only</div></div><div class="badges"><span class="bdg pre">All: 337</span><span class="tab-badge" style="font-size:9px;">v2026_04_14+</span></div></div>
     <div class="step-b">
       <div class="figma"><div class="fl">Splash screen · "मेरे इलाके में है या नहीं?" CTA</div><div class="fs"><img src="s_acq_1_splash.png" alt="A1 Splash"></div></div>
       <div class="mets">
-        <div class="mt"><div class="v g">1,709</div><div class="pct">100%</div><div class="l">First-Time Loaders</div></div>
+        <div class="mt"><div class="v g">337</div><div class="pct">100%</div><div class="l">First-Time (new ver)</div></div>
       </div>
       <div class="tags"><span class="tg ev">booking_homepage_loaded · count = 1</span></div>
     </div>
@@ -1575,12 +1575,12 @@ table.sum .delta-cell.bad{color:var(--r);}
 
   <!-- STEP A2 — Check Serviceability (same for all) -->
   <div class="step low">
-    <div class="step-h"><div class="num">A2</div><div class="txt"><div class="label">Acquisition Step 2 · Same for all variants</div><div class="ttl">"Check Serviceability" Clicked</div><div class="from-to">"मेरे इलाके में है या नहीं?" → loading screen</div></div><div class="badges"><span class="bdg pre">1,075 (62.9%)</span></div></div>
+    <div class="step-h"><div class="num">A2</div><div class="txt"><div class="label">Acquisition Step 2 · Same for all variants</div><div class="ttl">"Check Serviceability" Clicked</div><div class="from-to">"मेरे इलाके में है या नहीं?" → loading screen</div></div><div class="badges"><span class="bdg pre">248 (73.6%)</span></div></div>
     <div class="step-b">
       <div class="figma"><div class="fl">Loading · "आपकी जगह पर नेट चेक कर रहे हैं..."</div><div class="fs"><img src="s_acq_2_loading.png" alt="A2 Loading"></div></div>
       <div class="mets">
-        <div class="mt"><div class="v g">1,709</div><div class="pct">100%</div><div class="l">Homepage</div></div>
-        <div class="mt"><div class="v y">1,075</div><div class="pct">62.9%</div><div class="l">Clicked Check</div></div>
+        <div class="mt"><div class="v g">337</div><div class="pct">100%</div><div class="l">Homepage</div></div>
+        <div class="mt"><div class="v y">248</div><div class="pct">73.6%</div><div class="l">Clicked Check</div></div>
       </div>
       <div class="tags"><span class="tg ev">check_serviceability_clicked</span></div>
     </div>
@@ -1589,7 +1589,7 @@ table.sum .delta-cell.bad{color:var(--r);}
 
   <!-- STEP A3 — Serviceable (same for all) -->
   <div class="step low">
-    <div class="step-h"><div class="num">A3</div><div class="txt"><div class="label">Acquisition Step 3 · Same for all variants</div><div class="ttl">Serviceable Page Loaded</div><div class="from-to">"यहाँ घर का नेट लग सकता है"</div></div><div class="badges"><span class="bdg pre">724 (42.4%)</span><span class="bdg c">Unserviceable: 156 (9.1%)</span></div></div>
+    <div class="step-h"><div class="num">A3</div><div class="txt"><div class="label">Acquisition Step 3 · Same for all variants</div><div class="ttl">Serviceable Page Loaded</div><div class="from-to">"यहाँ घर का नेट लग सकता है"</div></div><div class="badges"><span class="bdg pre">188 (55.8%)</span><span class="bdg c">Unserviceable: 7 (2.1%)</span></div></div>
     <div class="step-b">
       <div class="figma"><div class="fl">Serviceable result · "Rajiv colony, Sector 40"</div><div class="fs"><img src="s_acq_3_serviceable.png" alt="A3 Serviceable"></div></div>
       <div class="tags"><span class="tg ev">serviceable_page_loaded</span><span class="tg es">unserviceable_page_loaded</span></div>
@@ -1599,7 +1599,7 @@ table.sum .delta-cell.bad{color:var(--r);}
 
   <!-- STEP A4 — How It Works (same for all) -->
   <div class="step low">
-    <div class="step-h"><div class="num">A4</div><div class="txt"><div class="label">Acquisition Step 4 · Same for all variants</div><div class="ttl">"How Does It Work" Clicked</div><div class="from-to">"रिचार्ज वाला नेट ऐसे चला सकते हैं"</div></div><div class="badges"><span class="bdg pre">706 (41.3%)</span></div></div>
+    <div class="step-h"><div class="num">A4</div><div class="txt"><div class="label">Acquisition Step 4 · Same for all variants</div><div class="ttl">"How Does It Work" Clicked</div><div class="from-to">"रिचार्ज वाला नेट ऐसे चला सकते हैं"</div></div><div class="badges"><span class="bdg pre">186 (55.2%)</span></div></div>
     <div class="step-b">
       <div class="figma"><div class="fl">How it works steps page</div><div class="fs"><img src="s_acq_4_how_works.png" alt="A4 How Works"></div></div>
       <div class="tags"><span class="tg ev">how_does_it_work_clicked</span></div>
@@ -1753,7 +1753,7 @@ table.sum .delta-cell.bad{color:var(--r);}
   </table>
   <div style="font-size:11px;color:var(--t2);text-align:center;margin-top:-10px;margin-bottom:10px;font-style:italic;">Apr 15–17 · 2 days · tiny sample sizes (A=64, B=31, C=20, D=14) · no conclusions yet · check Apr 24+ for meaningful read</div>
 
-  <div class="ibox sla"><div class="ib-t">⚠ 2 days only · n=129 total · check back Apr 24+</div><p>A leads at 18.8% but n=64. D's 42.9% pay-click is low by design (Book Later captures the rest). C at 0% is noise (n=20). Reliable read needs 500+ users per variant.</p></div>
+  <div class="ibox sla"><div class="ib-t">⚠ 2 days only · n=129 variant users · ct_app_version >= 2026_04_14 · check back Apr 24+</div><p>Filtered to new version only (337 first-time loaders, 5.6% overall conversion). A leads at 18.8% (n=64). D's 42.9% pay-click is low by design (Book Later captures the rest). C at 0% is noise (n=20). Reliable read needs 500+ users per variant.</p></div>
 
   <!-- END OF NEW RELEASE TAB CONTENT -->
 
