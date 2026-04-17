@@ -172,7 +172,25 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 .same-flow{background:rgba(0,0,0,.3);border:1px dashed rgba(136,153,184,.25);border-radius:12px;padding:24px 16px;margin:0 0 14px;text-align:center;font-size:12px;color:var(--t2);font-style:italic;}
 .same-flow b{color:var(--t);font-style:normal;}
 
-@media(max-width:1200px){.compare{grid-template-columns:1fr;}.period-compare{grid-template-columns:1fr;}.impact-grid{grid-template-columns:1fr 1fr;}.compare-col .figma .fs img{max-height:480px;}}
+/* 4-column variant compare */
+.compare-4{grid-template-columns:repeat(4,1fr) !important;gap:10px !important;}
+.compare-col.var-a{background:linear-gradient(135deg,rgba(136,153,184,.12),rgba(136,153,184,.04));border:2px solid rgba(136,153,184,.25);border-top:none;}
+.compare-col.var-a::before{background:linear-gradient(90deg,#8899b8,#64748b);}
+.compare-col.var-b{background:linear-gradient(135deg,rgba(96,165,250,.12),rgba(96,165,250,.04));border:2px solid rgba(96,165,250,.25);border-top:none;}
+.compare-col.var-b::before{background:linear-gradient(90deg,#60a5fa,#3b82f6);}
+.compare-col.var-c{background:linear-gradient(135deg,rgba(251,191,36,.12),rgba(251,191,36,.04));border:2px solid rgba(251,191,36,.25);border-top:none;}
+.compare-col.var-c::before{background:linear-gradient(90deg,#fbbf24,#f59e0b);}
+.compare-col.var-d{background:linear-gradient(135deg,rgba(192,132,252,.12),rgba(192,132,252,.04));border:2px solid rgba(192,132,252,.25);border-top:none;}
+.compare-col.var-d::before{background:linear-gradient(90deg,#c084fc,#a855f7);}
+.var-tag{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;padding:5px 11px;border-radius:6px;display:inline-flex;align-items:center;gap:6px;margin-bottom:10px;}
+.var-a .var-tag{background:rgba(136,153,184,.2);color:#8899b8;}
+.var-b .var-tag{background:rgba(96,165,250,.2);color:#93c5fd;}
+.var-c .var-tag{background:rgba(251,191,36,.2);color:#fbbf24;}
+.var-d .var-tag{background:rgba(192,132,252,.2);color:#d8b4fe;}
+.compare-4 .figma .fs img{max-height:300px;min-width:150px;}
+.compare-4 .mt .pct{font-size:16px;}
+.compare-4 .mt{padding:8px 6px;min-height:54px;}
+@media(max-width:1200px){.compare{grid-template-columns:1fr;}.compare-4{grid-template-columns:1fr 1fr !important;}.period-compare{grid-template-columns:1fr;}.impact-grid{grid-template-columns:1fr 1fr;}.compare-col .figma .fs img{max-height:480px;}}
 
 /* Figma Screens */
 .figma{margin:14px 0;border-radius:14px;overflow:hidden;border:1px solid var(--bd);background:var(--s2);}
@@ -1560,6 +1578,8 @@ table.sum .delta-cell.bad{color:var(--r);}
     <span class="section-divider">📱 Full Acquisition Funnel · A/B/C/D Comparison<span class="section-sub">First-time loaders on new version (ct_app_version >= 2026_04_14) · Apr 15–17 (2 days)</span></span>
   </div>
 
+  <!-- ═══ FULL A/B/C/D FUNNEL (compare layout like Overall tab) ═══ -->
+
   <!-- STEP A1 — Homepage (same for all) -->
   <div class="step low">
     <div class="step-h"><div class="num">A1</div><div class="txt"><div class="label">Acquisition Step 1 · Same for all variants</div><div class="ttl">App Opened — Booking Homepage Loaded</div><div class="from-to">First screen after app open · "रिचार्ज वाला घर का नेट" · New version only</div></div><div class="badges"><span class="bdg pre">All: 337</span><span class="tab-badge" style="font-size:9px;">v2026_04_14+</span></div></div>
@@ -1608,115 +1628,136 @@ table.sum .delta-cell.bad{color:var(--r);}
   </div>
   <div class="arrow">▼</div>
 
-  <!-- STEP A5 — How To Get Started (C has different CTA) -->
+  <!-- STEP A5 — 4-column compare layout -->
   <div class="step low">
-    <div class="step-h"><div class="num">A5</div><div class="txt"><div class="label">Acquisition Step 5 · Variant C has different CTA</div><div class="ttl">"How To Get Started" Clicked</div><div class="from-to">"घर पर नेट शुरू करने के लिए"</div></div><div class="badges"><span class="bdg pre">A:64 · B:31 · C:20 · D:14</span></div></div>
+    <div class="step-h"><div class="num">A5</div><div class="txt"><div class="label">Acquisition Step 5</div><div class="ttl">"How To Get Started" · Variant C has different CTA</div></div></div>
     <div class="step-b">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;">
-        <div style="background:var(--card);border-radius:12px;padding:14px;border:1px solid var(--border);">
-          <div style="font-size:10px;font-weight:800;color:var(--t2);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">A / B / D — Same screen</div>
-          <div class="figma"><div class="fl" style="font-size:9px;">CTA: "शुरू करने के लिए क्या देना होगा?"</div><div class="fs"><img src="s_acq_5_get_started.png" alt="A5 Standard" style="max-height:350px;"></div></div>
+      <div class="compare compare-4">
+        <div class="compare-col var-a"><div class="var-tag">A · Control</div>
+          <div class="figma"><div class="fl">CTA: "शुरू करने के लिए क्या देना होगा?"</div><div class="fs"><img src="s_acq_5_get_started.png" alt="A5 A"></div></div>
+          <div class="mets"><div class="mt"><div class="v g">64</div><div class="pct">100%</div><div class="l">Entry</div></div></div>
         </div>
-        <div style="background:var(--card);border-radius:12px;padding:14px;border:1px solid rgba(251,191,36,.25);border-top:3px solid var(--y);">
-          <div style="font-size:10px;font-weight:800;color:var(--y);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">C — Different CTA</div>
-          <div class="figma"><div class="fl" style="font-size:9px;">CTA: "खर्चा कितना होगा?" → opens plan bottom sheet</div><div class="fs"><img src="s_var_c_a5.png" alt="A5 Variant C" style="max-height:350px;"></div></div>
+        <div class="compare-col var-b"><div class="var-tag">B · Polish</div>
+          <div class="figma"><div class="fl">Same CTA as A</div><div class="fs"><img src="s_acq_5_get_started.png" alt="A5 B"></div></div>
+          <div class="mets"><div class="mt"><div class="v g">31</div><div class="pct">100%</div><div class="l">Entry</div></div></div>
+        </div>
+        <div class="compare-col var-c"><div class="var-tag">C · Bottom Sheet</div>
+          <div class="figma"><div class="fl">CTA: "खर्चा कितना होगा?" → bottom sheet</div><div class="fs"><img src="s_var_c_a5.png" alt="A5 C"><img src="s_var_c_bottomsheet.png" alt="C Sheet"></div><div class="fh">← 2 screens →</div></div>
+          <div class="mets"><div class="mt"><div class="v g">20</div><div class="pct">100%</div><div class="l">Entry</div></div></div>
+        </div>
+        <div class="compare-col var-d"><div class="var-tag">D · Book Later</div>
+          <div class="figma"><div class="fl">Same CTA as A</div><div class="fs"><img src="s_acq_5_get_started.png" alt="A5 D"></div></div>
+          <div class="mets"><div class="mt"><div class="v g">14</div><div class="pct">100%</div><div class="l">Entry</div></div></div>
         </div>
       </div>
-      <div class="tags"><span class="tg ev">how_to_get_started_clicked</span></div>
-      <div class="mets" style="margin-top:12px;">
-        <div class="mt" style="border-top:2px solid var(--t2);"><div class="v">64</div><div class="pct">100%</div><div class="l">A · Control</div></div>
-        <div class="mt" style="border-top:2px solid var(--b);"><div class="v">31</div><div class="pct">100%</div><div class="l">B · Polish</div></div>
-        <div class="mt" style="border-top:2px solid var(--y);"><div class="v">20</div><div class="pct">100%</div><div class="l">C · Sheet</div></div>
-        <div class="mt" style="border-top:2px solid var(--p);"><div class="v">14</div><div class="pct">100%</div><div class="l">D · Later</div></div>
-      </div>
+      <div class="tags"><span class="tg ev">how_to_get_started_clicked</span><span class="tg sl">plan_reveal_price_clicked (C: 2 users · 10%)</span></div>
     </div>
   </div>
   <div class="arrow">▼</div>
 
-  <!-- STEP A5.5 — Plan Bottom Sheet (C only) -->
-  <div class="step high" style="border-left-color:var(--y);">
-    <div class="step-h"><div class="num" style="color:var(--y);opacity:.3;">C</div><div class="txt"><div class="label" style="color:var(--y);">Variant C Only · New Screen</div><div class="ttl">Plan Bottom Sheet</div><div class="from-to">"1, 2, 7, 14 या 28 दिन — जितने दिन चाहें उतने दिन का रिचार्ज करें"</div></div><div class="badges"><span class="tab-badge" style="font-size:10px;padding:4px 10px;background:rgba(251,191,36,.15);color:var(--y);border-color:rgba(251,191,36,.3);">C only</span></div></div>
-    <div class="step-b">
-      <div class="figma"><div class="fl" style="color:var(--y);">Plan selection bottom sheet · Shows 1/2/7/14/28 day plans</div><div class="fs"><img src="s_var_c_bottomsheet.png" alt="C Bottom Sheet" style="max-height:400px;"></div></div>
-      <div class="tags"><span class="tg sl">plan_reveal_price_clicked (2 of 20 C-users · 10%)</span></div>
-    </div>
-  </div>
-  <div class="arrow">▼</div>
-
-  <!-- STEP A6 — Cost Breakdown (ALL variants differ) -->
+  <!-- STEP A6 — 4-column compare · ALL DIFFER -->
   <div class="step crit">
-    <div class="step-h"><div class="num">A6</div><div class="txt"><div class="label">Acquisition Step 6 · 🧪 ALL VARIANTS DIFFER HERE</div><div class="ttl">Cost Breakdown Screen</div><div class="from-to">"शुरू करने के लिए" · ₹100 + ₹300</div></div><div class="badges"><span class="bdg pre">A:64 (100%)</span><span class="bdg post">B:31 · C:19 · D:13</span></div></div>
+    <div class="step-h"><div class="num">A6</div><div class="txt"><div class="label">Acquisition Step 6 · 🧪 ALL VARIANTS DIFFER</div><div class="ttl">Cost Breakdown Screen · "शुरू करने के लिए" · ₹100 + ₹300</div></div></div>
     <div class="step-b">
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0;">
-        <div style="background:var(--card);border-radius:12px;padding:12px;border:1px solid var(--border);border-top:3px solid var(--t2);">
-          <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--t2);margin-bottom:6px;">A · Control</div>
-          <div class="figma"><div class="fs"><img src="s_var_a_cost.png" alt="A Cost" style="max-height:280px;"></div></div>
-          <div style="font-size:9px;color:var(--t2);margin-top:6px;">Existing unchanged</div>
+      <div class="compare compare-4">
+        <div class="compare-col var-a"><div class="var-tag">A · Control</div>
+          <div class="figma"><div class="fl">Existing unchanged</div><div class="fs"><img src="s_var_a_cost.png" alt="A6 A"></div></div>
+          <div class="mets"><div class="mt"><div class="v g">64</div><div class="pct">100%</div><div class="l">0% drop</div></div></div>
         </div>
-        <div style="background:var(--card);border-radius:12px;padding:12px;border:1px solid rgba(96,165,250,.2);border-top:3px solid var(--b);">
-          <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--b);margin-bottom:6px;">B · Polish</div>
-          <div class="figma"><div class="fs"><img src="s_var_b_cost.png" alt="B Cost" style="max-height:280px;"></div></div>
-          <div style="font-size:9px;color:var(--t2);margin-top:6px;">Refund badge + plan durations</div>
+        <div class="compare-col var-b"><div class="var-tag">B · Polish</div>
+          <div class="figma"><div class="fl">Refund badge + plan durations</div><div class="fs"><img src="s_var_b_cost.png" alt="A6 B"></div></div>
+          <div class="mets"><div class="mt"><div class="v g">31</div><div class="pct">100%</div><div class="l">0% drop</div></div></div>
         </div>
-        <div style="background:var(--card);border-radius:12px;padding:12px;border:1px solid rgba(251,191,36,.2);border-top:3px solid var(--y);">
-          <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--y);margin-bottom:6px;">C · After Sheet</div>
-          <div class="figma"><div class="fs"><img src="s_var_c_cost.png" alt="C Cost" style="max-height:280px;"></div></div>
-          <div style="font-size:9px;color:var(--t2);margin-top:6px;">Same breakdown, post-sheet</div>
+        <div class="compare-col var-c"><div class="var-tag">C · After Sheet</div>
+          <div class="figma"><div class="fl">Same breakdown, post-sheet</div><div class="fs"><img src="s_var_c_cost.png" alt="A6 C"></div></div>
+          <div class="mets"><div class="mt"><div class="v y">19</div><div class="pct">95%</div><div class="l">5% drop</div></div></div>
         </div>
-        <div style="background:var(--card);border-radius:12px;padding:12px;border:1px solid rgba(192,132,252,.2);border-top:3px solid var(--p);">
-          <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--p);margin-bottom:6px;">D · Book Later</div>
-          <div class="figma"><div class="fs"><img src="s_var_d_cost.png" alt="D Cost" style="max-height:280px;"></div></div>
-          <div style="font-size:9px;color:var(--t2);margin-top:6px;">+ "बाद में करूंगा" CTA</div>
+        <div class="compare-col var-d"><div class="var-tag">D · Book Later</div>
+          <div class="figma"><div class="fl">+ "बाद में करूंगा" CTA</div><div class="fs"><img src="s_var_d_cost.png" alt="A6 D"></div></div>
+          <div class="mets"><div class="mt"><div class="v y">13</div><div class="pct">92.9%</div><div class="l">7.1% drop</div></div></div>
         </div>
       </div>
-      <div class="tags"><span class="tg ev">cost_today_clicked</span><span class="tg sl">book_later_clicked (D only · 0 — not instrumented)</span></div>
-      <div class="mets" style="margin-top:12px;">
-        <div class="mt" style="border-top:2px solid var(--t2);"><div class="v g">64</div><div class="pct">100%</div><div class="l">A · 0% drop</div></div>
-        <div class="mt" style="border-top:2px solid var(--b);"><div class="v g">31</div><div class="pct">100%</div><div class="l">B · 0% drop</div></div>
-        <div class="mt" style="border-top:2px solid var(--y);"><div class="v y">19</div><div class="pct">95%</div><div class="l">C · 5% drop</div></div>
-        <div class="mt" style="border-top:2px solid var(--p);"><div class="v y">13</div><div class="pct">92.9%</div><div class="l">D · 7.1% drop</div></div>
-      </div>
+      <div class="tags"><span class="tg ev">cost_today_clicked</span><span class="tg sl">book_later_clicked (D · 0 — pending)</span></div>
     </div>
   </div>
   <div class="arrow">▼</div>
 
-  <!-- STEP A7 — Pay ₹100 Click (same screen, all variants) -->
-  <div class="step low">
-    <div class="step-h"><div class="num">A7</div><div class="txt"><div class="label">Acquisition Step 7 · Same for all variants</div><div class="ttl">"Pay ₹100 To Move Forward" Clicked</div><div class="from-to">"₹100 देकर विज़िट कन्फर्म करें"</div></div><div class="badges"><span class="bdg pre">A:53 (82.8%)</span><span class="bdg post">B:27 · C:16 · D:6 (42.9%)</span></div></div>
-    <div class="step-b">
-      <div class="figma"><div class="fl">Mobile + Name input</div><div class="fs"><img src="s_acq_7_mobile_name.png" alt="A7 Mobile"></div></div>
-      <div class="tags"><span class="tg ev">pay_100_to_move_forward_clicked</span></div>
-      <div class="mets" style="margin-top:12px;">
-        <div class="mt" style="border-top:2px solid var(--t2);"><div class="v y">53</div><div class="pct">82.8%</div><div class="l">A · 17.2% drop</div></div>
-        <div class="mt" style="border-top:2px solid var(--b);"><div class="v g">27</div><div class="pct">87.1%</div><div class="l">B · 12.9% drop 🟢</div></div>
-        <div class="mt" style="border-top:2px solid var(--y);"><div class="v y">16</div><div class="pct">80%</div><div class="l">C · 15.8% drop</div></div>
-        <div class="mt" style="border-top:2px solid var(--p);"><div class="v r">6</div><div class="pct">42.9%</div><div class="l">D · 53.8% drop 🔴</div></div>
-      </div>
-      <div style="font-size:10px;color:var(--p);margin-top:6px;font-style:italic;">D's low pay-click rate (42.9%) is expected — remaining ~57% may be using "बाद में करूंगा" Book Later CTA (not yet instrumented)</div>
-    </div>
-  </div>
-  <div class="arrow">▼</div>
-
-  <!-- STEP A7.5 — Location Confirm (NEW, ALL variants) -->
+  <!-- STEP A7 — 4-column compare · same screen, different drops -->
   <div class="step high">
-    <div class="step-h"><div class="num">A7.5</div><div class="txt"><div class="label">NEW STEP · All variants · Location Clarity</div><div class="ttl">📍 Location Confirmation Before Payment</div><div class="from-to">"पेमेंट से पहले नेट लगवाने की लोकेशन कन्फर्म करें"</div></div><div class="badges"><span class="tab-badge" style="font-size:10px;padding:4px 10px;">New in Apr 15</span><span class="bdg h">0* (event pending)</span></div></div>
+    <div class="step-h"><div class="num">A7</div><div class="txt"><div class="label">Acquisition Step 7</div><div class="ttl">"Pay ₹100 To Move Forward" · Same screen, different conversion</div></div></div>
     <div class="step-b">
-      <div class="figma"><div class="fl">All variants · "मैं लोकेशन पर हूँ" / "अभी लोकेशन पर नहीं हूँ"</div><div class="fs"><img src="s_acq_location_confirm.png" alt="Location Confirmation"></div></div>
-      <div class="tags"><span class="tg ev">I_AM_AT_INSTALL_LOCATION_CLICKED</span><span class="tg sl">Event not yet instrumented</span></div>
+      <div class="compare compare-4">
+        <div class="compare-col var-a"><div class="var-tag">A · Control</div>
+          <div class="figma"><div class="fl">Mobile + Name</div><div class="fs"><img src="s_acq_7_mobile_name.png" alt="A7 A"></div></div>
+          <div class="mets"><div class="mt"><div class="v y">53</div><div class="pct">82.8%</div><div class="l">17.2% drop</div></div></div>
+        </div>
+        <div class="compare-col var-b"><div class="var-tag">B · Polish</div>
+          <div class="figma"><div class="fl">Mobile + Name</div><div class="fs"><img src="s_acq_7_mobile_name.png" alt="A7 B"></div></div>
+          <div class="mets"><div class="mt"><div class="v g">27</div><div class="pct">87.1%</div><div class="l">12.9% drop 🟢</div></div></div>
+        </div>
+        <div class="compare-col var-c"><div class="var-tag">C · Bottom Sheet</div>
+          <div class="figma"><div class="fl">Mobile + Name</div><div class="fs"><img src="s_acq_7_mobile_name.png" alt="A7 C"></div></div>
+          <div class="mets"><div class="mt"><div class="v y">16</div><div class="pct">80%</div><div class="l">15.8% drop</div></div></div>
+        </div>
+        <div class="compare-col var-d"><div class="var-tag">D · Book Later</div>
+          <div class="figma"><div class="fl">Mobile + Name</div><div class="fs"><img src="s_acq_7_mobile_name.png" alt="A7 D"></div></div>
+          <div class="mets"><div class="mt"><div class="v r">6</div><div class="pct">42.9%</div><div class="l">53.8% drop 🔴</div></div></div>
+        </div>
+      </div>
+      <div class="tags"><span class="tg ev">pay_100_to_move_forward_clicked</span></div>
+      <div style="font-size:10px;color:var(--p);margin-top:6px;font-style:italic;">D's 53.8% drop expected — ~57% may use Book Later CTA instead of paying immediately</div>
     </div>
   </div>
   <div class="arrow">▼</div>
 
-  <!-- STEP A8 — Booking Fee Captured (same screen, all variants) -->
-  <div class="step low">
-    <div class="step-h"><div class="num">A8</div><div class="txt"><div class="label">Acquisition Step 8 · Same for all variants</div><div class="ttl">Booking Fee Captured (₹100 Paid)</div><div class="from-to">"भुगतान सफल रहा!"</div></div><div class="badges"><span class="bdg pre">A:12 (18.8%)</span><span class="bdg post">B:4 · C:0 · D:2</span></div></div>
+  <!-- STEP A7.5 — 4-column compare · Location Confirm (NEW, ALL) -->
+  <div class="step high">
+    <div class="step-h"><div class="num">A7.5</div><div class="txt"><div class="label">NEW STEP · All variants</div><div class="ttl">📍 Location Confirmation Before Payment</div></div><div class="badges"><span class="tab-badge" style="font-size:10px;padding:4px 10px;">New in Apr 15</span></div></div>
     <div class="step-b">
-      <div class="figma"><div class="fl">Payment success · ₹100</div><div class="fs"><img src="s1_post_1_payment.png" alt="A8 Paid"></div></div>
-      <div class="mets" style="margin-top:12px;">
-        <div class="mt" style="border-top:2px solid var(--g);"><div class="v g">12</div><div class="pct" style="color:var(--g);">18.8%</div><div class="l">🥇 A · Best</div></div>
-        <div class="mt" style="border-top:2px solid var(--b);"><div class="v">4</div><div class="pct">12.9%</div><div class="l">🥉 B · -5.9pp</div></div>
-        <div class="mt" style="border-top:2px solid var(--r);"><div class="v r">0</div><div class="pct" style="color:var(--r);">0%</div><div class="l">C · n=20 noise</div></div>
-        <div class="mt" style="border-top:2px solid var(--p);"><div class="v">2</div><div class="pct">14.3%</div><div class="l">🥈 D · -4.5pp</div></div>
+      <div class="compare compare-4">
+        <div class="compare-col var-a"><div class="var-tag">A</div>
+          <div class="figma"><div class="fs"><img src="s_acq_location_confirm.png" alt="Loc A"></div></div>
+          <div class="mets"><div class="mt"><div class="v y">0*</div><div class="pct">—</div><div class="l">Pending</div></div></div>
+        </div>
+        <div class="compare-col var-b"><div class="var-tag">B</div>
+          <div class="figma"><div class="fs"><img src="s_acq_location_confirm.png" alt="Loc B"></div></div>
+          <div class="mets"><div class="mt"><div class="v y">0*</div><div class="pct">—</div><div class="l">Pending</div></div></div>
+        </div>
+        <div class="compare-col var-c"><div class="var-tag">C</div>
+          <div class="figma"><div class="fs"><img src="s_acq_location_confirm.png" alt="Loc C"></div></div>
+          <div class="mets"><div class="mt"><div class="v y">0*</div><div class="pct">—</div><div class="l">Pending</div></div></div>
+        </div>
+        <div class="compare-col var-d"><div class="var-tag">D</div>
+          <div class="figma"><div class="fs"><img src="s_acq_location_confirm.png" alt="Loc D"></div></div>
+          <div class="mets"><div class="mt"><div class="v y">0*</div><div class="pct">—</div><div class="l">Pending</div></div></div>
+        </div>
+      </div>
+      <div class="tags"><span class="tg ev">I_AM_AT_INSTALL_LOCATION_CLICKED</span><span class="tg sl">* Event not yet instrumented</span></div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- STEP A8 — 4-column compare · final conversion -->
+  <div class="step low">
+    <div class="step-h"><div class="num">A8</div><div class="txt"><div class="label">Acquisition Step 8 · Final Conversion</div><div class="ttl">Booking Fee Captured (₹100 Paid) · "भुगतान सफल रहा!"</div></div></div>
+    <div class="step-b">
+      <div class="compare compare-4">
+        <div class="compare-col var-a"><div class="var-tag">A · Control</div>
+          <div class="figma"><div class="fs"><img src="s1_post_1_payment.png" alt="A8 A"></div></div>
+          <div class="mets"><div class="mt"><div class="v g">12</div><div class="pct" style="color:var(--g);">18.8%</div><div class="l">🥇 Best</div></div></div>
+        </div>
+        <div class="compare-col var-b"><div class="var-tag">B · Polish</div>
+          <div class="figma"><div class="fs"><img src="s1_post_1_payment.png" alt="A8 B"></div></div>
+          <div class="mets"><div class="mt"><div class="v">4</div><div class="pct">12.9%</div><div class="l">🥉 -5.9pp</div></div></div>
+        </div>
+        <div class="compare-col var-c"><div class="var-tag">C · Bottom Sheet</div>
+          <div class="figma"><div class="fs"><img src="s1_post_1_payment.png" alt="A8 C"></div></div>
+          <div class="mets"><div class="mt"><div class="v r">0</div><div class="pct" style="color:var(--r);">0%</div><div class="l">n=20 noise</div></div></div>
+        </div>
+        <div class="compare-col var-d"><div class="var-tag">D · Book Later</div>
+          <div class="figma"><div class="fs"><img src="s1_post_1_payment.png" alt="A8 D"></div></div>
+          <div class="mets"><div class="mt"><div class="v">2</div><div class="pct">14.3%</div><div class="l">🥈 -4.5pp</div></div></div>
+        </div>
       </div>
       <div class="tags"><span class="tg ev">booking_fee_captured</span></div>
     </div>
