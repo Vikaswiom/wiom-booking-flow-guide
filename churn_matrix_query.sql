@@ -4,7 +4,7 @@ WITH bookings AS (
   WHERE event_name = 'booking_fee_captured'
     AND mobile >= '5999999999'
     AND DATEADD('minute', 330, added_time) >= '2026-03-28 00:00:00'
-    AND DATEADD('minute', 330, added_time) < '2026-04-05 00:00:00'
+    AND DATEADD('minute', 330, added_time) < DATEADD('day', -7, CURRENT_DATE())
   GROUP BY mobile
 ),
 stage_times AS (

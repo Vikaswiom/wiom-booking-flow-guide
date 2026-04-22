@@ -1809,11 +1809,52 @@ table.sum .delta-cell.bad{color:var(--r);}
 <script src="dashboard_data.js" onerror="console.log('dashboard_data.js not found — using hardcoded values')"></script>
 <script>
 (function(){
-  // Auto-update from dashboard_data.js if available
+  // Auto-update ALL dashboard metrics from dashboard_data.js
   if(typeof DASHBOARD_DATA !== 'undefined'){
     var d = DASHBOARD_DATA;
     var el = document.querySelector('.last-updated');
     if(el) el.innerHTML = 'Data refreshed: <b>' + d.refreshed_at + '</b>';
+    function fN(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');}
+    function fP(n,t){return t>0?(Math.round(n/t*1000)/10)+'%':'0%';}
+    var pf=d.post_funnel;
+    if(pf){
+      var lost=pf.total-pf.otp;
+      // POST period box
+      var pb=document.querySelectorAll('.period-box.post .period-stat b');
+      if(pb.length>=3){pb[0].textContent=fN(pf.total);pb[1].textContent=fN(pf.otp)+' ('+fP(pf.otp,pf.total)+')';pb[2].textContent=fN(lost)+' ('+fP(lost,pf.total)+')';}
+      // POST date label
+      if(d.post_end_date){
+        var pd=new Date(d.post_end_date+'T00:00:00');
+        var ms=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var el2=ms[pd.getMonth()]+' '+pd.getDate();
+        document.querySelectorAll('.period-box.post .period-dates').forEach(function(e){e.innerHTML='&bull; Bookings: Mar 28 &ndash; '+el2+', 2026 &bull; Events tracked till today';});
+      }
+      // Summary table POST columns
+      var funnel=[pf.total,pf.ssid,pf.address,pf.verified,pf.notif,pf.interested,pf.slot,pf.confirmed,pf.assigned,pf.otp];
+      var tbl=document.querySelector('#overall table.sum');
+      if(tbl){
+        var trs=tbl.querySelectorAll('tbody tr');
+        for(var i=0;i<Math.min(trs.length-1,9);i++){
+          var cells=trs[i].querySelectorAll('td');
+          for(var j=0;j<cells.length;j++){
+            if(cells[j].classList.contains('div-p')){
+              cells[j].textContent=fN(funnel[i]);
+              if(cells[j+1])cells[j+1].textContent=fN(funnel[i]-funnel[i+1]);
+              if(cells[j+2])cells[j+2].textContent=fP(funnel[i]-funnel[i+1],pf.total);
+              break;
+            }
+          }
+        }
+        // Total row
+        var lastTr=trs[trs.length-1];
+        if(lastTr){var tc=lastTr.querySelectorAll('td');for(var j=0;j<tc.length;j++){if(tc[j].classList.contains('div-p')){tc[j].textContent=fN(pf.total);if(tc[j+1])tc[j+1].textContent=fN(lost);if(tc[j+2])tc[j+2].textContent=fP(lost,pf.total);break;}}}
+      }
+      // POST success badge
+      document.querySelectorAll('div[style*="#6b21a8"]').forEach(function(b){
+        var big=b.querySelector('div[style*="font-size:28px"]');
+        if(big)big.textContent=fN(pf.otp)+' / '+fN(pf.total)+' = '+fP(pf.otp,pf.total);
+      });
+    }
   }
 
   // Theme init: respect saved pref or system default

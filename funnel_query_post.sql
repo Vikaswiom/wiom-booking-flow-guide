@@ -1,10 +1,12 @@
+-- POST funnel: bookings Mar 28 to (today - 7 days), events tracked till now
+-- The 7-day buffer ensures all bookings have time to mature
 WITH bookings AS (
   SELECT DISTINCT mobile
   FROM prod_db.public.booking_logs
   WHERE event_name = 'booking_fee_captured'
     AND mobile >= '5999999999'
     AND DATEADD('minute', 330, added_time) >= '2026-03-28 00:00:00'
-    AND DATEADD('minute', 330, added_time) < '2026-04-05 00:00:00'
+    AND DATEADD('minute', 330, added_time) < DATEADD('day', -7, CURRENT_DATE())
 ),
 bl_events AS (
   SELECT mobile, event_name
@@ -44,6 +46,7 @@ customer_stages AS (
 )
 SELECT
   COUNT(*) AS total_customers,
+  CAST(DATEADD('day', -7, CURRENT_DATE()) AS DATE) AS post_end_date,
   SUM(got_ssid) AS ssid_set,
   SUM(got_address) AS address_updated,
   SUM(got_verified) AS booking_verified,
