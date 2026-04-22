@@ -1806,8 +1806,16 @@ table.sum .delta-cell.bad{color:var(--r);}
   <p>PRE: Feb 20 – Mar 25, 2026 (34 days) | POST: Mar 28 – Apr 4, 2026 (9 days, matured) | Counted by unique customer (distinct mobile) | Sources: booking_logs + task_logs (PayG filter on)</p>
 </div>
 
+<script src="dashboard_data.js" onerror="console.log('dashboard_data.js not found — using hardcoded values')"></script>
 <script>
 (function(){
+  // Auto-update from dashboard_data.js if available
+  if(typeof DASHBOARD_DATA !== 'undefined'){
+    var d = DASHBOARD_DATA;
+    var el = document.querySelector('.last-updated');
+    if(el) el.innerHTML = 'Data refreshed: <b>' + d.refreshed_at + '</b>';
+  }
+
   // Theme init: respect saved pref or system default
   var savedTheme = localStorage.getItem('wiom-theme');
   if(savedTheme === 'light'){ document.documentElement.setAttribute('data-theme','light'); }
