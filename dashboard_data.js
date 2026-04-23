@@ -1,19 +1,19 @@
-// Auto-generated 2026-04-22 14:33
+// Auto-generated 2026-04-23 10:15
 const DASHBOARD_DATA = {
-  "refreshed_at": "2026-04-22 14:33",
-  "post_end_date": "2026-04-15",
+  "refreshed_at": "2026-04-23 10:15",
+  "post_end_date": "2026-04-16",
   "post_funnel": {
-    "total": 1914,
-    "ssid": 1852,
-    "address": 1838,
-    "verified": 1702,
-    "notif": 1694,
-    "interested": 1446,
-    "slot": 1413,
-    "confirmed": 1402,
-    "assigned": 1279,
-    "otp": 701,
-    "cancelled": 1119
+    "total": 2010,
+    "ssid": 1946,
+    "address": 1933,
+    "verified": 1790,
+    "notif": 1782,
+    "interested": 1522,
+    "slot": 1488,
+    "confirmed": 1474,
+    "assigned": 1344,
+    "otp": 734,
+    "cancelled": 1178
   },
   "new_release": {
     "installs": 4576,
