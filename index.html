@@ -28,6 +28,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 .tab-pane{display:none;}
 .tab-pane.active{display:block;animation:fadeIn .25s ease-out;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 .coming-soon{text-align:center;padding:80px 40px;background:var(--card);border-radius:20px;border:1px dashed var(--border-strong);margin:40px 0;}
 .coming-soon .cs-icon{font-size:48px;margin-bottom:16px;}
 .coming-soon h2{font-size:22px;font-weight:800;color:var(--c);margin-bottom:10px;letter-spacing:-.3px;}
@@ -358,7 +359,7 @@ table.sum .delta-cell.bad{color:var(--r);}
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
           <span class="theme-label">Light</span>
         </button>
-        <button class="refresh-btn" onclick="location.reload();">
+        <button class="refresh-btn" onclick="refreshData(this);">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
           Refresh
         </button>
@@ -1874,6 +1875,30 @@ table.sum .delta-cell.bad{color:var(--r);}
   document.querySelectorAll('.js-now').forEach(function(el){ el.textContent = nowStr; });
   document.querySelectorAll('.js-maturity-days').forEach(function(el){ el.textContent = maturityDays; });
 })();
+
+function refreshData(btn){
+  var origText = btn.innerHTML;
+  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:spin 1s linear infinite;width:14px;height:14px"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg> Refreshing...';
+  btn.disabled = true;
+  // Trigger GitHub Action via API
+  fetch('https://api.github.com/repos/Vikaswiom/wiom-booking-flow-guide/actions/workflows/refresh-data.yml/dispatches', {
+    method: 'POST',
+    headers: {'Accept': 'application/vnd.github.v3+json', 'Authorization': 'token ' + (localStorage.getItem('gh_token')||'')},
+    body: JSON.stringify({ref: 'master'})
+  }).then(function(r){
+    if(r.ok){
+      btn.innerHTML = 'Triggered! Reloading in 90s...';
+      setTimeout(function(){ location.reload(); }, 90000);
+    } else {
+      // Fallback: just reload (picks up last pushed data)
+      btn.innerHTML = 'Reloading...';
+      setTimeout(function(){ location.reload(); }, 1000);
+    }
+  }).catch(function(){
+    btn.innerHTML = 'Reloading...';
+    setTimeout(function(){ location.reload(); }, 1000);
+  });
+}
 
 function toggleTheme(){
   var html = document.documentElement;

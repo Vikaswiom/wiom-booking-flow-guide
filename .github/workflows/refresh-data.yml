@@ -1,0 +1,36 @@
+name: Refresh Dashboard Data
+
+on:
+  # Run daily at 8 AM IST (2:30 AM UTC)
+  schedule:
+    - cron: '30 2 * * *'
+  # Allow manual trigger from GitHub Actions UI + API
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Run refresh script
+        env:
+          METABASE_API_KEY: ${{ secrets.METABASE_API_KEY }}
+        run: |
+          # Create credentials file for the script
+          mkdir -p /tmp/credentials
+          echo "METABASE_API_KEY=\"${METABASE_API_KEY}\"" > /tmp/credentials/.env
+
+          # Copy SQL files from repo
+          python refresh_action.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add -A
+          git diff --cached --quiet || (git commit -m "Auto-refresh $(date +'%b %d %H:%M')" && git push)
