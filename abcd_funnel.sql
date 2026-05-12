@@ -1,19 +1,13 @@
--- Variant funnel A5 → A8.
--- A5 (how_to_get_started_clicked): variant filter applied here — this defines the user's variant.
--- A6, A7, A7.5, A8: NO variant filter on event — instead, mapped to user via user_id back to A5 variant.
+-- Variant funnel A5 → A8 (CleverTap-funnel style).
+-- Cohort = users who fired how_to_get_started_clicked with variant A/B/C/D in the window.
+-- No App Installed filter (matches CT funnel default behavior).
+-- booking_fee_captured counted only if it happened AFTER the user's how_to_get_started_clicked.
 
-WITH first_installers AS (
-  SELECT DISTINCT USER_ID
-  FROM PROD_DB.PUBLIC.CLEVERTAP_CUSTOMER
-  WHERE EVENT_NAME = 'App Installed'
-    AND TIMESTAMP >= '2026-04-15' AND TIMESTAMP < DATEADD('day', -5, CURRENT_DATE())
-    AND TRY_CAST(TRY_PARSE_JSON(PROPERTIES):"profile.events.App Installed.count"::STRING AS INT) = 1
-),
-
--- A5: canonical variant assignment
-user_variant AS (
+WITH user_variant AS (
+  -- A5: variant assignment per user (earliest get_started event)
   SELECT USER_ID,
-    UPPER(TRY_PARSE_JSON(PROPERTIES):"event_props.cost_breakdown_flow"::STRING) AS variant
+    UPPER(TRY_PARSE_JSON(PROPERTIES):"event_props.cost_breakdown_flow"::STRING) AS variant,
+    TIMESTAMP AS gs_time
   FROM PROD_DB.PUBLIC.CLEVERTAP_CUSTOMER
   WHERE EVENT_NAME = 'how_to_get_started_clicked'
     AND TIMESTAMP >= '2026-04-15' AND TIMESTAMP < DATEADD('day', -5, CURRENT_DATE())
@@ -21,24 +15,47 @@ user_variant AS (
   QUALIFY ROW_NUMBER() OVER (PARTITION BY USER_ID ORDER BY TIMESTAMP) = 1
 ),
 
--- A6-A8: just user_id, no variant filter — mapped to user_variant via USER_ID
-e_cost_today AS (SELECT DISTINCT USER_ID FROM PROD_DB.PUBLIC.CLEVERTAP_CUSTOMER WHERE EVENT_NAME = 'cost_today_clicked'              AND TIMESTAMP >= '2026-04-15' AND TIMESTAMP < DATEADD('day', -5, CURRENT_DATE())),
-e_pay_100    AS (SELECT DISTINCT USER_ID FROM PROD_DB.PUBLIC.CLEVERTAP_CUSTOMER WHERE EVENT_NAME = 'pay_100_to_move_forward_clicked' AND TIMESTAMP >= '2026-04-15' AND TIMESTAMP < DATEADD('day', -5, CURRENT_DATE())),
-e_location   AS (SELECT DISTINCT USER_ID FROM PROD_DB.PUBLIC.CLEVERTAP_CUSTOMER WHERE EVENT_NAME = 'I_AM_AT_INSTALL_LOCATION_CLICKED' AND TIMESTAMP >= '2026-04-15' AND TIMESTAMP < DATEADD('day', -5, CURRENT_DATE())),
-e_fee        AS (SELECT DISTINCT USER_ID FROM PROD_DB.PUBLIC.CLEVERTAP_CUSTOMER WHERE EVENT_NAME = 'booking_fee_captured'            AND TIMESTAMP >= '2026-04-15' AND TIMESTAMP < DATEADD('day', -5, CURRENT_DATE())),
+-- Downstream events: take earliest timestamp per user, dedup
+u_cost_today AS (
+  SELECT USER_ID, MIN(TIMESTAMP) AS t
+  FROM PROD_DB.PUBLIC.CLEVERTAP_CUSTOMER
+  WHERE EVENT_NAME = 'cost_today_clicked'
+    AND TIMESTAMP >= '2026-04-15' AND TIMESTAMP < DATEADD('day', -5, CURRENT_DATE())
+  GROUP BY 1
+),
+u_pay_100 AS (
+  SELECT USER_ID, MIN(TIMESTAMP) AS t
+  FROM PROD_DB.PUBLIC.CLEVERTAP_CUSTOMER
+  WHERE EVENT_NAME = 'pay_100_to_move_forward_clicked'
+    AND TIMESTAMP >= '2026-04-15' AND TIMESTAMP < DATEADD('day', -5, CURRENT_DATE())
+  GROUP BY 1
+),
+u_location AS (
+  SELECT USER_ID, MIN(TIMESTAMP) AS t
+  FROM PROD_DB.PUBLIC.CLEVERTAP_CUSTOMER
+  WHERE EVENT_NAME = 'I_AM_AT_INSTALL_LOCATION_CLICKED'
+    AND TIMESTAMP >= '2026-04-15' AND TIMESTAMP < DATEADD('day', -5, CURRENT_DATE())
+  GROUP BY 1
+),
+u_fee AS (
+  SELECT USER_ID, MIN(TIMESTAMP) AS t
+  FROM PROD_DB.PUBLIC.CLEVERTAP_CUSTOMER
+  WHERE EVENT_NAME = 'booking_fee_captured'
+    AND TIMESTAMP >= '2026-04-15' AND TIMESTAMP < DATEADD('day', -5, CURRENT_DATE())
+  GROUP BY 1
+)
 
--- Restrict each event to first_installers AND attach variant via user_variant
-gs AS (SELECT uv.USER_ID, uv.variant FROM user_variant uv JOIN first_installers fi ON fi.USER_ID = uv.USER_ID),
-ct AS (SELECT uv.USER_ID, uv.variant FROM user_variant uv JOIN first_installers fi ON fi.USER_ID = uv.USER_ID JOIN e_cost_today e ON e.USER_ID = uv.USER_ID),
-p1 AS (SELECT uv.USER_ID, uv.variant FROM user_variant uv JOIN first_installers fi ON fi.USER_ID = uv.USER_ID JOIN e_pay_100    e ON e.USER_ID = uv.USER_ID),
-lc AS (SELECT uv.USER_ID, uv.variant FROM user_variant uv JOIN first_installers fi ON fi.USER_ID = uv.USER_ID JOIN e_location   e ON e.USER_ID = uv.USER_ID),
-fe AS (SELECT uv.USER_ID, uv.variant FROM user_variant uv JOIN first_installers fi ON fi.USER_ID = uv.USER_ID JOIN e_fee        e ON e.USER_ID = uv.USER_ID)
-
-SELECT v.variant,
-  (SELECT COUNT(DISTINCT USER_ID) FROM gs WHERE variant = v.variant) AS get_started,
-  (SELECT COUNT(DISTINCT USER_ID) FROM ct WHERE variant = v.variant) AS cost_today,
-  (SELECT COUNT(DISTINCT USER_ID) FROM p1 WHERE variant = v.variant) AS pay_100,
-  (SELECT COUNT(DISTINCT USER_ID) FROM lc WHERE variant = v.variant) AS location_confirm,
-  (SELECT COUNT(DISTINCT USER_ID) FROM fe WHERE variant = v.variant) AS fee_captured
-FROM (SELECT 'A' AS variant UNION ALL SELECT 'B' UNION ALL SELECT 'C' UNION ALL SELECT 'D') v
-ORDER BY v.variant;
+SELECT
+  uv.variant,
+  COUNT(DISTINCT uv.USER_ID) AS get_started,
+  COUNT(DISTINCT CASE WHEN ct.t > uv.gs_time THEN uv.USER_ID END) AS cost_today,
+  COUNT(DISTINCT CASE WHEN p1.t > uv.gs_time THEN uv.USER_ID END) AS pay_100,
+  COUNT(DISTINCT CASE WHEN lc.t > uv.gs_time THEN uv.USER_ID END) AS location_confirm,
+  COUNT(DISTINCT CASE WHEN fe.t > uv.gs_time THEN uv.USER_ID END) AS fee_captured
+FROM user_variant uv
+LEFT JOIN u_cost_today ct ON ct.USER_ID = uv.USER_ID
+LEFT JOIN u_pay_100    p1 ON p1.USER_ID = uv.USER_ID
+LEFT JOIN u_location   lc ON lc.USER_ID = uv.USER_ID
+LEFT JOIN u_fee        fe ON fe.USER_ID = uv.USER_ID
+GROUP BY uv.variant
+ORDER BY uv.variant;
