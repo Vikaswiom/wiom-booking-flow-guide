@@ -1,6 +1,6 @@
-// Auto-generated 2026-05-12 12:38
+// Auto-generated 2026-05-12 13:00
 const DASHBOARD_DATA = {
-  "refreshed_at": "2026-05-12 12:38",
+  "refreshed_at": "2026-05-12 13:00",
   "post_end_date": "2026-05-07",
   "post_funnel": {
     "total": 3661,
@@ -23,37 +23,37 @@ const DASHBOARD_DATA = {
     "unserviceable": 843,
     "how_works": 8496,
     "get_started": 5538,
-    "cost": 5266,
-    "pay100": 3416,
+    "cost": 5269,
+    "pay100": 3438,
     "location": 0,
-    "paid": 780
+    "paid": 779
   },
   "variants": {
     "A": {
-      "entry": 1869,
+      "entry": 1868,
       "cost": 1784,
-      "pay100": 1251,
+      "pay100": 1262,
       "location": 0,
-      "paid": 275
+      "paid": 277
     },
     "B": {
-      "entry": 1297,
-      "cost": 1247,
-      "pay100": 814,
+      "entry": 1296,
+      "cost": 1246,
+      "pay100": 819,
       "location": 0,
       "paid": 196
     },
     "C": {
-      "entry": 1196,
-      "cost": 1102,
+      "entry": 1193,
+      "cost": 1101,
       "pay100": 731,
       "location": 0,
-      "paid": 164
+      "paid": 161
     },
     "D": {
-      "entry": 1182,
-      "cost": 1139,
-      "pay100": 622,
+      "entry": 1181,
+      "cost": 1138,
+      "pay100": 626,
       "location": 0,
       "paid": 145
     }
