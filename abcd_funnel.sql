@@ -1,7 +1,8 @@
 WITH variant_users AS (
   SELECT DISTINCT USER_ID
   FROM PROD_DB.PUBLIC.CLEVERTAP_CUSTOMER
-  WHERE TIMESTAMP >= '2026-04-14' AND TIMESTAMP < DATEADD('day', -5, CURRENT_DATE())
+  WHERE EVENT_NAME IN ('how_to_get_started_clicked','cost_today_clicked','pay_100_to_move_forward_clicked','booking_fee_captured')
+    AND TIMESTAMP >= '2026-04-14' AND TIMESTAMP < DATEADD('day', -5, CURRENT_DATE())
     AND UPPER(TRY_PARSE_JSON(PROPERTIES):"event_props.cost_breakdown_flow"::STRING) IN ('A','B','C','D')
 ),
 first_installers AS (
