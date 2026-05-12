@@ -1,9 +1,16 @@
-WITH first_installers AS (
+WITH variant_users AS (
   SELECT DISTINCT USER_ID
   FROM PROD_DB.PUBLIC.CLEVERTAP_CUSTOMER
-  WHERE EVENT_NAME = 'App Installed'
-    AND TIMESTAMP >= '2026-04-15' AND TIMESTAMP < '2026-04-22'
-    AND TRY_CAST(TRY_PARSE_JSON(PROPERTIES):"profile.events.App Installed.count"::STRING AS INT) = 1
+  WHERE TIMESTAMP >= '2026-04-14' AND TIMESTAMP < DATEADD('day', -5, CURRENT_DATE())
+    AND UPPER(TRY_PARSE_JSON(PROPERTIES):"event_props.cost_breakdown_flow"::STRING) IN ('A','B','C','D')
+),
+first_installers AS (
+  SELECT DISTINCT c.USER_ID
+  FROM PROD_DB.PUBLIC.CLEVERTAP_CUSTOMER c
+  JOIN variant_users v ON v.USER_ID = c.USER_ID
+  WHERE c.EVENT_NAME = 'App Installed'
+    AND c.TIMESTAMP >= '2026-04-15' AND c.TIMESTAMP < '2026-04-22'
+    AND TRY_CAST(TRY_PARSE_JSON(c.PROPERTIES):"profile.events.App Installed.count"::STRING AS INT) = 1
 ),
 all_events AS (
   SELECT USER_ID, EVENT_NAME
