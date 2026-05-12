@@ -1,61 +1,61 @@
-// Auto-generated 2026-05-12 10:45
+// Auto-generated 2026-05-12 10:55
 const DASHBOARD_DATA = {
-  "refreshed_at": "2026-05-12 10:45",
-  "post_end_date": "2026-05-05",
+  "refreshed_at": "2026-05-12 10:55",
+  "post_end_date": "2026-05-07",
   "post_funnel": {
-    "total": 3522,
-    "ssid": 3406,
-    "address": 3393,
-    "verified": 3225,
-    "notif": 3209,
-    "interested": 2739,
-    "slot": 2687,
-    "confirmed": 2664,
-    "assigned": 2411,
-    "otp": 1277,
-    "cancelled": 2235
+    "total": 3661,
+    "ssid": 3545,
+    "address": 3532,
+    "verified": 3361,
+    "notif": 3343,
+    "interested": 2862,
+    "slot": 2807,
+    "confirmed": 2784,
+    "assigned": 2522,
+    "otp": 1336,
+    "cancelled": 2282
   },
   "new_release": {
-    "installs": 4576,
-    "homepage": 4494,
-    "check": 3739,
-    "serviceable": 2254,
-    "unserviceable": 88,
-    "how_works": 2169,
-    "get_started": 1742,
-    "cost": 1662,
-    "pay100": 1130,
+    "installs": 7107,
+    "homepage": 6874,
+    "check": 5599,
+    "serviceable": 3228,
+    "unserviceable": 641,
+    "how_works": 3112,
+    "get_started": 2457,
+    "cost": 2340,
+    "pay100": 1605,
     "location": 0,
-    "paid": 244
+    "paid": 351
   },
   "variants": {
     "A": {
-      "entry": 829,
-      "cost": 798,
-      "pay100": 566,
+      "entry": 839,
+      "cost": 808,
+      "pay100": 570,
       "location": 0,
       "paid": 129
     },
     "B": {
-      "entry": 317,
-      "cost": 303,
-      "pay100": 221,
+      "entry": 321,
+      "cost": 307,
+      "pay100": 225,
       "location": 0,
-      "paid": 44
+      "paid": 46
     },
     "C": {
-      "entry": 280,
-      "cost": 259,
-      "pay100": 178,
+      "entry": 289,
+      "cost": 266,
+      "pay100": 184,
       "location": 0,
       "paid": 39
     },
     "D": {
-      "entry": 283,
-      "cost": 272,
-      "pay100": 151,
+      "entry": 286,
+      "cost": 275,
+      "pay100": 155,
       "location": 0,
-      "paid": 28
+      "paid": 30
     }
   }
 };

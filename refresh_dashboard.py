@@ -54,13 +54,13 @@ def fmt(n):
 
 # === DATE CALC ===
 today = datetime.now()
-post_end = (today - timedelta(days=7)).strftime("%Y-%m-%d")
-post_end_display = (today - timedelta(days=7)).strftime("%b %d")
+post_end = (today - timedelta(days=5)).strftime("%Y-%m-%d")
+post_end_display = (today - timedelta(days=5)).strftime("%b %d")
 ts = today.strftime("%b %d %H:%M")
 
 print("=" * 60)
 print(f"Wiom Dashboard Refresh -- {ts}")
-print(f"POST window: Mar 28 to {post_end_display} (today-7days)")
+print(f"POST window: Mar 28 to {post_end_display} (today-5days)")
 print("=" * 60)
 
 # === QUERIES ===
