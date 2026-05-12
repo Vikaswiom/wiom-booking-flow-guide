@@ -1882,23 +1882,46 @@ table.sum .delta-cell.bad{color:var(--r);}
       var parts=rows.map(function(r,i){return medals[i]+' '+r.v+' '+r.r.toFixed(1)+'% (n='+fN(r.e)+', paid='+fN(r.p)+')';});
       var insightEl=document.querySelector('.js-nr-insight');
       if(insightEl) insightEl.innerHTML='<b>Ranking by conversion:</b> '+parts.join(' · ');
-      // Update A8 step (final conversion) variant cards
-      var a8Cards=document.querySelectorAll('#new-flow-apr15 .compare.compare-4');
-      if(a8Cards.length>0){
-        var lastCompare=a8Cards[a8Cards.length-1];
-        var cols=lastCompare.querySelectorAll('.compare-col');
-        var vord=['A','B','C','D'];
+      // Update all variant comparison steps (A5, A6, A7, A7.5, A8)
+      var vord=['A','B','C','D'];
+      var stepConfig={
+        'A5':  {metric:'entry',    prevMetric:null,      isFinal:false},
+        'A6':  {metric:'cost',     prevMetric:'entry',   isFinal:false},
+        'A7':  {metric:'pay100',   prevMetric:'cost',    isFinal:false},
+        'A7.5':{metric:'location', prevMetric:'pay100',  isFinal:false},
+        'A8':  {metric:'paid',     prevMetric:'pay100',  isFinal:true}
+      };
+      document.querySelectorAll('#new-flow-apr15 .step').forEach(function(stepEl){
+        var numEl=stepEl.querySelector('.step-h .num');
+        if(!numEl) return;
+        var stepName=numEl.textContent.trim();
+        var cfg=stepConfig[stepName]; if(!cfg) return;
+        var compare=stepEl.querySelector('.compare.compare-4');
+        if(!compare) return;
+        var cols=compare.querySelectorAll('.compare-col');
         cols.forEach(function(col,idx){
-          var v=vord[idx];if(!vs[v])return;
-          var paid=vs[v].paid||0,entry=vs[v].entry||0,rate=entry>0?(paid/entry*100):0;
-          var nEl=col.querySelector('.v'),pEl=col.querySelector('.pct'),lEl=col.querySelector('.l');
-          if(nEl)nEl.textContent=fN(paid);
-          if(pEl)pEl.textContent=rate.toFixed(1)+'%';
-          // Rank label
-          var rank=rows.findIndex(function(r){return r.v===v;});
-          if(lEl) lEl.textContent=medals[rank]+' '+(rank===0?'Best':(rate-rows[0].r).toFixed(1)+'pp');
+          var v=vord[idx]; if(!vs[v]) return;
+          var n=vs[v][cfg.metric]||0;
+          var entry=vs[v].entry||0;
+          var nEl=col.querySelector('.mt .v'),pEl=col.querySelector('.mt .pct'),lEl=col.querySelector('.mt .l');
+          if(nEl) nEl.textContent=fN(n);
+          if(cfg.metric==='entry'){
+            if(pEl) pEl.textContent='100%';
+            if(lEl) lEl.textContent='Entry';
+          } else if(cfg.isFinal){
+            var rate=entry>0?(n/entry*100):0;
+            if(pEl) pEl.textContent=rate.toFixed(1)+'%';
+            var rank=rows.findIndex(function(r){return r.v===v;});
+            if(lEl) lEl.textContent=(rank>=0?medals[rank]+' ':'')+(rank===0?'Best':(rate-rows[0].r).toFixed(1)+'pp');
+          } else {
+            var pct=entry>0?(n/entry*100):0;
+            var prev=vs[v][cfg.prevMetric]||0;
+            var dropPct=prev>0?((prev-n)/prev*100):0;
+            if(pEl) pEl.textContent=pct.toFixed(1)+'%';
+            if(lEl) lEl.textContent=dropPct.toFixed(1)+'% drop';
+          }
         });
-      }
+      });
       // Update summary table A5-A8 rows (last table in tab)
       var sumTbl=document.querySelector('#new-flow-apr15 table.sum:last-of-type tbody');
       if(sumTbl){
