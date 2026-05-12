@@ -10,7 +10,7 @@ all_events AS (
   SELECT USER_ID, EVENT_NAME
   FROM PROD_DB.PUBLIC.CLEVERTAP_CUSTOMER
   WHERE EVENT_NAME IN ('booking_homepage_loaded','check_serviceability_clicked','current_loc_serviceability_check_clicked','serviceable_page_loaded','unserviceable_page_loaded','how_does_it_work_clicked','how_to_get_started_clicked','cost_today_clicked','pay_100_to_move_forward_clicked','I_AM_AT_INSTALL_LOCATION_CLICKED','booking_fee_captured')
-    AND TIMESTAMP >= '2026-04-14' AND TIMESTAMP < '2026-04-22'
+    AND TIMESTAMP >= '2026-04-14' AND TIMESTAMP < '2026-05-06'
 )
 SELECT
   COUNT(DISTINCT b.USER_ID) AS app_installed,
