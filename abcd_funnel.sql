@@ -1,7 +1,6 @@
--- Variant funnel A5 → A8 (CleverTap-funnel style).
--- Cohort = users who fired how_to_get_started_clicked with variant A/B/C/D in the window.
--- No App Installed filter (matches CT funnel default behavior).
--- booking_fee_captured counted only if it happened AFTER the user's how_to_get_started_clicked.
+-- Variant funnel A5 → A8 with STRICT sequential constraint.
+-- Each step's join requires its timestamp > the previous step's timestamp.
+-- get_started → cost_today → pay_100 → location_confirm → fee_captured (each AFTER prior)
 
 WITH user_variant AS (
   -- A5: variant assignment per user (earliest get_started event)
@@ -14,8 +13,6 @@ WITH user_variant AS (
     AND UPPER(TRY_PARSE_JSON(PROPERTIES):"event_props.cost_breakdown_flow"::STRING) IN ('A','B','C','D')
   QUALIFY ROW_NUMBER() OVER (PARTITION BY USER_ID ORDER BY TIMESTAMP) = 1
 ),
-
--- Downstream events: take earliest timestamp per user, dedup
 u_cost_today AS (
   SELECT USER_ID, MIN(TIMESTAMP) AS t
   FROM PROD_DB.PUBLIC.CLEVERTAP_CUSTOMER
@@ -48,14 +45,14 @@ u_fee AS (
 SELECT
   uv.variant,
   COUNT(DISTINCT uv.USER_ID) AS get_started,
-  COUNT(DISTINCT CASE WHEN ct.t > uv.gs_time THEN uv.USER_ID END) AS cost_today,
-  COUNT(DISTINCT CASE WHEN p1.t > uv.gs_time THEN uv.USER_ID END) AS pay_100,
-  COUNT(DISTINCT CASE WHEN lc.t > uv.gs_time THEN uv.USER_ID END) AS location_confirm,
-  COUNT(DISTINCT CASE WHEN fe.t > uv.gs_time THEN uv.USER_ID END) AS fee_captured
+  COUNT(DISTINCT ct.USER_ID) AS cost_today,
+  COUNT(DISTINCT p1.USER_ID) AS pay_100,
+  COUNT(DISTINCT lc.USER_ID) AS location_confirm,
+  COUNT(DISTINCT fe.USER_ID) AS fee_captured
 FROM user_variant uv
-LEFT JOIN u_cost_today ct ON ct.USER_ID = uv.USER_ID
-LEFT JOIN u_pay_100    p1 ON p1.USER_ID = uv.USER_ID
-LEFT JOIN u_location   lc ON lc.USER_ID = uv.USER_ID
-LEFT JOIN u_fee        fe ON fe.USER_ID = uv.USER_ID
+LEFT JOIN u_cost_today ct ON ct.USER_ID = uv.USER_ID AND ct.t > uv.gs_time
+LEFT JOIN u_pay_100    p1 ON p1.USER_ID = uv.USER_ID AND p1.t > ct.t
+LEFT JOIN u_location   lc ON lc.USER_ID = uv.USER_ID AND lc.t > p1.t
+LEFT JOIN u_fee        fe ON fe.USER_ID = uv.USER_ID AND fe.t > p1.t
 GROUP BY uv.variant
 ORDER BY uv.variant;

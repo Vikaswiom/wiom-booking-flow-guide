@@ -1,6 +1,6 @@
-// Auto-generated 2026-05-12 14:32
+// Auto-generated 2026-05-12 15:21
 const DASHBOARD_DATA = {
-  "refreshed_at": "2026-05-12 14:32",
+  "refreshed_at": "2026-05-12 15:21",
   "post_end_date": "2026-05-07",
   "post_funnel": {
     "total": 3661,
@@ -13,7 +13,7 @@ const DASHBOARD_DATA = {
     "confirmed": 2784,
     "assigned": 2522,
     "otp": 1336,
-    "cancelled": 2287
+    "cancelled": 2289
   },
   "new_release": {
     "installs": 29577,
@@ -24,38 +24,38 @@ const DASHBOARD_DATA = {
     "how_works": 25536,
     "get_started": 9042,
     "cost": 8261,
-    "pay100": 5884,
+    "pay100": 5726,
     "location": 0,
-    "paid": 1170
+    "paid": 1132
   },
   "variants": {
     "A": {
       "entry": 3038,
       "cost": 2786,
-      "pay100": 2105,
+      "pay100": 2030,
       "location": 0,
-      "paid": 401
+      "paid": 385
     },
     "B": {
       "entry": 2135,
       "cost": 1983,
-      "pay100": 1420,
+      "pay100": 1383,
       "location": 0,
-      "paid": 284
+      "paid": 276
     },
     "C": {
       "entry": 1989,
       "cost": 1762,
-      "pay100": 1269,
+      "pay100": 1247,
       "location": 0,
-      "paid": 253
+      "paid": 249
     },
     "D": {
       "entry": 1880,
       "cost": 1730,
-      "pay100": 1090,
+      "pay100": 1066,
       "location": 0,
-      "paid": 232
+      "paid": 222
     }
   }
 };
