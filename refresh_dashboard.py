@@ -185,6 +185,83 @@ html = re.sub(
     html, count=1
 )
 
+# === END-TO-END: Update summary table 9-step rows with POST data ===
+# Order in `pf` dict: total, ssid, address, verified, notif, interested, slot, confirmed, assigned, otp
+step_values = [pf['total'], pf['ssid'], pf['address'], pf['verified'], pf['notif'],
+               pf['interested'], pf['slot'], pf['confirmed'], pf['assigned'], pf['otp']]
+total = pf['total']
+
+# PRE step drops (hardcoded reference from PRE cohort)
+pre_drops_pct = [0.7, 2.3, 9.0, 0.7, 12.1, 1.6, 0.6, 4.6, 29.5]
+
+def delta_cell(post_pct, pre_pct):
+    diff = post_pct - pre_pct
+    if abs(diff) < 0.3:
+        return 'neutral">≈'
+    elif diff > 0:
+        return f'bad">▲ +{diff:.1f}%'
+    else:
+        return f'good">▼ {diff:.1f}%'
+
+def replace_row(html, step_idx, enter, drop_n, drop_pct, delta):
+    # Find the row, rebuild the POST cells + delta cell as a single replacement.
+    # Use a simpler approach: split row HTML and replace POST cells positionally.
+    bold_o, bold_c = ('<b>', '</b>') if step_idx == 8 else ('', '')
+    style = ' style="color:var(--r);font-weight:700;"' if step_idx == 8 else ''
+
+    # Match div-p cell onwards, capture preserving everything before
+    pattern = re.compile(
+        r'(<tr[^>]*><td>(?:<b>)?' + str(step_idx + 1) + r'(?:</b>)?</td>'
+        r'<td class="tl">[^<]*(?:<b>[^<]*</b>)?[^<]*</td>'
+        r'<td class="div-l">(?:<b>)?[\d,]+(?:</b>)?</td>'
+        r'<td[^>]*>(?:<b>)?\d+(?:</b>)?</td>'
+        r'<td[^>]*>[\d.]+%</td>)'
+        r'<td class="div-p">(?:<b>)?[\d,]+(?:</b>)?</td>'
+        r'<td[^>]*>(?:<b>)?\d+(?:</b>)?</td>'
+        r'<td[^>]*>[\d.]+%</td>'
+        r'<td class="delta-cell [^"]+">[^<]+</td></tr>'
+    )
+    new_post = (
+        f'<td class="div-p">{bold_o}{fmt(enter)}{bold_c}</td>'
+        f'<td>{bold_o}{drop_n}{bold_c}</td>'
+        f'<td{style}>{drop_pct:.1f}%</td>'
+        f'<td class="delta-cell {delta}</td></tr>'
+    )
+    def repl(m):
+        return m.group(1) + new_post
+    return pattern.sub(repl, html, count=1)
+
+for i in range(9):
+    enter = step_values[i]
+    nxt = step_values[i + 1]
+    drop_n = enter - nxt
+    drop_pct = (drop_n / total * 100) if total > 0 else 0
+    delta = delta_cell(drop_pct, pre_drops_pct[i])
+    html = replace_row(html, i, enter, drop_n, drop_pct, delta)
+
+# TOTAL row
+total_drop = total - pf['otp']
+total_pct = (total_drop / total * 100) if total > 0 else 0
+pre_total_pct = 61.2
+total_delta = delta_cell(total_pct, pre_total_pct)
+total_pattern = re.compile(
+    r'(<tr style="background:var\(--s2\);font-weight:700"><td colspan="2">TOTAL</td>'
+    r'<td class="div-l">[\d,]+</td>'
+    r'<td[^>]*>[\d,]+</td>'
+    r'<td[^>]*>[\d.]+%</td>)'
+    r'<td class="div-p">[\d,]+</td>'
+    r'<td[^>]*>[\d,]+</td>'
+    r'<td[^>]*>[\d.]+%</td>'
+    r'<td class="delta-cell [^"]+">[^<]+</td></tr>'
+)
+total_new = (
+    f'<td class="div-p">{fmt(total)}</td>'
+    f'<td style="color:var(--r);">{fmt(total_drop)}</td>'
+    f'<td style="color:var(--r);">{total_pct:.1f}%</td>'
+    f'<td class="delta-cell {total_delta}</td></tr>'
+)
+html = total_pattern.sub(lambda m: m.group(1) + total_new, html, count=1)
+
 with open(HTML_FILE, "w", encoding="utf-8") as f:
     f.write(html)
 

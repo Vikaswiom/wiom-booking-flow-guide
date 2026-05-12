@@ -1,6 +1,6 @@
-// Auto-generated 2026-05-12 15:36
+// Auto-generated 2026-05-12 16:08
 const DASHBOARD_DATA = {
-  "refreshed_at": "2026-05-12 15:36",
+  "refreshed_at": "2026-05-12 16:08",
   "post_end_date": "2026-05-07",
   "post_funnel": {
     "total": 3661,
@@ -13,7 +13,7 @@ const DASHBOARD_DATA = {
     "confirmed": 2784,
     "assigned": 2522,
     "otp": 1336,
-    "cancelled": 2290
+    "cancelled": 2291
   },
   "new_release": {
     "installs": 29577,
