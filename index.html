@@ -1575,14 +1575,14 @@ table.sum .delta-cell.bad{color:var(--r);}
   <!-- FULL A/B/C/D FUNNEL WITH SCREENS (A1→A8)                       -->
   <!-- ============================================================ -->
   <div class="section-wrap">
-    <span class="section-divider">📱 Full Acquisition Funnel · A/B/C/D Comparison<span class="section-sub">App Installed (first time) · ct_app_version >= 2026_04_14 · Apr 15–21 (7 days)</span></span>
+    <span class="section-divider">📱 Full Acquisition Funnel · A/B/C/D Comparison<span class="section-sub">App Installed (first time, Apr 15&ndash;21 cohort, 7 days) &middot; Filtered to users with cost_breakdown_flow &isin; {A,B,C,D} &middot; Events tracked through <span class="js-nr-end">—</span></span></span>
   </div>
 
   <!-- ═══ FULL A/B/C/D FUNNEL (compare layout like Overall tab) ═══ -->
 
   <!-- STEP A1 — Homepage (same for all) -->
   <div class="step low">
-    <div class="step-h"><div class="num">A1</div><div class="txt"><div class="label">Acquisition Step 1 · Same for all variants</div><div class="ttl">App Installed (First Time) → Homepage</div><div class="from-to">New version only · v2026_04_14+</div></div><div class="badges"><span class="bdg pre">3,639 installs</span><span class="tab-badge" style="font-size:9px;">v2026_04_14+</span></div></div>
+    <div class="step-h"><div class="num">A1</div><div class="txt"><div class="label">Acquisition Step 1 · Same for all variants</div><div class="ttl">App Installed (First Time) → Homepage</div><div class="from-to">Apr 15–21 cohort · users with cost_breakdown_flow assigned</div></div><div class="badges"><span class="bdg pre js-nr-installs">— installs</span></div></div>
     <div class="step-b">
       <div class="figma"><div class="fl">Splash screen · "मेरे इलाके में है या नहीं?" CTA</div><div class="fs"><img src="s_acq_1_splash.png" alt="A1 Splash"></div></div>
       <div class="mets">
@@ -1793,9 +1793,9 @@ table.sum .delta-cell.bad{color:var(--r);}
       <tr style="font-weight:700;"><td>A8</td><td class="tl">Booking Fee Captured</td><td class="tc" style="color:var(--g);">12</td><td class="tc" style="color:var(--g);">18.8%</td><td class="tc">4</td><td class="tc">12.9%</td><td class="tc" style="color:var(--r);">0</td><td class="tc" style="color:var(--r);">0%</td><td class="tc">2</td><td class="tc">14.3%</td></tr>
     </tbody>
   </table>
-  <div style="font-size:11px;color:var(--t2);text-align:center;margin-top:-10px;margin-bottom:10px;font-style:italic;">Apr 15–17 · 2 days · tiny sample sizes (A=64, B=31, C=20, D=14) · no conclusions yet · check Apr 24+ for meaningful read</div>
+  <div style="font-size:11px;color:var(--t2);text-align:center;margin-top:-10px;margin-bottom:10px;font-style:italic;js-nr-caveat">Apr 15–21 cohort · events tracked through <span class="js-nr-end">—</span> · <span class="js-nr-installs2">—</span> variant users</div>
 
-  <div class="ibox sla"><div class="ib-t">7 days · 1,346 variant users · App Installed entry · v2026_04_14+</div><p><b>A and B neck-and-neck</b> at 13.9% vs 13.6% (n=668 vs 250). C and D tied at 10.7% (n=214 each) — both underperform control by ~3pp. C's bottom sheet adds friction at A6 (8.4% drop vs 3.2-4.2%). D's Book Later reduces A7 click to 56.6% (others ~70%). Unserviceable rate only 1.6% — Location Clarity working.</p></div>
+  <div class="ibox sla"><div class="ib-t"><span class="js-nr-installs3">—</span> variant users · cohort Apr 15–21 · events through <span class="js-nr-end">—</span></div><p class="js-nr-insight"><b>—</b></p></div>
 
   <!-- END OF NEW RELEASE TAB CONTENT -->
 
@@ -1804,7 +1804,7 @@ table.sum .delta-cell.bad{color:var(--r);}
 
 <div class="footer">
   <p>Wiom Acquisition Funnel Dashboard | Page rendered: <span class="js-now">—</span></p>
-  <p>PRE: Feb 20 – Mar 25, 2026 (34 days) | POST: Mar 28 – Apr 20, 2026 (9 days, matured) | Counted by unique customer (distinct mobile) | Sources: booking_logs + task_logs (PayG filter on)</p>
+  <p>PRE: Feb 20 – Mar 25, 2026 (34 days) | POST: Mar 28 – <span class="js-post-end-footer">—</span>, 2026 | Counted by unique customer (distinct mobile) | Sources: booking_logs + task_logs (PayG filter on)</p>
 </div>
 
 <script src="dashboard_data.js" onerror="console.log('dashboard_data.js not found — using hardcoded values')"></script>
@@ -1855,6 +1855,73 @@ table.sum .delta-cell.bad{color:var(--r);}
         var big=b.querySelector('div[style*="font-size:28px"]');
         if(big)big.textContent=fN(pf.otp)+' / '+fN(pf.total)+' = '+fP(pf.otp,pf.total);
       });
+    }
+    // NEW FLOW RELEASE TAB — events end date label
+    if(d.post_end_date){
+      var pd2=new Date(d.post_end_date+'T00:00:00');
+      var msX=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var endStr=msX[pd2.getMonth()]+' '+pd2.getDate()+', 2026';
+      document.querySelectorAll('.js-nr-end').forEach(function(e){e.textContent=endStr;});
+      document.querySelectorAll('.js-post-end-footer').forEach(function(e){e.textContent=msX[pd2.getMonth()]+' '+pd2.getDate();});
+    }
+    var nr=d.new_release, vs=d.variants;
+    if(nr){
+      var total=nr.installs||0;
+      document.querySelectorAll('.js-nr-installs').forEach(function(e){e.textContent=fN(total)+' installs';});
+      document.querySelectorAll('.js-nr-installs2,.js-nr-installs3').forEach(function(e){e.textContent=fN(total);});
+    }
+    if(vs && nr){
+      // Build insight string ranked by paid%
+      var rows=[];
+      ['A','B','C','D'].forEach(function(v){
+        if(vs[v]){var e=vs[v].entry||0,p=vs[v].paid||0;rows.push({v:v,e:e,p:p,r:e>0?(p/e*100):0});}
+      });
+      rows.sort(function(a,b){return b.r-a.r;});
+      var medals=['🥇','🥈','🥉','4️⃣'];
+      var parts=rows.map(function(r,i){return medals[i]+' '+r.v+' '+r.r.toFixed(1)+'% (n='+fN(r.e)+', paid='+fN(r.p)+')';});
+      var insightEl=document.querySelector('.js-nr-insight');
+      if(insightEl) insightEl.innerHTML='<b>Ranking by conversion:</b> '+parts.join(' · ');
+      // Update A8 step (final conversion) variant cards
+      var a8Cards=document.querySelectorAll('#new-flow-apr15 .compare.compare-4');
+      if(a8Cards.length>0){
+        var lastCompare=a8Cards[a8Cards.length-1];
+        var cols=lastCompare.querySelectorAll('.compare-col');
+        var vord=['A','B','C','D'];
+        cols.forEach(function(col,idx){
+          var v=vord[idx];if(!vs[v])return;
+          var paid=vs[v].paid||0,entry=vs[v].entry||0,rate=entry>0?(paid/entry*100):0;
+          var nEl=col.querySelector('.v'),pEl=col.querySelector('.pct'),lEl=col.querySelector('.l');
+          if(nEl)nEl.textContent=fN(paid);
+          if(pEl)pEl.textContent=rate.toFixed(1)+'%';
+          // Rank label
+          var rank=rows.findIndex(function(r){return r.v===v;});
+          if(lEl) lEl.textContent=medals[rank]+' '+(rank===0?'Best':(rate-rows[0].r).toFixed(1)+'pp');
+        });
+      }
+      // Update summary table A5-A8 rows (last table in tab)
+      var sumTbl=document.querySelector('#new-flow-apr15 table.sum:last-of-type tbody');
+      if(sumTbl){
+        var trs=sumTbl.querySelectorAll('tr');
+        function setRow(tr,vals){
+          var tds=tr.querySelectorAll('td');
+          // Schema: step | stage | A_n | A_% | B_n | B_% | C_n | C_% | D_n | D_%
+          if(tds.length>=10){
+            for(var i=0;i<4;i++){
+              var v=vord[i];if(!vs[v])continue;
+              var n=vals[v]||0;var ent=vs[v].entry||1;
+              tds[2+i*2].textContent=fN(n);
+              tds[3+i*2].textContent=(n/ent*100).toFixed(1)+'%';
+            }
+          }
+        }
+        // Row 0: A5 = entry (100%)
+        if(trs[0]) setRow(trs[0],{A:vs.A.entry,B:vs.B.entry,C:vs.C.entry,D:vs.D.entry});
+        if(trs[1]) setRow(trs[1],{A:vs.A.cost,B:vs.B.cost,C:vs.C.cost,D:vs.D.cost});
+        // Row 4: A7 pay100 click
+        if(trs[4]) setRow(trs[4],{A:vs.A.pay100,B:vs.B.pay100,C:vs.C.pay100,D:vs.D.pay100});
+        // Row 6: A8 booking fee
+        if(trs[6]) setRow(trs[6],{A:vs.A.paid,B:vs.B.paid,C:vs.C.paid,D:vs.D.paid});
+      }
     }
   }
 
