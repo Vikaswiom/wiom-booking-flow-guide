@@ -1,7 +1,10 @@
 WITH variant_users AS (
   SELECT DISTINCT USER_ID
   FROM PROD_DB.PUBLIC.CLEVERTAP_CUSTOMER
-  WHERE EVENT_NAME IN ('how_to_get_started_clicked','cost_today_clicked','pay_100_to_move_forward_clicked','booking_fee_captured')
+  WHERE EVENT_NAME IN ('booking_homepage_loaded','check_serviceability_clicked','current_loc_serviceability_check_clicked',
+                       'serviceable_page_loaded','unserviceable_page_loaded','how_does_it_work_clicked',
+                       'how_to_get_started_clicked','cost_today_clicked','pay_100_to_move_forward_clicked',
+                       'I_AM_AT_INSTALL_LOCATION_CLICKED','booking_fee_captured')
     AND TIMESTAMP >= '2026-04-14' AND TIMESTAMP < DATEADD('day', -5, CURRENT_DATE())
     AND UPPER(TRY_PARSE_JSON(PROPERTIES):"event_props.cost_breakdown_flow"::STRING) IN ('A','B','C','D')
 ),
