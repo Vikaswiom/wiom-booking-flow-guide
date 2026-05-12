@@ -1,6 +1,6 @@
-// Auto-generated 2026-05-12 12:08
+// Auto-generated 2026-05-12 12:38
 const DASHBOARD_DATA = {
-  "refreshed_at": "2026-05-12 12:08",
+  "refreshed_at": "2026-05-12 12:38",
   "post_end_date": "2026-05-07",
   "post_funnel": {
     "total": 3661,
