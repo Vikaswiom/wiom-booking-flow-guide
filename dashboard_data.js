@@ -1,61 +1,61 @@
-// Auto-generated 2026-05-12 16:08
+// Auto-generated 2026-05-13 12:50
 const DASHBOARD_DATA = {
-  "refreshed_at": "2026-05-12 16:08",
-  "post_end_date": "2026-05-07",
+  "refreshed_at": "2026-05-13 12:50",
+  "post_end_date": "2026-05-08",
   "post_funnel": {
-    "total": 3661,
-    "ssid": 3545,
-    "address": 3532,
-    "verified": 3361,
-    "notif": 3343,
-    "interested": 2862,
-    "slot": 2807,
-    "confirmed": 2784,
-    "assigned": 2522,
-    "otp": 1336,
-    "cancelled": 2291
+    "total": 3743,
+    "ssid": 3626,
+    "address": 3613,
+    "verified": 3441,
+    "notif": 3423,
+    "interested": 2931,
+    "slot": 2875,
+    "confirmed": 2852,
+    "assigned": 2581,
+    "otp": 1365,
+    "cancelled": 2333
   },
   "new_release": {
-    "installs": 29577,
-    "homepage": 49089,
-    "check": 40050,
-    "serviceable": 26560,
-    "unserviceable": 2821,
-    "how_works": 25536,
-    "get_started": 9042,
-    "cost": 8261,
-    "pay100": 5726,
+    "installs": 30747,
+    "homepage": 50859,
+    "check": 41582,
+    "serviceable": 27604,
+    "unserviceable": 2858,
+    "how_works": 26544,
+    "get_started": 9453,
+    "cost": 8643,
+    "pay100": 6000,
     "location": 0,
-    "paid": 1132
+    "paid": 1195
   },
   "variants": {
     "A": {
-      "entry": 3038,
-      "cost": 2786,
-      "pay100": 2030,
+      "entry": 3151,
+      "cost": 2894,
+      "pay100": 2113,
       "location": 0,
-      "paid": 385
+      "paid": 404
     },
     "B": {
-      "entry": 2135,
-      "cost": 1983,
-      "pay100": 1383,
+      "entry": 2259,
+      "cost": 2100,
+      "pay100": 1471,
       "location": 0,
-      "paid": 276
+      "paid": 292
     },
     "C": {
-      "entry": 1989,
-      "cost": 1762,
-      "pay100": 1247,
+      "entry": 2078,
+      "cost": 1840,
+      "pay100": 1304,
       "location": 0,
-      "paid": 249
+      "paid": 264
     },
     "D": {
-      "entry": 1880,
-      "cost": 1730,
-      "pay100": 1066,
+      "entry": 1965,
+      "cost": 1809,
+      "pay100": 1112,
       "location": 0,
-      "paid": 222
+      "paid": 235
     }
   }
 };
