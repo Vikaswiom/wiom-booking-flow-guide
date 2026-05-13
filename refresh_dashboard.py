@@ -185,6 +185,17 @@ html = re.sub(
     html, count=1
 )
 
+# Update all <span class="js-post-end-dt"> fallback text (JS overrides on load, but keep HTML consistent)
+post_end_short = post_end_actual.split("-")[2].lstrip("0")
+post_end_month_idx = int(post_end_actual.split("-")[1])
+month_names = ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+short_label = f"{month_names[post_end_month_idx]} {post_end_short}"
+html = re.sub(
+    r'<span class="js-post-end-dt">[^<]+</span>',
+    f'<span class="js-post-end-dt">{short_label}</span>',
+    html
+)
+
 # === END-TO-END: Update summary table 9-step rows with POST data ===
 # Order in `pf` dict: total, ssid, address, verified, notif, interested, slot, confirmed, assigned, otp
 step_values = [pf['total'], pf['ssid'], pf['address'], pf['verified'], pf['notif'],
