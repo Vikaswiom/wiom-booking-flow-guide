@@ -1,61 +1,60 @@
-// Auto-generated 2026-05-14 10:27
 const DASHBOARD_DATA = {
-  "refreshed_at": "2026-05-14 10:27",
-  "post_end_date": "2026-05-09",
+  "refreshed_at": "2026-05-25 06:02 UTC",
+  "post_end_date": "2026-05-20",
   "post_funnel": {
-    "total": 3827,
-    "ssid": 3709,
-    "address": 3696,
-    "verified": 3522,
-    "notif": 3504,
-    "interested": 2994,
-    "slot": 2936,
-    "confirmed": 2912,
-    "assigned": 2634,
-    "otp": 1397,
-    "cancelled": 2381
+    "total": 4792,
+    "ssid": 4666,
+    "address": 4641,
+    "verified": 4454,
+    "notif": 4333,
+    "interested": 3699,
+    "slot": 3623,
+    "confirmed": 3594,
+    "assigned": 3245,
+    "otp": 1714,
+    "cancelled": 2982
   },
   "new_release": {
-    "installs": 31814,
-    "homepage": 52489,
-    "check": 42986,
-    "serviceable": 28557,
-    "unserviceable": 2889,
-    "how_works": 27456,
-    "get_started": 9811,
-    "cost": 8978,
-    "pay100": 6230,
+    "installs": 43671,
+    "homepage": 69547,
+    "check": 57904,
+    "serviceable": 38923,
+    "unserviceable": 3236,
+    "how_works": 37541,
+    "get_started": 13604,
+    "cost": 12447,
+    "pay100": 8643,
     "location": 0,
-    "paid": 1258
+    "paid": 1854
   },
   "variants": {
     "A": {
-      "entry": 3230,
-      "cost": 2969,
-      "pay100": 2174,
+      "entry": 4155,
+      "cost": 3817,
+      "pay100": 2794,
       "location": 0,
-      "paid": 419
+      "paid": 569
     },
     "B": {
-      "entry": 2363,
-      "cost": 2198,
-      "pay100": 1540,
+      "entry": 3365,
+      "cost": 3133,
+      "pay100": 2197,
       "location": 0,
-      "paid": 312
+      "paid": 457
     },
     "C": {
-      "entry": 2163,
-      "cost": 1915,
-      "pay100": 1357,
+      "entry": 3097,
+      "cost": 2736,
+      "pay100": 1965,
       "location": 0,
-      "paid": 281
+      "paid": 428
     },
     "D": {
-      "entry": 2055,
-      "cost": 1896,
-      "pay100": 1159,
+      "entry": 2987,
+      "cost": 2761,
+      "pay100": 1687,
       "location": 0,
-      "paid": 246
+      "paid": 400
     }
   }
 };
