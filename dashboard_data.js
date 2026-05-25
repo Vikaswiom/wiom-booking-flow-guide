@@ -1,5 +1,5 @@
 const DASHBOARD_DATA = {
-  "refreshed_at": "2026-05-25 06:02 UTC",
+  "refreshed_at": "2026-05-25 06:53 UTC",
   "post_end_date": "2026-05-20",
   "post_funnel": {
     "total": 4792,
@@ -12,7 +12,7 @@ const DASHBOARD_DATA = {
     "confirmed": 3594,
     "assigned": 3245,
     "otp": 1714,
-    "cancelled": 2982
+    "cancelled": 2983
   },
   "new_release": {
     "installs": 43671,
