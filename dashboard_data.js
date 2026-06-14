@@ -1,60 +1,60 @@
 const DASHBOARD_DATA = {
-  "refreshed_at": "2026-06-13 06:38 UTC",
-  "post_end_date": "2026-06-08",
+  "refreshed_at": "2026-06-14 07:07 UTC",
+  "post_end_date": "2026-06-09",
   "post_funnel": {
-    "total": 6360,
-    "ssid": 6211,
-    "address": 6173,
-    "verified": 5961,
-    "notif": 5632,
-    "interested": 4799,
-    "slot": 4694,
-    "confirmed": 4654,
-    "assigned": 4187,
-    "otp": 2174,
-    "cancelled": 3974
+    "total": 6502,
+    "ssid": 6351,
+    "address": 6310,
+    "verified": 6097,
+    "notif": 5754,
+    "interested": 4901,
+    "slot": 4795,
+    "confirmed": 4750,
+    "assigned": 4276,
+    "otp": 2209,
+    "cancelled": 4061
   },
   "new_release": {
-    "installs": 76809,
-    "homepage": 109756,
-    "check": 92909,
-    "serviceable": 59111,
-    "unserviceable": 3989,
-    "how_works": 57149,
-    "get_started": 16100,
-    "cost": 14714,
-    "pay100": 10102,
+    "installs": 79849,
+    "homepage": 113151,
+    "check": 95905,
+    "serviceable": 60475,
+    "unserviceable": 4039,
+    "how_works": 58464,
+    "get_started": 16914,
+    "cost": 15442,
+    "pay100": 10552,
     "location": 0,
-    "paid": 2170
+    "paid": 2274
   },
   "variants": {
     "A": {
-      "entry": 4761,
-      "cost": 4372,
-      "pay100": 3181,
+      "entry": 4974,
+      "cost": 4566,
+      "pay100": 3315,
       "location": 0,
-      "paid": 658
+      "paid": 676
     },
     "B": {
-      "entry": 4055,
-      "cost": 3769,
-      "pay100": 2627,
+      "entry": 4282,
+      "cost": 3976,
+      "pay100": 2760,
       "location": 0,
-      "paid": 537
+      "paid": 576
     },
     "C": {
-      "entry": 3726,
-      "cost": 3295,
-      "pay100": 2320,
+      "entry": 3893,
+      "cost": 3429,
+      "pay100": 2405,
       "location": 0,
-      "paid": 498
+      "paid": 518
     },
     "D": {
-      "entry": 3558,
-      "cost": 3278,
-      "pay100": 1974,
+      "entry": 3765,
+      "cost": 3471,
+      "pay100": 2072,
       "location": 0,
-      "paid": 477
+      "paid": 504
     }
   }
 };
