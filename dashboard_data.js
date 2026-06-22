@@ -1,18 +1,18 @@
 const DASHBOARD_DATA = {
-  "refreshed_at": "2026-06-21 07:16 UTC",
-  "post_end_date": "2026-06-16",
+  "refreshed_at": "2026-06-22 08:41 UTC",
+  "post_end_date": "2026-06-17",
   "post_funnel": {
-    "total": 7349,
-    "ssid": 7182,
-    "address": 7135,
-    "verified": 6915,
-    "notif": 6448,
-    "interested": 5423,
-    "slot": 5296,
-    "confirmed": 5250,
-    "assigned": 4689,
-    "otp": 2384,
-    "cancelled": 4664
+    "total": 7461,
+    "ssid": 7292,
+    "address": 7243,
+    "verified": 7023,
+    "notif": 6537,
+    "interested": 5484,
+    "slot": 5352,
+    "confirmed": 5306,
+    "assigned": 4717,
+    "otp": 2389,
+    "cancelled": 4764
   },
   "new_release": {
     "installs": 0,
