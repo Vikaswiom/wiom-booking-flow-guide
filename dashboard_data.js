@@ -1,31 +1,31 @@
 const DASHBOARD_DATA = {
-  "refreshed_at": "2026-10-10 08:52 UTC",
-  "post_end_date": "2026-10-05",
+  "refreshed_at": "2026-10-11 09:14 UTC",
+  "post_end_date": "2026-10-06",
   "post_funnel": {
-    "total": 35127,
-    "ssid": 21848,
-    "address": 33638,
-    "verified": 33270,
-    "notif": 6547,
-    "interested": 5494,
-    "slot": 5361,
-    "confirmed": 5314,
-    "assigned": 4723,
+    "total": 35514,
+    "ssid": 22009,
+    "address": 34002,
+    "verified": 33632,
+    "notif": 6548,
+    "interested": 5495,
+    "slot": 5362,
+    "confirmed": 5315,
+    "assigned": 4724,
     "otp": 2389,
-    "cancelled": 22979
+    "cancelled": 23229
   },
   "new_release": {
-    "installs": 439736,
-    "homepage": 506799,
-    "check": 396566,
-    "serviceable": 205145,
-    "unserviceable": 94780,
-    "how_works": 248745,
+    "installs": 444751,
+    "homepage": 512055,
+    "check": 399602,
+    "serviceable": 206186,
+    "unserviceable": 97080,
+    "how_works": 252053,
     "get_started": 30430,
     "cost": 27017,
     "pay100": 17761,
     "location": 0,
-    "paid": 3963
+    "paid": 3965
   },
   "variants": {
     "A": {
@@ -40,7 +40,7 @@ const DASHBOARD_DATA = {
       "cost": 4201,
       "pay100": 2944,
       "location": 0,
-      "paid": 640
+      "paid": 642
     },
     "C": {
       "entry": 8076,
